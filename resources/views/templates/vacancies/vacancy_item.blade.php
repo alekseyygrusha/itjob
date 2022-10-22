@@ -20,6 +20,6 @@
         @if(Auth::user())
             <a class="btn  @if(!$vacancy->vacancyResponses) vacansy_response btn-success @else btn btn-secondary @endif -green-color" data-value="{{$vacancy->id}}">Откликнуться</a>
         @endif
-        <a class="btn btn-success -green-color" href='#'>Позвонить</a>
+        {{-- <a class="btn btn-success -green-color" href='#'>Позвонить</a> --}}
     </div>
 </div>

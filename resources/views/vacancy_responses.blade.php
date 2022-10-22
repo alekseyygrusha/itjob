@@ -19,6 +19,7 @@
                                         <div class="wrap">
                                             <div class="name">{{$response_user->user->name}}</div>
                                             <div class="mail">{{$response_user->user->email}}</div>
+                                            <div class="time">Отклик получен: {{$response_user->created_at}}</div>
                                         </div>
                                     </div>
                                 </div>

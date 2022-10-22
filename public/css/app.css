@@ -1,5 +1,15 @@
+
+html {
+  height: 100% !important;
+}
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+body .main-content {
+  flex: 1 0 auto;
 }
 
 .main_login_block {
@@ -14,6 +24,7 @@ body {
     text-decoration: none !important; }
   
   header {
+    flex: 0 0 auto;
     padding: 16px 0;
     background-color: #59b999; }
     header .content {
@@ -242,6 +253,20 @@ body {
 }
 .btn.btn-success {
   color: white !important;
+}
+
+footer {
+  flex: 0 0 auto;
+  height: 100px;
+  width: 100%;
+  background-color: #59b999;
+  display: flex !important;
+  align-items: center;
+}
+
+footer .annotation {
+  color: white;
+  font-size: 16px;
 }
 
 

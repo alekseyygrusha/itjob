@@ -5,7 +5,10 @@
     </head>
     <body>
         @include('templates.blocks.header')
-        @include('templates.login.login_form')
+        <div class="main-content">
+            @include('templates.login.login_form')
+        </div>
+        @include('templates.blocks.footer')
     </body>
 </html>    
  

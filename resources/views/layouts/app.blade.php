@@ -14,9 +14,9 @@
     @include('templates.blocks.meta')
 </head>
 <body>
-    
-    <div id="app">
-        @include('templates.blocks.header')
+    @include('templates.blocks.header')
+    <div class="main-content">
+        
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -71,9 +71,12 @@
             </div>
         </nav> --}}
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <main class="py-4">
+                @yield('content')
+            </main>
+        
+       
     </div>
+    @include('templates.blocks.footer')
 </body>
 </html>
