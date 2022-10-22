@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancies;
 use App\Models\VacancyResponses;
 use App\Models\Skills;
+use App\Models\Cities;
+use App\Models\Groups;
 use App\Models\Lib;
 use View;
 
@@ -35,7 +37,6 @@ class VacancyController extends Controller
     public function index()
     {
         self::getData();
-
         return view('post');
     }
 
@@ -65,7 +66,6 @@ class VacancyController extends Controller
             $vacancy = new Vacancies();
         }
         
-        
         $vacancy->user_id = Auth::id();
         $vacancy->job_title = $request->job_title;
         $vacancy->job_group = $request->job_group;
@@ -78,6 +78,27 @@ class VacancyController extends Controller
 
         return redirect()->route('cabinet')->with('success', 'Вакансия была опубликована');
 
+    }
+    public function getVanacyByGroup($group_id) {
+        $group = Groups::where('id', $group_id)->get()->first();
+       
+        $vacancies = Vacancies::where('job_group', $group_id)
+            ->with(['skills', 'vacancyResponses'])
+            ->where('is_hidden', 0)
+            ->where('is_blocked', 0)
+            ->get();
+
+        return view('templates.vacancies.vacancies_list', ['vacancies' => $vacancies, 'success' => 'Фильтр по направлению ' . $group->group_name]);
+    }
+    public function getVanacyByCity($city_id) {
+        $city = Cities::where('id', $city_id)->get()->first();
+       
+        $vacancies = Vacancies::where('city', $city_id)
+            ->with(['skills', 'vacancyResponses'])
+            ->where('is_hidden', 0)
+            ->where('is_blocked', 0)
+            ->get();
+        return view('templates.vacancies.vacancies_list', ['vacancies' => $vacancies, 'success' => 'Фильтр по городу ' . $city->name]);
     }
 
     public function getVanacy($id) {
@@ -99,19 +120,16 @@ class VacancyController extends Controller
     }
 
     public function getVanacyResponses($id) {
-
-        
         $vacancy_responses = VacancyResponses::where('vacancy_id', $id)
             ->with(['user'])
             ->get();    
-
+        
         $vacancy = self::getVacancyData($id);    
       
         View::share('vacancy_responses', $vacancy_responses);    
         View::share('vacancy', $vacancy);
 
         return view('vacancy_responses');
-        
     }
 
     public function vacancyResponse(Request $request) {

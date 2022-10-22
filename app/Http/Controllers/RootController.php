@@ -8,6 +8,7 @@ use Spatie\Ignition\ErrorPage\ErrorPageViewModel;
 use App\Models\Lib;
 use App\Models\Vacancies;
 use App\Models\Cities;
+use App\Models\Groups;
 use View;
 
 class RootController extends Controller
@@ -40,11 +41,13 @@ class RootController extends Controller
             ->where('is_hidden', 0)
             ->where('is_blocked', 0)
             ->get();
-         
 
+        $groups_list = Groups::get()->all();
+    
         // dd($list_vacancies);
         $data = [
             'city_list' => $city_list,
+            'groups_list' => $groups_list,
             'vacancies' => $list_vacancies
         ];
 

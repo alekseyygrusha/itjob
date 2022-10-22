@@ -13,9 +13,8 @@ class VacancyResponses extends Model
     public $timestamps = false;
     protected $table = 'vacancies_links';
 
-
     public function user() {
-        return $this->hasOne(User::class, 'id');
+        return $this->hasOne(User::class,  'id','user_id');
     }
 
 }

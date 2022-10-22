@@ -38,3 +38,8 @@ Route::get('/vacancy/response/{id}', [App\Http\Controllers\VacancyController::cl
 Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class, 'vacancyResponse'])->name('vacancy-response');
 
 Route::get('/vacancy/edit/{id}', [App\Http\Controllers\VacancyController::class, 'getVanacy'], function () {})->name('edit-vacancy');
+
+Route::prefix('filter')->group(function () {
+    Route::get('/city/{city_id}',[App\Http\Controllers\VacancyController::class, 'getVanacyByCity'], function () {});
+    Route::get('/group/{group_id}',[App\Http\Controllers\VacancyController::class, 'getVanacyByGroup'], function () {});
+});
