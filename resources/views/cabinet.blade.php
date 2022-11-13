@@ -14,6 +14,26 @@
                     {{ session('success') }}
                 </div>
             @endif
+            <h4>Мои резюме</h4>
+            <div class="resume-wrap">
+                <div class="vacancies-container">
+                    <div class="vacancies-card">
+                        <div class="name"><b>Иванов Иван Иванович</b></div>
+                        <a class="job-title resume-title">
+                            Web-разработчик
+                        </a>
+                        <div class="city">Санкт-Петербург</div>
+                        <div class="experience">Опыт: 3 года</div>
+                        <div class="description">Ищу работу в хорошей компании</div>
+                        <div class="button-wrap">
+                            <a class="btn btn-warning btn-hide" href='\cabinet\resume\1' data-value="1">
+                                Редактировать    
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>Список моих вакансий:</h4>
             <div id="vacancy-container">
                 @include('templates.cabinet.vacancies_list')
             </div>
