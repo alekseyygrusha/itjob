@@ -103,9 +103,8 @@ class VacancyController extends Controller
 
     public function getVanacy($id) {
         self::getData();
-
         $vacancy = self::getVacancyData($id);
-
+        
         View::share('vacancy', $vacancy);
         return view('post');
     }

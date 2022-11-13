@@ -12,8 +12,4 @@ class Skills extends Model
     */
     
     public $timestamps = false;
-
-    public function skills_link() {
-
-    }
 }

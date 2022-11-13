@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {
     return view('root');
 })->name('root');
+//Кабинет надо вынести в группу 
 
-Route::get('/cabinet',[App\Http\Controllers\CabinetController::class, 'index'], function () {
-    return view('cabinet');
-})->name('cabinet');
+Route::prefix('cabinet')->group(function () {
+    Route::get('/',[App\Http\Controllers\CabinetController::class, 'index'])->name('cabinet');
+    Route::get('resume/{resume_id}', [App\Http\Controllers\CabinetController::class, 'getResume']);
+});
 
 Auth::routes();
 

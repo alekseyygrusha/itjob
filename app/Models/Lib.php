@@ -44,24 +44,29 @@ class Lib
     }
 
     public static function deleteVacancy($id, $user_id) {
-        $vacancy = DB::table('vacancies as v')
-            ->where('v.user_id' , $user_id)
-            ->where('v.id' , $id);
+        $vacancy = DB::table('vacancies')
+            ->where('vacancies.user_id' , $user_id)
+            ->where('vacancies.id' , $id);
             
-        
         if(!$vacancy) {
             return false;
         }
+        self::deleteVacancyLinks($id);
         self::deleteBindVacancySkills($id);
         $vacancy->delete();
         
-       
         return true;
     }
 
+    public static function deleteVacancyLinks($id) {
+        $skill_links = DB::table('vacancies_links')
+            ->where('vacancies_links.vacancy_id', $id)
+            ->delete();
+    }
+
     public static function deleteBindVacancySkills($id) {
-        $skill_links = DB::table('skill_links as sl')
-            ->where('sl.vacancy_id', $id)
+        $skill_links = DB::table('skill_links')
+            ->where('skill_links.vacancy_id', $id)
             ->delete();
     }
 
