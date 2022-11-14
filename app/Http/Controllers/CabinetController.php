@@ -11,6 +11,7 @@ use App\Models\Cities;
 use App\Models\Groups;
 use App\Models\Skills;
 use App\Models\Resume\ResumeLib;
+use App\Models\Resume\Resume;
 use View;
 
 
@@ -49,6 +50,30 @@ class CabinetController extends Controller
         'city_list' => $city_list, 
         'groups_list' => $groups_list,
         'skills' => $skills]);
+    }
+
+    public function postResume(Request $request) {
+      
+        $resume_id = $request->resume_id;
+        if(!$resume = Resume::find($resume_id)->with(['skills'])->get()) {
+            $resume = new Resume;
+        } 
+        
+        $resume->job_group = $request->job_group;
+      
+        $resume->job_title = $request->job_title;
+        $resume->city_id = $request->city_id;
+  
+       
+        $resume->min_salary = $request->min_salary;
+        $resume->max_salary = $request->max_salary;
+        
+        if($resume_id) {
+            ResumeLib::fillResumeSkillLinks($request->skills, $request->$resume_id);
+        }
+        
+
+        dd('1123');
     }
 
     public static function getData () {
