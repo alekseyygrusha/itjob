@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         {{-- {{route('resume-post')}} --}}
-        <form class='form_block' action="" method="post" id="post_resume">
+        <form class='form_block' action="{{route('resume-post')}}" method="post" id="post_resume">
             @csrf
             <!-- Equivalent to... -->
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -30,7 +30,7 @@
                         <h4>Город</h4> 
                     </div>
                     <div class="col-6">
-                        <select name="city" id="city_select" style="width: 100%">
+                        <select name="city_id" id="city_select" style="width: 100%">
                             @foreach($city_list as $city)
                                 <option value="{{$city->id}}" @if(!empty($resume->city) && $resume->city->id == $city->id) selected @endif>{{$city->name}}</option>
                             @endforeach
@@ -77,4 +77,8 @@
             <div id="message"></div>
         </form>
     </div>
+    <script>
+        $("#skills_select").select2();
+    </script>
 @endsection
+
