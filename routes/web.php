@@ -8,6 +8,8 @@ Auth::routes();
 Route::prefix('cabinet')->group(function () {
     Route::get('/',[App\Http\Controllers\CabinetController::class, 'index'])->name('cabinet');
     Route::get('resume/{resume_id}', [App\Http\Controllers\CabinetController::class, 'getResume']);
+
+    
 });
 
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {
@@ -34,6 +36,9 @@ Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class,
 Route::post('resume-post',  [App\Http\Controllers\CabinetController::class, 'postResume'], function () {
     return view('cabinet');
 })->name('resume-post');
+Route::post('resume-delete',  [App\Http\Controllers\ResumeController::class, 'deleteResume'], function () {
+    return view('cabinet');
+})->name('resume-delete');
 
 
 

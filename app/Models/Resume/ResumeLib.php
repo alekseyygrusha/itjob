@@ -20,8 +20,10 @@ class ResumeLib extends Model
     public static function fillResumeSkillLinks($skills, $resume_id) {
         //Переписать на Laravel!
         self::deleteBindResumeSkills($resume_id);
+    
         if($skills) {
             foreach ($skills as $skill) {
+                
                 DB::table('resume_skills')->insert(
                     ['skill_id' => $skill, 'resume_id' => $resume_id],
                 );
