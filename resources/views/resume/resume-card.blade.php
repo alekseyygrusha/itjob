@@ -73,12 +73,40 @@
             <div class="form_input">
                 <textarea name='description'>@if(!empty($resume)){{$resume->description}}@endif</textarea>
             </div>
-            <button class="publucate-button button -green-color" action="confirm">Опубликовать</button>
+            <div class="d-flex">
+                <button class="publucate-button button -green-color" action="confirm">Опубликовать</button>
+                <div class="publucate-button delete_button button -red-color ml-4" data-value="{{$resume->id}}">Удалить</div>
+            </div>
+            
             <div id="message"></div>
         </form>
     </div>
     <script>
         $("#skills_select").select2();
+
+        $(document).ready(function() {
+        //в отдельный JS файл вынести
+        
+            $('.delete_button').click(function(e){
+                let resume_id = e.target.dataset.value;
+                console.log(resume_id);
+                e.preventDefault();
+                if (confirm('Удалить резюме? Все ваши отклики с этим резюме будут отменены')) {
+                    $.ajax({
+                        url: "{{ url('resume-delete') }}",
+                        method: 'post',
+                        data: {
+                            "_token": $('meta[name="csrf-token"]').attr('content'),
+                            "id": resume_id
+                        },
+                        success: function(result) {
+                            // $('#vacancy-container').html(result);
+                            
+                        }
+                    });
+                }
+            });
+        });
     </script>
 @endsection
 

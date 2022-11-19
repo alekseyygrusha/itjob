@@ -28,8 +28,7 @@
                             </div>
                             <div class="header-item name">
                                 <a href="/cabinet">
-                                    {{-- {{stristr(Auth::user()->name, ' ', true)}}  --}}
-                                    {{Auth::user()->name}}
+                                    Кабинет
                                 </a>
                             </div>
                             <a href="/logout">Выйти</a>  

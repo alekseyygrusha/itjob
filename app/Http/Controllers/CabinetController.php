@@ -55,8 +55,10 @@ class CabinetController extends Controller
     public function postResume(Request $request) {
       
         $resume_id = $request->resume_id;
-        if(!$resume = Resume::find($resume_id)->with(['skills'])->get()) {
+  
+        if(!$resume = Resume::find($resume_id)->with(['skills'])->get()->first()) {
             $resume = new Resume;
+            $resume_id = $resume->id;
         } 
         
         $resume->job_group = $request->job_group;
@@ -69,16 +71,26 @@ class CabinetController extends Controller
         $resume->max_salary = $request->max_salary;
         
         if($resume_id) {
-            ResumeLib::fillResumeSkillLinks($request->skills, $request->$resume_id);
+            ResumeLib::fillResumeSkillLinks($request->skills, $resume_id);
         }
-        
 
-        dd('1123');
+        $resume->save();
+
+        self::getData();
+        return view('cabinet', ['success' => 'Изменения сохранены']);
+        
     }
 
     public static function getData () {
         $user_vacancies = Lib::getUserVacanciesList(Auth::id());
-        View::share('user_vacancies', $user_vacancies);
+        $user_resume = Resume::where(['user_id' => Auth::id()])->with(['city'])->get();
+        
+        $data = [
+            'user_vacancies' => $user_vacancies,
+            'user_resumes' => $user_resume
+        ];
+
+        View::share($data);
     }
 
 }
