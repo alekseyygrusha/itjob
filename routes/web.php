@@ -12,6 +12,11 @@ Route::prefix('cabinet')->group(function () {
     
 });
 
+// AJAX-запросы
+Route::prefix('ajax')->group(function () {
+    Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class, 'vacancyResponse'])->name('vacancy-response');
+});
+
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {
     return view('root');
 })->name('root');
@@ -32,15 +37,12 @@ Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hide
 Route::post('post', [App\Http\Controllers\VacancyController::class, 'postVacancy'], function () {
     return view('post');
 })->name('vacancy-post');
-Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class, 'vacancyResponse'])->name('vacancy-response');
 Route::post('resume-post',  [App\Http\Controllers\CabinetController::class, 'postResume'], function () {
     return view('cabinet');
 })->name('resume-post');
 Route::post('resume-delete',  [App\Http\Controllers\ResumeController::class, 'deleteResume'], function () {
     return view('cabinet');
 })->name('resume-delete');
-
-
 
 Route::prefix('filter')->group(function () {
     Route::get('/city/{city_id}',[App\Http\Controllers\VacancyController::class, 'getVanacyByCity'], function () {});

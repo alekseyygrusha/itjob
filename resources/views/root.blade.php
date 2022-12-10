@@ -6,7 +6,12 @@
     </head>
     <body>
         @include('templates.blocks.header')
-        <div class="main-content">
+        
+        <div class="main-content" id='app'>
+            <response-vacancy></response-vacancy>
+            <div id="global-modals-app">
+                <modals-container></modals-container>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-3">
@@ -51,23 +56,23 @@
                 responseVacancy();
         
                 function responseVacancy() {
-                    $('.vacansy_response').click(function(e) {
-                        let vacancy_id = e.target.dataset.value;
-                        e.preventDefault();
+                    // $('.vacansy_response').click(function(e) {
+                    //     let vacancy_id = e.target.dataset.value;
+                    //     e.preventDefault();
                     
-                        $.ajax({
-                            url: "{{ url('vacancy-response') }}",
-                            method: 'post',
-                            data: {
-                                "_token": $('meta[name="csrf-token"]').attr('content'),
-                                "id": vacancy_id
-                            },
-                            success: function(result) {
-                                $('.vacancies-container').html(result);
-                                responseVacancy();
-                            }
-                        });
-                    });
+                    //     $.ajax({
+                    //         url: "{{ url('vacancy-response') }}",
+                    //         method: 'post',
+                    //         data: {
+                    //             "_token": $('meta[name="csrf-token"]').attr('content'),
+                    //             "id": vacancy_id
+                    //         },
+                    //         success: function(result) {
+                    //             $('.vacancies-container').html(result);
+                    //             responseVacancy();
+                    //         }
+                    //     });
+                    // });
                 }
 
                 $('.city-directions .options-bar-item').click(function(e) {
@@ -103,10 +108,9 @@
                         }
                     });
                 }
-                
             });
-
         </script>
         @include('templates.blocks.footer')
+        <script src="/js/app.js"></script>
     </body>
 </html>

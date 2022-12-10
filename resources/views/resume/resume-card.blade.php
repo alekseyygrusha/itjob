@@ -86,7 +86,6 @@
 
         $(document).ready(function() {
         //в отдельный JS файл вынести
-        
             $('.delete_button').click(function(e){
                 let resume_id = e.target.dataset.value;
                 console.log(resume_id);

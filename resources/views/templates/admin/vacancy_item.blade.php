@@ -1,4 +1,4 @@
-<div class="vacancies-card">
+<div class="vacancies-card ">
     <a class="job-title">
         {{$vacancy->job_title}}
     </a>
