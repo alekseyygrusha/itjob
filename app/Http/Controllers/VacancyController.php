@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
 use Spatie\Ignition\Config\IgnitionConfig;
@@ -9,6 +9,7 @@ use Spatie\Ignition\ErrorPage\ErrorPageViewModel;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancies;
 use App\Models\VacancyResponses;
+use App\Models\Resume\Resume;
 use App\Models\Skills;
 use App\Models\Cities;
 use App\Models\Groups;
@@ -132,29 +133,41 @@ class VacancyController extends Controller
     }
 
     public function vacancyResponse(Request $request) {
-
+        
+        
         $user_id=Auth::id();
-        $vacancy_id = $request->id;
-
-        $vacancy_link =  VacancyResponses::where('vacancy_id', $vacancy_id)
-            ->where('user_id', $user_id)
+        $vacancy_id = $request->vacancy_id;
+        $resume_id = $request->resume_id;
+       
+        
+        $vacancy_link =  VacancyResponses::where(['vacancy_id'=> $vacancy_id, 'resume_id' => $resume_id])
             ->first();
-
+       
         if($vacancy_link) {
-            return false;
+            return response()->json(['error' => 'Отклик этим резюме уже отправлен']);
         }    
 
         $vacancy_link = new VacancyResponses;
         
         $vacancy_link->vacancy_id = $vacancy_id;
+        $vacancy_link->resume_id = $resume_id;
         $vacancy_link->user_id = $user_id;
-        
-        if($vacancy_link->save()) {
-            return view('templates.vacancies.vacancies_list', 
-            ['vacancies' => Vacancies::with('vacancyResponses')
-                ->where('is_hidden', 0)
-                ->where('is_blocked', 0)
-                ->get(), 'success' => 'Отклик отправлен']);
+        $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
+
+        if(!$vacancy_link->save()) {
+            return false;
+            
         }
+        
+        return view('templates.vacancies.vacancies_list', 
+            [
+                'vacancies' => Vacancies::with('vacancyResponses')
+                    ->where('is_hidden', 0)
+                    ->where('is_blocked', 0)
+                    ->get(), 'success' => 'Отклик отправлен',
+                'resume_list' => response()->json($resume_list)
+            ],
+        );
+        
     }
 }

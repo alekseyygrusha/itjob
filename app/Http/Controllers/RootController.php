@@ -9,6 +9,9 @@ use App\Models\Lib;
 use App\Models\Vacancies;
 use App\Models\Cities;
 use App\Models\Groups;
+use App\Models\Resume\Resume;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use View;
 
 class RootController extends Controller
@@ -41,16 +44,18 @@ class RootController extends Controller
             ->where('is_hidden', 0)
             ->where('is_blocked', 0)
             ->get();
-
+        $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
+       
         $groups_list = Groups::get()->all();
-    
+     
         // dd($list_vacancies);
         $data = [
             'city_list' => $city_list,
             'groups_list' => $groups_list,
-            'vacancies' => $list_vacancies
+            'vacancies' => $list_vacancies,
+            'resume_list' => response()->json($resume_list)
         ];
-
+        
         View::share($data);
     }
 }
