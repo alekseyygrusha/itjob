@@ -15,6 +15,7 @@ Route::prefix('cabinet')->group(function () {
 // AJAX-запросы
 Route::prefix('ajax')->group(function () {
     Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class, 'vacancyResponse'])->name('vacancy-response');
+    Route::post('cancel-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'cancelResponseVacancy'])->name('cancel-vacancy-response');
 });
 
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {

@@ -6,6 +6,13 @@ const ajax = {
             url: 'ajax/vacancy-response',
         })
     },
+    cancelResponseVacancy(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: 'ajax/cancel-vacancy-response',
+        })
+    }
 };
 
 export {ajax};

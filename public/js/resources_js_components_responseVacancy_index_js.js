@@ -15,15 +15,16 @@ __webpack_require__.r(__webpack_exports__);
     console.log('responseVacancy created1');
   },
   mounted: function mounted() {
-    console.log(this.resumes);
+    this.setResponsedVacancyTitle();
   },
   props: {
     resume_list: String,
-    id: String
+    id: String,
+    responsed_id: String
   },
   data: function data() {
     return {
-      is_responsed: false,
+      responsed_resume_id: parseInt(this.responsed_id),
       response_menu_open: false,
       resumes: JSON.parse(this.resume_list),
       picked_resume: '',
@@ -31,12 +32,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    setResponsedVacancyTitle: function setResponsedVacancyTitle() {
+      var _this = this;
+      if (this.responsed_resume_id) {
+        this.picked_resume = this.resumes.find(function (resume) {
+          return resume.id === _this.responsed_resume_id;
+        }).job_title;
+      }
+    },
     toggleResponseMenu: function toggleResponseMenu() {
       this.response_menu_open = !this.response_menu_open;
     },
+    isResponsed: function isResponsed() {
+      return this.responsed_resume_id ? true : false;
+    },
     chooseResume: function chooseResume(resume) {
-      var _this = this;
-      console.log(resume);
+      var _this2 = this;
       var data = {
         resume_id: resume.id,
         vacancy_id: this.vacancy_id
@@ -47,13 +58,30 @@ __webpack_require__.r(__webpack_exports__);
           return;
         }
         if (res.data) {
-          _this.response_menu_open = false;
-          _this.is_responsed = true;
-          _this.picked_resume = resume.job_title;
+          _this2.picked_resume = resume.job_title;
+          _this2.responsed_resume_id = resume.id;
         } else {
           alert("Произошла ошибка, попробуйте позже");
         }
       });
+    },
+    cancelResponseResume: function cancelResponseResume(resume) {
+      var _this3 = this;
+      var data = {
+        resume_id: resume.id,
+        vacancy_id: this.vacancy_id
+      };
+      if (confirm('Отклик на данную ваканасию будет отменён.')) {
+        _vanilla_ajax_js__WEBPACK_IMPORTED_MODULE_0__.ajax.cancelResponseVacancy(data).then(function (res) {
+          if (res.data) {
+            _this3.responsed_resume_id = null;
+            _this3.picked_resume = null;
+          } else {
+            alert("Произошла ошибка, попробуйте позже");
+          }
+        });
+      }
+      ;
     }
   }
 });
@@ -105,13 +133,15 @@ var _hoisted_11 = {
   "class": "description truncate-text truncate-2"
 };
 var _hoisted_12 = ["onClick"];
+var _hoisted_13 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["btn vacansy_response -green-color", [!$data.is_responsed ? 'btn-success' : 'btn-secondary']]),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["btn vacansy_response -green-color", [!$data.responsed_resume_id ? 'btn-success' : 'btn-secondary']]),
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.toggleResponseMenu();
     })
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!$data.is_responsed ? 'Откликнуться' : 'Изменить'), 3 /* TEXT, CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.picked_resume), 1 /* TEXT */)]), $data.response_menu_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!$data.responsed_resume_id ? 'Откликнуться' : 'Изменить'), 3 /* TEXT, CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.picked_resume), 1 /* TEXT */)]), $data.response_menu_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "close",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.toggleResponseMenu();
@@ -120,12 +150,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "resume-item",
       key: resume.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.job_title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.city.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, " Опыт: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.experience_time) + " год(а) ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.job_title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.city.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, " Опыт: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.experience_time) + " год(а) ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(resume.description), 1 /* TEXT */), parseInt(resume.id) !== _this.responsed_resume_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: 0,
       onClick: function onClick($event) {
         return $options.chooseResume(resume);
       },
       "class": "pick-resume btn btn-success"
-    }, "Выбрать", 8 /* PROPS */, _hoisted_12)]);
+    }, "Выбрать", 8 /* PROPS */, _hoisted_12)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: 1,
+      "class": "pick-resume btn btn-secondary",
+      onClick: function onClick($event) {
+        return $options.cancelResponseResume(resume);
+      }
+    }, "Отменить", 8 /* PROPS */, _hoisted_13))]);
   }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
@@ -205,6 +242,13 @@ var ajax = {
       method: 'POST',
       data: data,
       url: 'ajax/vacancy-response'
+    });
+  },
+  cancelResponseVacancy: function cancelResponseVacancy(data) {
+    return axios({
+      method: 'POST',
+      data: data,
+      url: 'ajax/cancel-vacancy-response'
     });
   }
 };
