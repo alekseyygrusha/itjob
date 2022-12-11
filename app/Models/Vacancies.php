@@ -19,7 +19,7 @@ class Vacancies extends Model
         // return $this->hasMany(Skills::class, 'foreign_key', 'local_key');
         return $this->belongsToMany(Skills::class, 'skill_links', 'vacancy_id', 'skills_id');
     }
-
+   
     public function vacancyResponses() {
         return $this->hasOne(VacancyResponses::class, 'vacancy_id')->where(['user_id' => Auth::id()]);
     }

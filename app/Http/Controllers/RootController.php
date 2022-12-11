@@ -44,6 +44,7 @@ class RootController extends Controller
             ->where('is_hidden', 0)
             ->where('is_blocked', 0)
             ->get();
+        
         $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
        
         $groups_list = Groups::get()->all();

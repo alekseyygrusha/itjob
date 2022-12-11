@@ -19,7 +19,12 @@
     <div class="button-wrap">
         @if(Auth::user())
             {{-- <a class="btn  @if(!$vacancy->vacancyResponses) vacansy_response btn-success @else btn btn-secondary @endif -green-color" data-value="{{$vacancy->id}}">Откликнуться</a> --}}
-            <response-vacancy resume_list="{{$resume_list->getContent()}}" id="{{$vacancy->id}}"></response-vacancy>
+            <response-vacancy 
+                resume_list="{{$resume_list->getContent()}}" 
+                id="{{$vacancy->id}}"
+                responsed_id="@if(!empty($vacancy->vacancyResponses)){{$vacancy->vacancyResponses->resume_id}}@endif"
+                >
+            </response-vacancy>
         @endif
         
         {{-- <a class="btn btn-success -green-color" href='#'>Позвонить</a> --}}

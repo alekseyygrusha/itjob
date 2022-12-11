@@ -133,31 +133,29 @@ class VacancyController extends Controller
     }
 
     public function vacancyResponse(Request $request) {
-        
-        
         $user_id=Auth::id();
         $vacancy_id = $request->vacancy_id;
         $resume_id = $request->resume_id;
-       
-        
-        $vacancy_link =  VacancyResponses::where(['vacancy_id'=> $vacancy_id, 'resume_id' => $resume_id])
+
+        $vacancy_link = VacancyResponses::where(['vacancy_id'=> $vacancy_id, 'user_id' => $user_id])
             ->first();
-       
+        //меняем привязанное резюме, если отклик уже существует
         if($vacancy_link) {
-            return response()->json(['error' => 'Отклик этим резюме уже отправлен']);
-        }    
-
-        $vacancy_link = new VacancyResponses;
+            $vacancy_link->resume_id = $resume_id;
+            $vacancy_link->save();
+            return response()->json(['success' => 'Отклик изменён']);
+        } else {
+            $vacancy_link = new VacancyResponses;
         
-        $vacancy_link->vacancy_id = $vacancy_id;
-        $vacancy_link->resume_id = $resume_id;
-        $vacancy_link->user_id = $user_id;
-        $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
-
-        if(!$vacancy_link->save()) {
-            return false;
-            
-        }
+            $vacancy_link->vacancy_id = $vacancy_id;
+            $vacancy_link->resume_id = $resume_id;
+            $vacancy_link->user_id = $user_id;
+            $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
+    
+            if(!$vacancy_link->save()) {
+                return false;
+            }
+        }    
         
         return view('templates.vacancies.vacancies_list', 
             [
@@ -169,5 +167,21 @@ class VacancyController extends Controller
             ],
         );
         
+    }
+
+    public function cancelResponseVacancy(Request $request) {
+        $user_id=Auth::id();
+        $vacancy_id = $request->vacancy_id;
+        $resume_id = $request->resume_id;
+
+        $vacancy_link = VacancyResponses::where(['vacancy_id'=> $vacancy_id, 'resume_id' => $resume_id, 'user_id' => $user_id])
+            ->first();
+        if(!$vacancy_link) {
+            return false;
+        }
+
+        $vacancy_link->delete();
+
+        return true;
     }
 }
