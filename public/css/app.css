@@ -85,6 +85,31 @@ header .content .login_container {
 }
 .vacancies-container .vacancies-card .button-wrap {
   margin-top: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vacancies-container .vacancies-card .button-wrap .button {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+.vacancies-container .vacancies-card .button-wrap .button:last-child {
+  margin-right: 0;
+}
+.vacancies-container .vacancies-card .button-wrap .hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #0373d5;
+  width: 25px;
+  height: 25px;
+  border-radius: 30px;
+  text-align: center;
+  margin-left: 6px;
+  font-size: 11px;
+  line-height: 1;
 }
 .vacancies-container .vacancies-card .button-wrap .response-menu {
   position: absolute;

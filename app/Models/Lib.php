@@ -30,19 +30,6 @@ class Lib
         $vacancy->skills = $skills;
     }
 
-    public static function getUserVacanciesList ($id) {
-        $vacancies = DB::table('vacancies as v')
-            ->select('v.job_title', 'v.user_id', 'v.description', 'v.id', 'v.company_name', 'v.description', 'v.min_salary', 'v.max_salary', 'v.is_blocked', 'v.is_hidden', 'cl.name as city_name')
-            ->join('city_list as cl','cl.id', '=', 'v.city', )
-            ->where('v.user_id', '=', $id)
-            ->get();
-        foreach($vacancies as &$vacancy) {
-            self::fillVacancySkills($vacancy);
-        }
-        
-        return $vacancies;
-    }
-
     public static function deleteVacancy($id, $user_id) {
         $vacancy = DB::table('vacancies')
             ->where('vacancies.user_id' , $user_id)

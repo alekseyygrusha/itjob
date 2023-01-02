@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Skills;
 use App\Models\Cities;
 use App\Models\Groups;
+use App\Models\VacancyResponses;
 
 class Resume extends Model
 {

@@ -22,7 +22,11 @@
         @endif
     </div>
     <div class="button-wrap">
-        <a href="/vacancy/response/{{$vacancy->id}}" class="button edit_button -green-color" data-value='{{$vacancy->id}}'>Отклики</a>
+        <a href="/vacancy/response/{{$vacancy->id}}" class="button edit_button -green-color" data-value='{{$vacancy->id}}'>
+            Отклики @if($vacancy->vacancyResponsesList)
+            <span class="hint">{{$vacancy->vacancyResponsesList->count() < 99 ? $vacancy->vacancyResponsesList->count() :  '99+'}}</span>
+            @endif
+        </a>
         <a href="/vacancy/edit/{{$vacancy->id}}" class="button edit_button -green-color" data-value='{{$vacancy->id}}'>Редактировать</a>
         <a class="button delete_button -red-color" data-value='{{$vacancy->id}}'>Удалить</a>
     </div>

@@ -163,7 +163,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.cancelResponseResume(resume);
       }
     }, "Отменить", 8 /* PROPS */, _hoisted_13))]);
-  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Надо будет добавить условие, при котором предлагается создать резюме при его отсуствии.  ")]);
 }
 
 /***/ }),
