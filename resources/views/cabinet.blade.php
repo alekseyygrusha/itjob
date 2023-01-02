@@ -26,6 +26,15 @@
                                 </a>
                                 <div class="city">{{$resume->city->name}}</div>
                                 <div class="experience">Опыт: {{$resume->experience_time}} года</div>
+                                <div class="skills">
+                                    @if(!empty($resume->skills))
+                                        @foreach ($resume->skills as $skill)
+                                            <div class="skill__item">
+                                                {{$skill->name}}
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
                                 <div class="description">{{$resume->description}}</div>
                                 <div class="button-wrap">
                                     <a class="btn btn-warning btn-hide" href='\cabinet\resume\{{$resume->id}}' data-value="{{$resume->id}}">
@@ -34,13 +43,16 @@
                                 </div>
                             </div>
                         @endforeach
-                        
                     @endif
                 </div>
             </div>
             <h4>Список моих вакансий:</h4>
             <div id="vacancy-container">
-                @include('templates.cabinet.vacancies_list')
+                <div class="vacancies-container">
+                    @foreach ($user_vacancies as $vacancy)
+                        @include('templates.cabinet.vacancy_item', array('vacancy'=>$vacancy))
+                    @endforeach
+                </div>
             </div>
         </div>
     </body>

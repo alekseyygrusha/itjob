@@ -11,6 +11,7 @@ use App\Models\Cities;
 use App\Models\Groups;
 use App\Models\Skills;
 use App\Models\Resume\ResumeLib;
+use App\Models\Vacancies;
 use App\Models\Resume\Resume;
 use View;
 
@@ -73,24 +74,21 @@ class CabinetController extends Controller
         if($resume_id) {
             ResumeLib::fillResumeSkillLinks($request->skills, $resume_id);
         }
-
         $resume->save();
-
         self::getData();
         return view('cabinet', ['success' => 'Изменения сохранены']);
         
     }
 
     public static function getData () {
-        $user_vacancies = Lib::getUserVacanciesList(Auth::id());
-        $user_resume = Resume::where(['user_id' => Auth::id()])->with(['city'])->get();
-        
+        $vacancies = Vacancies::with(['vacancyResponsesList', 'bindCity', 'skills'])->where(['user_id' => Auth::id()])->get();
+        $user_resume = Resume::where(['user_id' => Auth::id()])->with(['city', 'skills'])->get();
+        // dd($user_resume);
         $data = [
-            'user_vacancies' => $user_vacancies,
+            'user_vacancies' => $vacancies,
             'user_resumes' => $user_resume
         ];
 
         View::share($data);
     }
-
 }

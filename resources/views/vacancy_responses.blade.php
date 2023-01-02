@@ -7,30 +7,45 @@
     <body>
         @include('templates.blocks.header');
         <div class="container">
+            <h3>Отклики на вакансию {{$vacancy->job_title}}</h3>
+            <p style="border-bottom: 1px solid #59b999">{{$vacancy->description}}</p>
             <div class="users-list">
-                @if(!empty($vacancy_responses))
-                    <h3>Отклики на вакансию {{$vacancy->job_title}}</h3>
-                    <p>{{$vacancy->description}}</p>
-                    <div class="row">
-                        @if($vacancy_responses->count() >= 1)
-                            @foreach($vacancy_responses as $response_user)
-                                <div class="col-7">
-                                    <div class="users-list__item">
-                                        <div class="wrap">
-                                            <div class="name">{{$response_user->user->name}}</div>
-                                            <div class="mail">{{$response_user->user->email}}</div>
-                                            <div class="time">Отклик получен: {{$response_user->created_at}}</div>
+                <div class="resume-wrap">
+                    <div class="vacancies-container">
+                        @if(!empty($vacancy_responses))
+                            @foreach($vacancy_responses as $response)
+                                <div class="vacancies-card">
+                                    <div class="name"><b>Иванов Иван Иванович</b></div>
+                                    <a class="job-title resume-title">
+                                        {{$response->getResume->job_title}}
+                                    </a>
+                                    <div class="city">{{$response->getResume->city->name}}</div>
+                                    <div class="experience">
+                                        Опыт: {{$response->getResume->experience_time}} года
+                                    </div>
+                                    @if(!empty($response->getResume->skills))
+                                        <div class="skills">
+                                            @foreach ($response->getResume->skills as $skill)
+                                                <div class="skill__item">
+                                                    {{$skill->name}}
+                                                </div>
+                                            @endforeach
                                         </div>
+                                    @endif
+                                    <div class="description">{{$response->getResume->description}}</div>
+                                    <div class="button-wrap">
+                                        <a class="button vacansy_response -green-color btn-success">
+                                            Принять 
+                                        </a>
+                                        <a class="button btn-warning btn-hide" href='\cabinet\resume\{{$response->getResume->id}}' data-value="{{$response->getResume->id}}">
+                                            Отклонить  
+                                        </a>
                                     </div>
                                 </div>
                             @endforeach
-                            @else
-                            <div class="col-12">
-                                <h3>Откриков не поступало</h3>
-                            </div>
                         @endif
                     </div>
-                @endif
+                </div>
             </div>
         </div>
     </body>

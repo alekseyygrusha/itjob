@@ -24,6 +24,10 @@ class Vacancies extends Model
         return $this->hasOne(VacancyResponses::class, 'vacancy_id')->where(['user_id' => Auth::id()]);
     }
 
+    public function vacancyResponsesList() {
+        return $this->hasMany(VacancyResponses::class, 'vacancy_id');
+    }
+
     public function bindCity() {
         return $this->hasOne(Cities::class, 'id', 'city');
     }

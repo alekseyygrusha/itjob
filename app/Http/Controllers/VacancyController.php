@@ -121,15 +121,43 @@ class VacancyController extends Controller
 
     public function getVanacyResponses($id) {
         $vacancy_responses = VacancyResponses::where('vacancy_id', $id)
-            ->with(['user'])
+            ->with(['getResume'])
             ->get();    
-        
+       
         $vacancy = self::getVacancyData($id);    
-      
-        View::share('vacancy_responses', $vacancy_responses);    
-        View::share('vacancy', $vacancy);
+        // $this->checkResumeCompetencies($vacancy_responses, $vacancy);
 
+        $data = [
+            'vacancy_responses' => $vacancy_responses,
+            'vacancy' => $vacancy
+        ];
+
+        View::share($data);    
+        
         return view('vacancy_responses');
+    }
+
+    public function checkResumeCompetencies(&$vacancy_responses, $vacancy) {
+        $competencies = ['experience_time', 'skills'];
+        $points = 0;
+        
+        foreach($vacancy_responses as $response) {
+            $response_resume = $response->getResume->toArray();
+           
+            foreach($response_resume as $key => $resume_item) {
+               
+                // if($points == 5) {
+                //     dd(in_array($key, $competencies));
+                // }
+                
+                if(in_array($key, $competencies) && $resume_item ) {
+                    
+                    $points++;
+                }
+                
+                
+            }
+        }
     }
 
     public function vacancyResponse(Request $request) {
@@ -184,4 +212,6 @@ class VacancyController extends Controller
 
         return true;
     }
+
+    
 }
