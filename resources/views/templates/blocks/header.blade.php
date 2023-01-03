@@ -24,6 +24,9 @@
                                 </div>
                             @endif
                             <div class="header-item">
+                                <a href="/responses">Мои отклики</a>
+                            </div>
+                            <div class="header-item">
                                 <a href="/post">Разместить</a>
                             </div>
                             <div class="header-item name">

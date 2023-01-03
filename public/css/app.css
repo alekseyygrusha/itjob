@@ -97,6 +97,10 @@ header .content .login_container {
 .vacancies-container .vacancies-card .button-wrap .button:last-child {
   margin-right: 0;
 }
+.vacancies-container .vacancies-card .button-wrap .button.-color-blue {
+  background-color: #237cff;
+  color: white;
+}
 .vacancies-container .vacancies-card .button-wrap .hint {
   display: flex;
   align-items: center;

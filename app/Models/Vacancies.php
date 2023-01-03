@@ -31,4 +31,6 @@ class Vacancies extends Model
     public function bindCity() {
         return $this->hasOne(Cities::class, 'id', 'city');
     }
+
+    
 }

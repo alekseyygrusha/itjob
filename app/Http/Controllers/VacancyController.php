@@ -123,7 +123,7 @@ class VacancyController extends Controller
         $vacancy_responses = VacancyResponses::where('vacancy_id', $id)
             ->with(['getResume'])
             ->get();    
-       
+   
         $vacancy = self::getVacancyData($id);    
         // $this->checkResumeCompetencies($vacancy_responses, $vacancy);
 
@@ -213,5 +213,35 @@ class VacancyController extends Controller
         return true;
     }
 
+    public function acceptResponseVacancy(Request $request) {
+        $params = $request->all();
+      
+        $vacancy_response = VacancyResponses::where(['id'=> $params['response_id']])
+            ->first();
+        if(!$vacancy_response) {
+            return false;
+        }
+        $vacancy_response->isChecked = true;
+        $vacancy_response->isAccept = true;
+        $vacancy_response->save();
+
+        return true;
+    }
+
+    public function declineResponseVacancy(Request $request) {
+        $params = $request->all();
+      
+        $vacancy_response = VacancyResponses::where(['id'=> $params['response_id']])
+            ->first();
+        
+        if(!$vacancy_response) {
+            return false;
+        }
+        $vacancy_response->isChecked = true;
+        $vacancy_response->isAccept = false;
+        $vacancy_response->save();
+
+        return true;
+    }
     
 }

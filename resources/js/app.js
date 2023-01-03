@@ -12,12 +12,11 @@ import {ModalsContainer} from "vue-final-modal";
 // });
 // globalModalsApp.mount("#global-modals-app");
 const responseVacancy = () => import('./components/responseVacancy');
-
-// import responseVacancy from "./responseVacancy.vue";
+const responseResume = () => import('./components/responseResume');
 
 
 // import modalsContainer from "./Modals/ModalsContainer.vue";
-// import responseVacancy from "./components/responseVacancy/ResponseVacancy.vue";
+
 
 createApp({
     data() {
@@ -33,12 +32,16 @@ createApp({
 }).mount("#app");
 
 
-/** Динамические импорты **/
-
- 
+/** Динамические импорты **/ 
 responseVacancy().then(({initResponseVacancy}) => {
     initResponseVacancy({})
 });
+
+responseResume().then(({initResponseResume}) => {
+    initResponseResume({});
+});
+
+
  /** Элементы на странице **/
 // import {responseVacancy} from './components/responseVacancy';
 // createApp(responseVacancy).mount('#app');

@@ -71,6 +71,8 @@ header .content .login_container {
             color: white !important;
         }
 
+
+
         .job-title {
             font-size: 18px;
             font-weight: 700;
@@ -107,6 +109,12 @@ header .content .login_container {
                     margin-right: 0;
                 }
             }
+
+            .button.-color-blue {
+                background-color: #237cff;
+                color: white;
+            }
+    
             .hint {
                 display: flex;
                 align-items: center;
@@ -169,6 +177,7 @@ header .content .login_container {
             }
         }
 
+        
         
         .blocked-title {
             font-weight: 700;

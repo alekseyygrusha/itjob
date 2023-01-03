@@ -6,7 +6,7 @@
     </head>
     <body>
         @include('templates.blocks.header');
-        <div class="container">
+        <div class="container" id="app">
             <h3>Отклики на вакансию {{$vacancy->job_title}}</h3>
             <p style="border-bottom: 1px solid #59b999">{{$vacancy->description}}</p>
             <div class="users-list">
@@ -14,8 +14,8 @@
                     <div class="vacancies-container">
                         @if(!empty($vacancy_responses))
                             @foreach($vacancy_responses as $response)
-                                <div class="vacancies-card">
-                                    <div class="name"><b>Иванов Иван Иванович</b></div>
+                                <div class="vacancies-card vue-response-resume">
+                                    <div class="name"><b>Иванов Иван Иванович (тут имя должно быть)</b></div>
                                     <a class="job-title resume-title">
                                         {{$response->getResume->job_title}}
                                     </a>
@@ -23,7 +23,7 @@
                                     <div class="experience">
                                         Опыт: {{$response->getResume->experience_time}} года
                                     </div>
-                                    @if(!empty($response->getResume->skills))
+                                    @if(!empty($response->getResume->skills)) 
                                         <div class="skills">
                                             @foreach ($response->getResume->skills as $skill)
                                                 <div class="skill__item">
@@ -33,14 +33,11 @@
                                         </div>
                                     @endif
                                     <div class="description">{{$response->getResume->description}}</div>
-                                    <div class="button-wrap">
-                                        <a class="button vacansy_response -green-color btn-success">
-                                            Принять 
-                                        </a>
-                                        <a class="button btn-warning btn-hide" href='\cabinet\resume\{{$response->getResume->id}}' data-value="{{$response->getResume->id}}">
-                                            Отклонить  
-                                        </a>
-                                    </div>
+                                    <response-resume 
+                                        response_id="{{$response->id}}"
+                                        is_accept="{{$response->isAccept}}"
+                                        is_checked="{{$response->isChecked}}">
+                                    </response-resume>
                                 </div>
                             @endforeach
                         @endif
@@ -48,5 +45,7 @@
                 </div>
             </div>
         </div>
+        @include('templates.blocks.footer')
+        <script src="/js/app.js"></script>
     </body>
 </html>

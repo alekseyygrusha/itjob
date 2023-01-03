@@ -8,7 +8,6 @@ const initResponseVacancy = () => {
     
     if (elements.length) {
         for (let el of elements) {
-            console.log(el);
             createApp({
                 name: 'ResponseVacancyApp',
                 components: {

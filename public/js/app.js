@@ -17591,11 +17591,11 @@ __webpack_require__.r(__webpack_exports__);
 var responseVacancy = function responseVacancy() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_responseVacancy_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/responseVacancy */ "./resources/js/components/responseVacancy/index.js"));
 };
-
-// import responseVacancy from "./responseVacancy.vue";
+var responseResume = function responseResume() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_responseResume_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/responseResume */ "./resources/js/components/responseResume/index.js"));
+};
 
 // import modalsContainer from "./Modals/ModalsContainer.vue";
-// import responseVacancy from "./components/responseVacancy/ResponseVacancy.vue";
 
 (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)({
   data: function data() {
@@ -17611,11 +17611,15 @@ var responseVacancy = function responseVacancy() {
 }).mount("#app");
 
 /** Динамические импорты **/
-
 responseVacancy().then(function (_ref) {
   var initResponseVacancy = _ref.initResponseVacancy;
   initResponseVacancy({});
 });
+responseResume().then(function (_ref2) {
+  var initResponseResume = _ref2.initResponseResume;
+  initResponseResume({});
+});
+
 /** Элементы на странице **/
 // import {responseVacancy} from './components/responseVacancy';
 // createApp(responseVacancy).mount('#app');
@@ -19675,6 +19679,18 @@ function compileToFunction(template, options) {
 /******/ 		};
 /******/ 	}();
 /******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -19705,7 +19721,7 @@ function compileToFunction(template, options) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_components_responseVacancy_index_js") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_responseVacancy_index_js":1,"resources_js_components_responseResume_index_js":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
