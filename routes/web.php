@@ -8,14 +8,17 @@ Auth::routes();
 Route::prefix('cabinet')->group(function () {
     Route::get('/',[App\Http\Controllers\CabinetController::class, 'index'])->name('cabinet');
     Route::get('resume/{resume_id}', [App\Http\Controllers\CabinetController::class, 'getResume']);
-
-    
+    Route::prefix('responses')->group(function () {
+        Route::get('/', [App\Http\Controllers\CabinetController::class, 'getResposes'])->name('responses');
+    });
 });
 
 // AJAX-запросы
 Route::prefix('ajax')->group(function () {
     Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class, 'vacancyResponse'])->name('vacancy-response');
     Route::post('cancel-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'cancelResponseVacancy'])->name('cancel-vacancy-response');
+    Route::post('accept-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'acceptResponseVacancy'])->name('accept-vacancy-response');
+    Route::post('decline-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'declineResponseVacancy'])->name('decline-vacancy-response');
 });
 
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {
@@ -31,7 +34,6 @@ Route::get('post', [App\Http\Controllers\VacancyController::class, 'index'], fun
 })->name('post');
 Route::get('/vacancy/response/{id}', [App\Http\Controllers\VacancyController::class, 'getVanacyResponses'], function () {});
 Route::get('/vacancy/edit/{id}', [App\Http\Controllers\VacancyController::class, 'getVanacy'], function () {})->name('edit-vacancy');
-
 
 Route::post('vacancy-delete',  [App\Http\Controllers\VacancyController::class, 'delete'])->name('vacancy-delete');
 Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hideVacancy'])->name('vacancy-hide');

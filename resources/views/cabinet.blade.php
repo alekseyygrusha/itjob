@@ -20,7 +20,7 @@
                     @if(!empty($user_resumes))
                         @foreach($user_resumes as $resume)
                             <div class="vacancies-card">
-                                <div class="name"><b>Иванов Иван Иванович</b></div>
+                                <div class="name"><b>Иванов Иван Иванович (имя добавить)</b></div>
                                 <a class="job-title resume-title">
                                     {{$resume->job_title}}
                                 </a>
@@ -40,6 +40,7 @@
                                     <a class="btn btn-warning btn-hide" href='\cabinet\resume\{{$resume->id}}' data-value="{{$resume->id}}">
                                         Редактировать    
                                     </a>
+
                                 </div>
                             </div>
                         @endforeach
