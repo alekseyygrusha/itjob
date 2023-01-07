@@ -174,6 +174,36 @@ header .content .login_container {
   border-radius: 8px;
   margin-right: 4px;
 }
+.vacancies-container .vacancies-card .response-status {
+  position: absolute;
+  left: 15px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.vacancies-container .vacancies-card .response-status .status-color {
+  width: 15px;
+  border: 1px solid #59b999;
+  border-radius: 8px;
+  height: 80%;
+}
+.vacancies-container .vacancies-card .response-status .status-color.-accept {
+  background-color: #59b999;
+}
+.vacancies-container .vacancies-card .response-status .status-color.-declined {
+  border-color: #fd3300;
+  background-color: #fd3300;
+}
+.vacancies-container .vacancies-card .response-status-title {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-weight: 700;
+}
+.vacancies-container.responses-list .vacancies-card {
+  padding-left: 45px;
+}
 
 .options-bar .heading {
   font-size: 18px;

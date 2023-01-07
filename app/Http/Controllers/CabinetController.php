@@ -13,6 +13,7 @@ use App\Models\Skills;
 use App\Models\Resume\ResumeLib;
 use App\Models\Vacancies;
 use App\Models\Resume\Resume;
+use App\Models\VacancyResponses;
 use View;
 
 
@@ -90,5 +91,11 @@ class CabinetController extends Controller
         ];
 
         View::share($data);
+    }
+
+    public function getResposes() {
+        $vacancies_responses = VacancyResponses::with(['getVacancy'])->where(['user_id' => Auth::id()])->get();
+        
+        return view('responses', ['vacancies_responses' => $vacancies_responses]);
     }
 }
