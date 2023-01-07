@@ -200,9 +200,48 @@ header .content .login_container {
                 margin-right: 4px;
             }
         }
+
+        .response-status {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .status-color {
+                width: 15px;
+                border: 1px solid #59b999;
+                border-radius: 8px;
+                height: 80%;
+
+                &.-accept {
+                    background-color: #59b999;
+                }
+
+                &.-declined {
+                    border-color: #fd3300;
+                    background-color: #fd3300;
+                }
+            }
+        }
+
+        .response-status-title {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-weight: 700;
+        }
         
     }
+
+    &.responses-list {
+        .vacancies-card {
+            padding-left: 45px;
+        }
+    }
 }
+
+
 .options-bar {
     .heading {
         font-size: 18px;

@@ -40,7 +40,6 @@
                                     <a class="btn btn-warning btn-hide" href='\cabinet\resume\{{$resume->id}}' data-value="{{$resume->id}}">
                                         Редактировать    
                                     </a>
-
                                 </div>
                             </div>
                         @endforeach

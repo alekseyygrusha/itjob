@@ -5,7 +5,7 @@
             <div>Отклик принят</div>
         </template>
         <template v-else>
-            Вы отклонили кандитада
+            Вы отклонили кандитата
         </template>
     </div>
     <div v-else class="button-wrap">
