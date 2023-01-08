@@ -1,7 +1,7 @@
 <template>
     <div v-if="this.isChecked" class="button-wrap">
         <template v-if="this.isAccept">
-            <div class="button vacansy_response -color-blue" >Перейти в чат</div>
+            <div class="button vacansy_response -color-blue">Перейти в чат</div>
             <div>Отклик принят</div>
         </template>
         <template v-else>
@@ -40,7 +40,7 @@
                     }
                     if(res.data) {
                         this.isChecked = true;
-                        this.isResponsed = true;
+                        this.isAccept = true;
                     } else {
                         alert("Произошла ошибка, попробуйте позже");
                     }
@@ -59,7 +59,7 @@
                     }
                     if(res.data) {
                         
-                        this.isResponsed = false;
+                        this.isAccept = false;
                         this.isChecked = true;
                         
                     } else {

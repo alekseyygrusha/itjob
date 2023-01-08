@@ -121,9 +121,9 @@ class VacancyController extends Controller
 
     public function getVanacyResponses($id) {
         $vacancy_responses = VacancyResponses::where('vacancy_id', $id)
-            ->with(['getResume'])
+            ->with(['getResume', 'getVacancy'])
             ->get();    
-   
+       
         $vacancy = self::getVacancyData($id);    
         // $this->checkResumeCompetencies($vacancy_responses, $vacancy);
 
@@ -164,27 +164,18 @@ class VacancyController extends Controller
         $user_id=Auth::id();
         $vacancy_id = $request->vacancy_id;
         $resume_id = $request->resume_id;
+        
+        $vacancy_link = new VacancyResponses;
+        $vacancy_link->vacancy_id = $vacancy_id;
+        $vacancy_link->resume_id = $resume_id;
+        $vacancy_link->user_id = $user_id;
 
-        $vacancy_link = VacancyResponses::where(['vacancy_id'=> $vacancy_id, 'user_id' => $user_id])
-            ->first();
-        //меняем привязанное резюме, если отклик уже существует
-        if($vacancy_link) {
-            $vacancy_link->resume_id = $resume_id;
-            $vacancy_link->save();
-            return response()->json(['success' => 'Отклик изменён']);
-        } else {
-            $vacancy_link = new VacancyResponses;
-        
-            $vacancy_link->vacancy_id = $vacancy_id;
-            $vacancy_link->resume_id = $resume_id;
-            $vacancy_link->user_id = $user_id;
-            $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
-    
-            if(!$vacancy_link->save()) {
-                return false;
-            }
-        }    
-        
+        $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
+
+        if(!$vacancy_link->save()) {
+            return false;
+        }
+          
         return view('templates.vacancies.vacancies_list', 
             [
                 'vacancies' => Vacancies::with('vacancyResponses')
@@ -208,7 +199,7 @@ class VacancyController extends Controller
             return false;
         }
 
-        $vacancy_link->delete();
+        $vacancy_link->userCancel = true;
 
         return true;
     }

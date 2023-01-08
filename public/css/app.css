@@ -201,6 +201,12 @@ header .content .login_container {
   top: 15px;
   font-weight: 700;
 }
+.vacancies-container .vacancies-card .response-resume-title {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 12px;
+}
 .vacancies-container.responses-list .vacancies-card {
   padding-left: 45px;
 }

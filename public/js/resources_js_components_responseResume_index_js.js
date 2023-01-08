@@ -2086,7 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
         }
         if (res.data) {
           _this.isChecked = true;
-          _this.isResponsed = true;
+          _this.isAccept = true;
         } else {
           alert("Произошла ошибка, попробуйте позже");
         }
@@ -2103,7 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
           return;
         }
         if (res.data) {
-          _this2.isResponsed = false;
+          _this2.isAccept = false;
           _this2.isChecked = true;
         } else {
           alert("Произошла ошибка, попробуйте позже");
@@ -2239,7 +2239,6 @@ var ajax = {
     });
   },
   declineResponseVacancy: function declineResponseVacancy(data) {
-    console.log('declineResponseVacancy');
     return axios__WEBPACK_IMPORTED_MODULE_0___default()({
       method: 'POST',
       data: data,
