@@ -1,7 +1,8 @@
 <template>
     <div class="response-button-wrap">
         <div class="picked-wrap">
-            <a class="btn vacansy_response -green-color" @click="toggleResponseMenu()" v-bind:class="[!responsed_resume_id ? 'btn-success' : 'btn-secondary'] ">{{!responsed_resume_id ? 'Откликнуться' : 'Изменить'}}</a>
+            <a v-if="!this.responsed_resume_id" class="btn vacansy_response -green-color btn-success" @click="toggleResponseMenu()" >Откликнуться</a>
+            <div v-else class="btn vacansy_response -green-color btn-secondary" @click="toggleResponseMenu()" >Отклик отправлен</div>
             <div class="picked-resume">{{picked_resume}}</div>
         </div>
         <div v-if="response_menu_open" class="response-menu"> 
@@ -20,8 +21,8 @@
                     <div class="description truncate-text truncate-2"> 
                         {{resume.description}}
                     </div> 
-                    <div v-if="parseInt(resume.id) !== this.responsed_resume_id" @click="chooseResume(resume)" class="pick-resume btn btn-success">Выбрать</div>
-                    <div v-else class="pick-resume btn btn-secondary" @click="cancelResponseResume(resume)">Отменить</div>
+                    <div v-if="parseInt(resume.id) !== this.responsed_resume_id" @click="chooseResume(resume)" class="pick-resume btn" v-bind:class="[!responsed_resume_id ? 'btn-success' : 'btn-secondary'] ">Выбрать</div>
+                    <div v-else class="pick-resume btn btn-success" >Отправлено</div>
                 </div>
             </div>
         </div>
@@ -66,12 +67,14 @@
                 return this.responsed_resume_id ? true : false;
             },
             chooseResume(resume) {
-                
+                if(this.responsed_resume_id) {
+                    return;
+                }
                 let data = {
                     resume_id: resume.id,
                     vacancy_id: this.vacancy_id
                 };
-
+                
                 ajax.responseVacancy(data).then((res) => {
                     if(res.data.error) {
                         alert(res.data.error);
@@ -92,16 +95,14 @@
                     vacancy_id: this.vacancy_id
                 };
                 
-                if(confirm('Отклик на данную ваканасию будет отменён.')) {
-                    ajax.cancelResponseVacancy(data).then((res) => {
-                        if(res.data) {
-                            this.responsed_resume_id = null;
-                            this.picked_resume = null;
-                        } else {
-                            alert("Произошла ошибка, попробуйте позже");
-                        }
-                    });
-                };
+                ajax.cancelResponseVacancy(data).then((res) => {
+                    if(res.data) {
+                        this.responsed_resume_id = null;
+                        this.picked_resume = null;
+                    } else {
+                        alert("Произошла ошибка, попробуйте позже");
+                    }
+                });
             }
         }
     }

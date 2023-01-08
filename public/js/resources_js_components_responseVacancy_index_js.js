@@ -2101,6 +2101,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     chooseResume: function chooseResume(resume) {
       var _this2 = this;
+      if (this.responsed_resume_id) {
+        return;
+      }
       var data = {
         resume_id: resume.id,
         vacancy_id: this.vacancy_id
@@ -2124,17 +2127,14 @@ __webpack_require__.r(__webpack_exports__);
         resume_id: resume.id,
         vacancy_id: this.vacancy_id
       };
-      if (confirm('Отклик на данную ваканасию будет отменён.')) {
-        _vanilla_ajax_js__WEBPACK_IMPORTED_MODULE_0__.ajax.cancelResponseVacancy(data).then(function (res) {
-          if (res.data) {
-            _this3.responsed_resume_id = null;
-            _this3.picked_resume = null;
-          } else {
-            alert("Произошла ошибка, попробуйте позже");
-          }
-        });
-      }
-      ;
+      _vanilla_ajax_js__WEBPACK_IMPORTED_MODULE_0__.ajax.cancelResponseVacancy(data).then(function (res) {
+        if (res.data) {
+          _this3.responsed_resume_id = null;
+          _this3.picked_resume = null;
+        } else {
+          alert("Произошла ошибка, попробуйте позже");
+        }
+      });
     }
   }
 });
@@ -2187,17 +2187,27 @@ var _hoisted_11 = {
   "class": "description truncate-text truncate-2"
 };
 var _hoisted_12 = ["onClick"];
-var _hoisted_13 = ["onClick"];
+var _hoisted_13 = {
+  key: 1,
+  "class": "pick-resume btn btn-success"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["btn vacansy_response -green-color", [!$data.responsed_resume_id ? 'btn-success' : 'btn-secondary']]),
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [!this.responsed_resume_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    key: 0,
+    "class": "btn vacansy_response -green-color btn-success",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.toggleResponseMenu();
     })
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!$data.responsed_resume_id ? 'Откликнуться' : 'Изменить'), 3 /* TEXT, CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.picked_resume), 1 /* TEXT */)]), $data.response_menu_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "close",
+  }, "Откликнуться")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 1,
+    "class": "btn vacansy_response -green-color btn-secondary",
     onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.toggleResponseMenu();
+    })
+  }, "Отклик отправлен")), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.picked_resume), 1 /* TEXT */)]), $data.response_menu_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "close",
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.toggleResponseMenu();
     })
   }, _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.resumes, function (resume) {
@@ -2209,14 +2219,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $options.chooseResume(resume);
       },
-      "class": "pick-resume btn btn-success"
-    }, "Выбрать", 8 /* PROPS */, _hoisted_12)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: 1,
-      "class": "pick-resume btn btn-secondary",
-      onClick: function onClick($event) {
-        return $options.cancelResponseResume(resume);
-      }
-    }, "Отменить", 8 /* PROPS */, _hoisted_13))]);
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["pick-resume btn", [!$data.responsed_resume_id ? 'btn-success' : 'btn-secondary']])
+    }, "Выбрать", 10 /* CLASS, PROPS */, _hoisted_12)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, "Отправлено"))]);
   }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Надо будет добавить условие, при котором предлагается создать резюме при его отсуствии.  ")]);
 }
 
@@ -2311,7 +2315,6 @@ var ajax = {
     });
   },
   declineResponseVacancy: function declineResponseVacancy(data) {
-    console.log('declineResponseVacancy');
     return axios__WEBPACK_IMPORTED_MODULE_0___default()({
       method: 'POST',
       data: data,

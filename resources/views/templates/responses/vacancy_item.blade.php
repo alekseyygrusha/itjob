@@ -29,12 +29,16 @@
         "></div>
     </div>
     <div class="response-status-title">
-    @if($vacancy->isAccept && $vacancy->isChecked)
-        Принято
-    @elseif(!$vacancy->isAccept && $vacancy->isChecked)
-        Отклонено
-    @else
-        Ожидает ответа
-    @endif
+        
+        @if($vacancy->userCancel)
+            <span>Отменён</span>  
+        @elseif($vacancy->isAccept && $vacancy->isChecked)
+            <span style="color: #59b999">Принято</span>
+        @elseif(!$vacancy->isAccept && $vacancy->isChecked)
+            <span style="color: #fd3300">Отклонено</span>
+        @else
+            Ожидает ответа
+        @endif
     </div>
+    <div class="response-resume-title">Резюме: {{$vacancy->getResume->job_title}}</div>
 </div>

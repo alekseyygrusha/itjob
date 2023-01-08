@@ -17,7 +17,6 @@ const ajax = {
         })
     },
     declineResponseVacancy(data) {
-        console.log('declineResponseVacancy');
         return axios({
             method: 'POST',
             data,

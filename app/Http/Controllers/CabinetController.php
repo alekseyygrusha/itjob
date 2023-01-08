@@ -94,7 +94,7 @@ class CabinetController extends Controller
     }
 
     public function getResposes() {
-        $vacancies_responses = VacancyResponses::with(['getVacancy'])->where(['user_id' => Auth::id()])->get();
+        $vacancies_responses = VacancyResponses::with(['getVacancy', 'getResume'])->where(['user_id' => Auth::id()])->get();
         
         return view('responses', ['vacancies_responses' => $vacancies_responses]);
     }
