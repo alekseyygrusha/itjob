@@ -82,7 +82,7 @@
         </form>
     </div>
     <script>
-        $("#skills_select").select2();
+        // $("#skills_select").select2();
 
         $(document).ready(function() {
         //в отдельный JS файл вынести

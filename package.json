@@ -21,7 +21,8 @@
     "core-js": "^3.8.3",
     "vue": "^3.2.45",
     "vue-final-modal": "^3.4.11",
-    "vue-stripe-menu": "^2.1.1"
+    "vue-stripe-menu": "^2.1.1",
+    "vue3-select2-component": "^0.1.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

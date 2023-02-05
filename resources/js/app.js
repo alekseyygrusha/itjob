@@ -13,6 +13,8 @@ import {ModalsContainer} from "vue-final-modal";
 // globalModalsApp.mount("#global-modals-app");
 const responseVacancy = () => import('./components/responseVacancy');
 const responseResume = () => import('./components/responseResume');
+const postVacancy = () => import('./components/postVacancy');
+const selectOptions = () => import('./components/selectOptions');
 
 
 // import modalsContainer from "./Modals/ModalsContainer.vue";
@@ -40,6 +42,12 @@ responseVacancy().then(({initResponseVacancy}) => {
 responseResume().then(({initResponseResume}) => {
     initResponseResume({});
 });
+
+postVacancy().then(({initPostVacancy}) => {
+    initPostVacancy({});
+});
+
+
 
 
  /** Элементы на странице **/

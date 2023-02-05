@@ -17594,6 +17594,12 @@ var responseVacancy = function responseVacancy() {
 var responseResume = function responseResume() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_responseResume_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/responseResume */ "./resources/js/components/responseResume/index.js"));
 };
+var postVacancy = function postVacancy() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_postVacancy_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/postVacancy */ "./resources/js/components/postVacancy/index.js"));
+};
+var selectOptions = function selectOptions() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_selectOptions_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/selectOptions */ "./resources/js/components/selectOptions/index.js"));
+};
 
 // import modalsContainer from "./Modals/ModalsContainer.vue";
 
@@ -17618,6 +17624,10 @@ responseVacancy().then(function (_ref) {
 responseResume().then(function (_ref2) {
   var initResponseResume = _ref2.initResponseResume;
   initResponseResume({});
+});
+postVacancy().then(function (_ref3) {
+  var initPostVacancy = _ref3.initPostVacancy;
+  initPostVacancy({});
 });
 
 /** Элементы на странице **/
@@ -19721,7 +19731,7 @@ function compileToFunction(template, options) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_responseVacancy_index_js":1,"resources_js_components_responseResume_index_js":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_responseVacancy_index_js":1,"resources_js_components_responseResume_index_js":1,"resources_js_components_postVacancy_index_js":1,"resources_js_components_selectOptions_index_js":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

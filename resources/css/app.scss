@@ -5,7 +5,9 @@
     text-align: center;
     margin-top: 200px;
 }
-
+body {
+    font-family: 'Manrope', sans-serif;
+}
 a {
     color: black !important;
     text-decoration: none !important;
@@ -468,5 +470,113 @@ button.button {
   &.truncate-2 {
     -webkit-line-clamp: 2;
   }
+}
+
+.post-vacancy {
+    padding: 25px;
+    border: 1px solid #59b999;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    .heading {
+        font-size: 20px;
+        text-align: center;
+        padding-bottom: 12px;
+    }
+
+    .input-wrap {
+        width: 80%;
+        margin: 0 auto;
+
+        input, textarea {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid #59b999;
+            padding: 8px 20px;
+            font-size: 18px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+.form-block {
+    margin-bottom: 35px;
+}
+.select-custom {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #59b999;
+    padding: 8px 20px;
+    font-size: 18px;
+    position: relative;
+    z-index: 9;
+    .select-option {
+        cursor: pointer;
+    }
+
+    .select-option {
+        padding-top: 3px;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 3px;
+    }
+    
+    .list {
+        display: none;
+        position: absolute;
+        width: calc(100% + 2px);
+        left: -1px;
+        border: 1px solid #59b999;
+        top: 100%;
+        border-top: none;
+        background-color: white;
+        
+        .list-option {
+            padding: 8px 20px;
+            &:hover {
+                transition: .3s;
+                background-color: #59b999;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.select-open {
+        border-radius: 10px 10px 0 0;
+        .select-option {
+            border-bottom: 1px solid #59b999;
+        }
+        .list {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+    }
+}
+.select-input {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    .select2-container {
+        .select2-selection {
+            border: 1px solid #59b999;
+            padding: 8px 20px;
+            height: auto;
+            border-radius: 10px;
+
+            .select2-selection__arrow {
+                height: 100%;
+                right: 20px;
+            }
+
+            .select2-results__option {
+                padding: 8px 20px;
+            }
+        }
+    }
+
+    .select2-results {
+        
+    }
 }
 

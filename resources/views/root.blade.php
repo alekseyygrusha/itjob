@@ -8,7 +8,6 @@
         @include('templates.blocks.header')
         
         <div class="main-content" id='app'>
-            <response-vacancy></response-vacancy>
             <div class="container">
                 <div class="row">
                     <div class="col-3">
