@@ -42,8 +42,12 @@ class VacancyController extends Controller
     }
 
     public static function getData () {
-        $skills = Skills::all();
-        View::share('skills', $skills);
+        $data = [
+            'skills' => response()->json(Skills::all()),
+            'cities' => response()->json(Cities::all())
+        ];
+       
+        View::share($data);
     }
 
     public function delete(Request $request) {

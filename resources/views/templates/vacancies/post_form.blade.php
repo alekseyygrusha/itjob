@@ -77,10 +77,5 @@
     </form>
 </div>
 
-<script>
-    $("#skills_select").select2();
-</script>
-
-
 
 
