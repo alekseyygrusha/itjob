@@ -9,7 +9,7 @@
             <div class="container">
                 <div id="post-vacancy-form" class="post-vacancy-form">
                     
-                    <post-vacancy cities='{{$cities->getContent()}}'></post-vacancy>
+                    <post-vacancy groups={{$groups->getContent()}} cities='{{$cities->getContent()}}'></post-vacancy>
                 </div>
                 @include('templates.vacancies.post_form')
             </div>

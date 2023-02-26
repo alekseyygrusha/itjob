@@ -466,6 +466,7 @@ button.button {
   cursor: pointer;
 }
 .select-custom.select-open {
+  z-index: 999;
   border-radius: 10px 10px 0 0;
 }
 .select-custom.select-open .select-option {

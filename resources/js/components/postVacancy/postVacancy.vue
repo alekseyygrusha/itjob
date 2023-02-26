@@ -1,7 +1,7 @@
 <template>
     <div class="post-vacancy">
         <div class="step-container">
-            <div class="heading">Введите название должности на вакансию:</div>
+            <div class="heading">Заполните данные резюме:</div>
             <div class="form-block">
                 <div class="input-wrap text-input">
                     <input type="text" value="" placeholder="Full-stack разработчик (Милый котик)">
@@ -12,7 +12,7 @@
                 <div class="select-input vue-select-options">
                     <selectOptions     
                         placeholder="Выберите направление" 
-                        :options="myOptions" 
+                        :options="groups_list" 
                         :option-value="group_id"
                         @update:option-value="group_id = $event"></selectOptions>
                     <input type="hidden"  :value="group_id">
@@ -50,6 +50,9 @@
                     <textarea name="" placeholder="Описание к вакансии" id="" cols="20" rows="2"></textarea>
                 </div>
             </div>
+            <div class="d-flex justify-content-center">
+                <div class="button publicate -green-color">Опубликовать</div>
+            </div>
         </div>
     </div> 
 </template>
@@ -59,34 +62,38 @@
     export default {
         components: {selectOptions},
         props: [
-            'cities'
+            'cities', 'groups'
         ],
         data() {
             return {
                 cities_list: JSON.parse(this.cities),
                 city_id: '',
-                group_id: '',
+                group_id: '', 
                 myValue: '',
                 title: '',
-                myOptions: [{id: 1, name: "Web"}, {id: 2, name: "Design"}] // or [{id: key, text: value}, {id: key, text: value}]
+                groups_list: this.adaptObject(JSON.parse(this.groups)),
             }
         },  
         mounted() {
-            console.log(this.cities_list);
+            // this.groups_list = this.adaptObject(this.groups_list);
+
+            console.log(this.groups_list);
         },
         methods: {
-            show(data) {
-                
+            adaptObject(obj) {
+                return obj.map(function (obj) {
+                    return {'id': obj.id, 'name': obj.group_name};
+                });
             },
-            myChangeEvent(val){
-                console.log(val);
-            },
-            mySelectEvent({id, text}){
-                this.title = text;
-            },
-            returnSelectContainer(el) {
-                
-            }
         }
     }
 </script>
+
+<style scoped>
+    .publicate {
+        height: auto;
+        padding: 7px 35px;
+        line-height: 30px;
+        border-radius: 4px;
+    }
+</style>

@@ -37,6 +37,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
+       
         self::getData();
         return view('post');
     }
@@ -44,7 +45,8 @@ class VacancyController extends Controller
     public static function getData () {
         $data = [
             'skills' => response()->json(Skills::all()),
-            'cities' => response()->json(Cities::all())
+            'cities' => response()->json(Cities::all()),
+            'groups' => response()->json(Groups::all())
         ];
        
         View::share($data);

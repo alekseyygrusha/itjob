@@ -543,6 +543,7 @@ button.button {
     }
 
     &.select-open {
+        z-index: 999;
         border-radius: 10px 10px 0 0;
         .select-option {
             border-bottom: 1px solid #59b999;
