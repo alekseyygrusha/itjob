@@ -17629,6 +17629,10 @@ postVacancy().then(function (_ref3) {
   var initPostVacancy = _ref3.initPostVacancy;
   initPostVacancy({});
 });
+selectOptions().then(function (_ref4) {
+  var initSelectOptions = _ref4.initSelectOptions;
+  initSelectOptions({});
+});
 
 /** Элементы на странице **/
 // import {responseVacancy} from './components/responseVacancy';

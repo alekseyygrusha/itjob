@@ -29,6 +29,14 @@ const ajax = {
             data,
             url: '/ajax/cancel-vacancy-response',
         })
+    },
+
+    publicateVacancy(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/post-vacancy',
+        })
     }
 };
 

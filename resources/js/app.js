@@ -47,6 +47,10 @@ postVacancy().then(({initPostVacancy}) => {
     initPostVacancy({});
 });
 
+selectOptions().then(({initSelectOptions}) => {
+    initSelectOptions({});
+});
+
 
 
 
