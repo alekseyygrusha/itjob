@@ -1,4 +1,4 @@
-
+{{-- 
 <div>
     <form class='form_block' action="{{route('vacancy-post')}}" method="post" id="post_vacancy">
         @csrf
@@ -75,7 +75,7 @@
         <button class="publucate-button button -green-color" action="confirm">Опубликовать</button>
         <div id="message"></div>
     </form>
-</div>
+</div> --}}
 
 
 

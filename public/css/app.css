@@ -413,6 +413,7 @@ button.button {
 .post-vacancy .input-wrap {
   width: 80%;
   margin: 0 auto;
+  position: relative;
 }
 .post-vacancy .input-wrap input, .post-vacancy .input-wrap textarea {
   width: 100%;
@@ -423,6 +424,17 @@ button.button {
 }
 .post-vacancy .input-wrap input:focus, .post-vacancy .input-wrap textarea:focus {
   outline: none;
+}
+.post-vacancy .select-input .error-wrap,
+.post-vacancy .input-wrap .error-wrap {
+  position: absolute;
+  top: calc(100% + 2px);
+  font-size: 12px;
+  color: red;
+}
+.post-vacancy .text-input input.-error,
+.post-vacancy .select-input.-error .select-custom {
+  border: 1px solid #f50606;
 }
 
 .form-block {

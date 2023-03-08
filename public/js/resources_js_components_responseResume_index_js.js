@@ -2251,6 +2251,13 @@ var ajax = {
       data: data,
       url: '/ajax/cancel-vacancy-response'
     });
+  },
+  publicateVacancy: function publicateVacancy(data) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+      method: 'POST',
+      data: data,
+      url: '/ajax/post-vacancy'
+    });
   }
 };
 

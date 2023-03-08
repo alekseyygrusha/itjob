@@ -19,6 +19,9 @@ Route::prefix('ajax')->group(function () {
     Route::post('cancel-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'cancelResponseVacancy'])->name('cancel-vacancy-response');
     Route::post('accept-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'acceptResponseVacancy'])->name('accept-vacancy-response');
     Route::post('decline-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'declineResponseVacancy'])->name('decline-vacancy-response');
+    Route::post('post-vacancy', [App\Http\Controllers\VacancyController::class, 'postVacancy'], function () {
+        return view('post');
+    });
 });
 
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {
@@ -37,9 +40,7 @@ Route::get('/vacancy/edit/{id}', [App\Http\Controllers\VacancyController::class,
 
 Route::post('vacancy-delete',  [App\Http\Controllers\VacancyController::class, 'delete'])->name('vacancy-delete');
 Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hideVacancy'])->name('vacancy-hide');
-Route::post('post', [App\Http\Controllers\VacancyController::class, 'postVacancy'], function () {
-    return view('post');
-})->name('vacancy-post');
+
 Route::post('resume-post',  [App\Http\Controllers\CabinetController::class, 'postResume'], function () {
     return view('cabinet');
 })->name('resume-post');
