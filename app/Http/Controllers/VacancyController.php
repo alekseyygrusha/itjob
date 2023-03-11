@@ -60,6 +60,7 @@ class VacancyController extends Controller
     }
 
     public function postVacancy(Request $request) {
+        dd('postVacancy');
         if($request->vacancy_id) {
             $vacancy =  Vacancies::where('id', $request->vacancy_id)
                 ->where('user_id', Auth::id())

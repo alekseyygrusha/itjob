@@ -4332,11 +4332,14 @@ __webpack_require__.r(__webpack_exports__);
         },
         salary_min: {
           integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.integer,
-          maxValue: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxValue)(parseInt(this.salary_max))
+          maxValue: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxValue)(parseInt(this.form.salary_max))
         },
         salary_max: {
           integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.integer,
-          minValue: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.minValue)(parseInt(this.salary_min))
+          minValue: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.minValue)(parseInt(this.form.salary_min))
+        },
+        description: {
+          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(1000)
         }
       }
     };
@@ -4344,7 +4347,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     checkForm: function checkForm() {
       this.v$.form.$touch();
-      console.log(this.v$);
+      if (this.v$.form.$dirty && !this.v$.form.$error) {
+        this.publicateVacancy();
+      }
     },
     adaptObject: function adaptObject(obj) {
       return obj.map(function (obj) {
@@ -4355,11 +4360,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     publicateVacancy: function publicateVacancy() {
-      console.log(this.group_id);
-      console.log(this.form);
-      // ajax.publicateVacancy(data).then((res) => {
-      //     console.log(res);
-      // });
+      _vanilla_ajax_js__WEBPACK_IMPORTED_MODULE_2__.ajax.publicateVacancy(this.form).then(function (res) {
+        console.log(res);
+      });
     }
   }
 });
@@ -4490,12 +4493,27 @@ var _hoisted_20 = {
   "class": "col-6"
 };
 var _hoisted_21 = {
-  "class": "form-block"
+  "class": "error-wrap"
 };
 var _hoisted_22 = {
+  key: 0
+};
+var _hoisted_23 = {
+  key: 1
+};
+var _hoisted_24 = {
+  "class": "form-block"
+};
+var _hoisted_25 = {
   "class": "input-wrap text-input"
 };
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_26 = {
+  "class": "error-wrap"
+};
+var _hoisted_27 = {
+  key: 0
+};
+var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "d-flex justify-content-center"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -4550,18 +4568,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.form.salary_min = $event;
     }),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.v$.form.salary_min.$error ? '-error' : ''),
     placeholder: "ОТ"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_min, void 0, {
+  }, null, 2 /* CLASS */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_min, void 0, {
     trim: true
   }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.form.salary_max = $event;
     }),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.v$.form.salary_max.$error ? '-error' : ''),
     placeholder: "ДО"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_max, void 0, {
+  }, null, 2 /* CLASS */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_max, void 0, {
     trim: true
-  }]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [$setup.v$.form.salary_min.$dirty && $setup.v$.form.salary_min.maxValue.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_22, " Нижняя граница не должна превышать значение верхней. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.v$.form.salary_max.$dirty && $setup.v$.form.salary_max.minValue.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_23, " Верхнее значение не должно быть ниже минимального. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     placeholder: "Описание к вакансии",
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.form.description = $event;
@@ -4571,7 +4591,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     rows: "2"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description, void 0, {
     trim: true
-  }]])])]), _hoisted_23])], 32 /* HYDRATE_EVENTS */);
+  }]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [$setup.v$.form.description.$dirty && $setup.v$.form.description.maxLength.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, " Размер описание не должен превышать 1000 символов. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), _hoisted_28])], 32 /* HYDRATE_EVENTS */);
 }
 
 /***/ }),
