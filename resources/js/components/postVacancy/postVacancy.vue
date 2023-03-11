@@ -51,17 +51,30 @@
                 <div class="input-wrap text-input">
                     <div class="row">
                         <div class="col-6">
-                            <input type="text" v-model.trim="form.salary_min" placeholder="ОТ">
+                            <input type="text" v-model.trim="form.salary_min" :class="v$.form.salary_min.$error ? '-error' : ''" placeholder="ОТ">
                         </div>
                         <div class="col-6">
-                            <input type="text" v-model.trim="form.salary_max" placeholder="ДО">
+                            <input type="text" v-model.trim="form.salary_max" :class="v$.form.salary_max.$error ? '-error' : ''" placeholder="ДО">
                         </div>
+                    </div>
+                    <div class="error-wrap">
+                        <p v-if="v$.form.salary_min.$dirty && v$.form.salary_min.maxValue.$invalid">
+                            Нижняя граница не должна превышать значение верхней.
+                        </p>
+                        <p v-if="v$.form.salary_max.$dirty && v$.form.salary_max.minValue.$invalid">
+                            Верхнее значение не должно быть ниже минимального.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="form-block">
                 <div class="input-wrap text-input">
                     <textarea placeholder="Описание к вакансии" v-model.trim="form.description" id="" cols="20" rows="2"></textarea>
+                    <div class="error-wrap">
+                        <p v-if="v$.form.description.$dirty && v$.form.description.maxLength.$invalid">
+                            Размер описание не должен превышать 1000 символов.
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -107,16 +120,18 @@
                     city_id: {required},
                     group_id: {required},
                     company_name: {required, minLength: minLength(1), maxLength: maxLength(100)},
-                    salary_min: {integer, maxValue: maxValue(parseInt(this.salary_max))},
-                    salary_max: {integer, minValue: minValue(parseInt(this.salary_min))},
+                    salary_min: {integer, maxValue: maxValue(parseInt(this.form.salary_max))},
+                    salary_max: {integer, minValue: minValue(parseInt(this.form.salary_min))},
+                    description: {maxLength: maxLength(1000)}
                 }
             }
         },
         methods: {
             checkForm() {
                 this.v$.form.$touch();
-                console.log(this.v$);
-                
+                if(this.v$.form.$dirty && !this.v$.form.$error) {
+                    this.publicateVacancy();
+                }
             },
             adaptObject(obj) {
                 return obj.map(function (obj) {
@@ -124,12 +139,10 @@
                 });
             },
 
-            publicateVacancy() {
-                console.log(this.group_id);  
-                console.log(this.form);  
-                // ajax.publicateVacancy(data).then((res) => {
-                //     console.log(res);
-                // });
+            publicateVacancy() {      
+                ajax.publicateVacancy(this.form).then((res) => {
+                    console.log(res);
+                });
             }
 
         }
