@@ -497,6 +497,43 @@ button.button {
             &:focus {
                 outline: none;
             }
+            &:disabled {
+                opacity: .5;
+            }
+        }
+
+    }
+
+    .form-check {
+        max-width: 250px;
+        padding-left: 20px;
+        margin-top: 15px;
+
+        input {
+            width: auto;
+        }
+    }
+
+    .price-inputs {
+        .price-input-wrap {
+            position: relative;
+                
+            input {
+                position: relative;
+                z-index: 99;
+                font-weight: bold;
+                font-size: 25px;
+                // opacity: 0;
+            }
+            .price-input { 
+                padding: 4px 20px;
+                
+                border: 1px solid #59b999;
+                border-radius: 10px;
+                position: absolute;
+                width: 100%;
+                top: 0;
+            }
         }
     }
 
@@ -511,7 +548,8 @@ button.button {
     }
 
     .text-input input.-error,
-    .select-input.-error  .select-custom {
+    .select-input.-error  .select-custom,
+    .price-inputs .price-input.-error {
         border: 1px solid #f50606;
     }
 }

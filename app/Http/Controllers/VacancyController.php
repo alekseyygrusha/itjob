@@ -37,7 +37,6 @@ class VacancyController extends Controller
      */
     public function index()
     {
-       
         self::getData();
         return view('post');
     }
@@ -60,7 +59,7 @@ class VacancyController extends Controller
     }
 
     public function postVacancy(Request $request) {
-        dd('postVacancy');
+        
         if($request->vacancy_id) {
             $vacancy =  Vacancies::where('id', $request->vacancy_id)
                 ->where('user_id', Auth::id())
@@ -76,15 +75,15 @@ class VacancyController extends Controller
         
         $vacancy->user_id = Auth::id();
         $vacancy->job_title = $request->job_title;
-        $vacancy->job_group = $request->job_group;
+        $vacancy->job_group = $request->group_id;
         $vacancy->company_name = $request->company_name;
-        $vacancy->city = $request->city;
-        $vacancy->min_salary = $request->min_salary;
-        $vacancy->max_salary = $request->max_salary;
+        $vacancy->city = $request->city_id;
+        $vacancy->min_salary = $request->salary_min;
+        $vacancy->max_salary = $request->salary_max;
         $vacancy->description = $request->description;
         $vacancy->save();
 
-        return redirect()->route('cabinet')->with('success', 'Вакансия была опубликована');
+        return response()->json(['answer' => true]);
 
     }
     public function getVanacyByGroup($group_id) {
@@ -110,10 +109,11 @@ class VacancyController extends Controller
     }
 
     public function getVanacy($id) {
+      
         self::getData();
         $vacancy = self::getVacancyData($id);
         
-        View::share('vacancy', $vacancy);
+        View::share('vacancy',  $vacancy);
         return view('post');
     }
 
@@ -152,13 +152,7 @@ class VacancyController extends Controller
             $response_resume = $response->getResume->toArray();
            
             foreach($response_resume as $key => $resume_item) {
-               
-                // if($points == 5) {
-                //     dd(in_array($key, $competencies));
-                // }
-                
                 if(in_array($key, $competencies) && $resume_item ) {
-                    
                     $points++;
                 }
                 

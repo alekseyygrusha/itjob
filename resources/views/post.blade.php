@@ -2,14 +2,14 @@
     <head>
         <title>Разместить вакансию</title>
         @include('templates.blocks.meta')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
         @include('templates.blocks.header')
         <div class="main-content" id="app">
             <div class="container">
                 <div id="post-vacancy-form" class="post-vacancy-form">
-                    
-                    <post-vacancy groups={{$groups->getContent()}} cities='{{$cities->getContent()}}'></post-vacancy>
+                    <post-vacancy groups={{$groups->getContent()}} vacancy='{{$vacancy}}' cities='{{$cities->getContent()}}'></post-vacancy>
                 </div>
                 @include('templates.vacancies.post_form')
             </div>

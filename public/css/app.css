@@ -425,6 +425,34 @@ button.button {
 .post-vacancy .input-wrap input:focus, .post-vacancy .input-wrap textarea:focus {
   outline: none;
 }
+.post-vacancy .input-wrap input:disabled, .post-vacancy .input-wrap textarea:disabled {
+  opacity: 0.5;
+}
+.post-vacancy .form-check {
+  max-width: 250px;
+  padding-left: 20px;
+  margin-top: 15px;
+}
+.post-vacancy .form-check input {
+  width: auto;
+}
+.post-vacancy .price-inputs .price-input-wrap {
+  position: relative;
+}
+.post-vacancy .price-inputs .price-input-wrap input {
+  position: relative;
+  z-index: 99;
+  font-weight: bold;
+  font-size: 25px;
+}
+.post-vacancy .price-inputs .price-input-wrap .price-input {
+  padding: 4px 20px;
+  border: 1px solid #59b999;
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
 .post-vacancy .select-input .error-wrap,
 .post-vacancy .input-wrap .error-wrap {
   position: absolute;
@@ -433,7 +461,8 @@ button.button {
   color: red;
 }
 .post-vacancy .text-input input.-error,
-.post-vacancy .select-input.-error .select-custom {
+.post-vacancy .select-input.-error .select-custom,
+.post-vacancy .price-inputs .price-input.-error {
   border: 1px solid #f50606;
 }
 

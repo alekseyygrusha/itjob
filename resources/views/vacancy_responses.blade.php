@@ -7,12 +7,12 @@
     <body>
         @include('templates.blocks.header');
         <div class="container" id="app">
-            <h3>Отклики на вакансию {{$vacancy->job_title}}</h3>
+            <h3>Отклики на вакансию <span style="color: #59b999">{{$vacancy->job_title}}</span></h3>
             <p style="border-bottom: 1px solid #59b999">{{$vacancy->description}}</p>
             <div class="users-list">
                 <div class="resume-wrap">
                     <div class="vacancies-container">
-                        @if(!empty($vacancy_responses))
+                        @if(!empty($vacancy_responses) && count($vacancy_responses) > 1)
                             @foreach($vacancy_responses as $response)
                                 <div class="vacancies-card vue-response-resume">
                                     <div class="name"><b>Иванов Иван Иванович (тут имя должно быть)</b></div>
@@ -40,6 +40,8 @@
                                     </response-resume>
                                 </div>
                             @endforeach
+                            @else
+                            В данный момент откликов не поступало
                         @endif
                     </div>
                 </div>
