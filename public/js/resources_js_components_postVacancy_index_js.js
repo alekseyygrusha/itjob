@@ -4290,24 +4290,30 @@ __webpack_require__.r(__webpack_exports__);
     useVuelidate: _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate,
     selectOptions: _selectOptions_selectOptions_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['cities', 'groups'],
+  props: ['cities', 'groups', 'vacancy'],
   setup: function setup() {
     return {
       v$: (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)()
     };
   },
   data: function data() {
+    var _vacancy_data$id, _vacancy_data$city, _vacancy_data$job_gro, _vacancy_data$job_tit, _vacancy_data$min_sal, _vacancy_data$max_sal, _vacancy_data$company, _vacancy_data$descrip;
+    var vacancy_data = JSON.parse(this.vacancy);
+    console.log(vacancy_data);
     return {
       groups_list: this.adaptObject(JSON.parse(this.groups)),
       cities_list: JSON.parse(this.cities),
+      salary_init: false,
+      align_salary: false,
       form: {
-        city_id: '',
-        group_id: '',
-        job_title: '',
-        salary_min: '',
-        salary_max: '',
-        company_name: '',
-        description: ''
+        id: (_vacancy_data$id = vacancy_data.id) !== null && _vacancy_data$id !== void 0 ? _vacancy_data$id : '',
+        city_id: (_vacancy_data$city = vacancy_data.city) !== null && _vacancy_data$city !== void 0 ? _vacancy_data$city : '',
+        group_id: (_vacancy_data$job_gro = vacancy_data.job_group) !== null && _vacancy_data$job_gro !== void 0 ? _vacancy_data$job_gro : '',
+        job_title: (_vacancy_data$job_tit = vacancy_data.job_title) !== null && _vacancy_data$job_tit !== void 0 ? _vacancy_data$job_tit : '',
+        salary_min: (_vacancy_data$min_sal = vacancy_data.min_salary) !== null && _vacancy_data$min_sal !== void 0 ? _vacancy_data$min_sal : '',
+        salary_max: (_vacancy_data$max_sal = vacancy_data.max_salary) !== null && _vacancy_data$max_sal !== void 0 ? _vacancy_data$max_sal : '',
+        company_name: (_vacancy_data$company = vacancy_data.company_name) !== null && _vacancy_data$company !== void 0 ? _vacancy_data$company : '',
+        description: (_vacancy_data$descrip = vacancy_data.description) !== null && _vacancy_data$descrip !== void 0 ? _vacancy_data$descrip : ''
       }
     };
   },
@@ -4330,25 +4336,65 @@ __webpack_require__.r(__webpack_exports__);
           minLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.minLength)(1),
           maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(100)
         },
-        salary_min: {
-          integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.integer,
-          maxValue: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxValue)(parseInt(this.form.salary_max))
-        },
-        salary_max: {
-          integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.integer,
-          minValue: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.minValue)(parseInt(this.form.salary_min))
-        },
         description: {
           maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(1000)
         }
       }
     };
   },
+  mounted: function mounted() {
+    console.log(this.form);
+  },
+  computed: {
+    checkSalaryValidate: function checkSalaryValidate() {
+      if (parseInt(this.form.salary_min) == 0 && parseInt(this.form.salary_max) == 0) {
+        return true;
+      }
+      if (!this.form.salary_max) {
+        return false;
+      }
+      console.log(this.align_salary);
+      if (this.align_salary) {
+        this.form.salary_min = this.form.salary_max;
+      }
+      if (!this.form.salary_min) {
+        this.form.salary_min = '0';
+      }
+      var salary_min = parseInt(this.form.salary_min.split(' ').join(''));
+      var salary_max = parseInt(this.form.salary_max.split(' ').join(''));
+      // console.log(salary_min, salary_max);
+      if (salary_min > salary_max) {
+        return false;
+      }
+      return true;
+    }
+  },
   methods: {
+    alignSalary: function alignSalary() {
+      console.log('alignSalary');
+      this.align_salary = !this.align_salary;
+    },
+    transformPrice: function transformPrice(price) {
+      console.log('transformPrice');
+      this.salary_init = true;
+      if (typeof price === 'string' || price instanceof String) {
+        price = price.split(' ').join('');
+      }
+      if (!price) return 0;
+      price = parseFloat(price).toString();
+      var parts = price.split('.');
+      parts[0] = parts[0].replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+      if (parts.length - 1) {
+        parts[1] = parts[1].substr(0, 2);
+        if (parts[1].length < 2) parts[1] += "0";
+      }
+      return parts[0] + (parts.length - 1 ? ',' + parts[1] : '');
+    },
     checkForm: function checkForm() {
       this.v$.form.$touch();
+      this.checkSalaryValidate();
       if (this.v$.form.$dirty && !this.v$.form.$error) {
-        this.publicateVacancy();
+        // this.publicateVacancy();
       }
     },
     adaptObject: function adaptObject(obj) {
@@ -4361,7 +4407,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     publicateVacancy: function publicateVacancy() {
       _vanilla_ajax_js__WEBPACK_IMPORTED_MODULE_2__.ajax.publicateVacancy(this.form).then(function (res) {
-        console.log(res);
+        console.log(res.data.answer);
+        if (res.data.answer) {
+          alert('Вакансия была опубликована. Сейчас перенаправим вас в кабинет.');
+          window.location.href = "/cabinet";
+        } else {}
       });
     }
   }
@@ -4481,39 +4531,52 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
   }, "Зарплатная вилка:", -1 /* HOISTED */);
 });
 var _hoisted_17 = {
-  "class": "input-wrap text-input"
+  "class": "input-wrap text-input price-inputs"
 };
 var _hoisted_18 = {
-  "class": "row"
+  "class": "row d-flex justify-content-between"
 };
 var _hoisted_19 = {
-  "class": "col-6"
+  "class": "col-6 price-input-wrap"
 };
 var _hoisted_20 = {
+  "class": "price-input-wrap"
+};
+var _hoisted_21 = ["disabled"];
+var _hoisted_22 = {
   "class": "col-6"
 };
-var _hoisted_21 = {
-  "class": "error-wrap"
-};
-var _hoisted_22 = {
-  key: 0
-};
 var _hoisted_23 = {
-  key: 1
+  "class": "price-input-wrap"
 };
 var _hoisted_24 = {
-  "class": "form-block"
+  "class": "form-check"
 };
-var _hoisted_25 = {
-  "class": "input-wrap text-input"
-};
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "class": "form-check-label",
+    "for": "flexCheckDefault"
+  }, "Уровнять", -1 /* HOISTED */);
+});
 var _hoisted_26 = {
   "class": "error-wrap"
 };
 var _hoisted_27 = {
   key: 0
 };
-var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_28 = {
+  "class": "form-block"
+};
+var _hoisted_29 = {
+  "class": "input-wrap text-input"
+};
+var _hoisted_30 = {
+  "class": "error-wrap"
+};
+var _hoisted_31 = {
+  key: 0
+};
+var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "d-flex justify-content-center"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -4526,7 +4589,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_selectOptions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("selectOptions");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     "class": "post-vacancy",
-    onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onSubmit: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.checkForm();
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -4563,27 +4626,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:optionValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.form.city_id = $event;
     })
-  }, null, 8 /* PROPS */, ["options"])], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, ["options"])], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.form.salary_min = $event;
     }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.v$.form.salary_min.$error ? '-error' : ''),
-    placeholder: "ОТ"
-  }, null, 2 /* CLASS */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_min, void 0, {
+    onKeyup: _cache[5] || (_cache[5] = function ($event) {
+      return $data.form.salary_min = $options.transformPrice($data.form.salary_min);
+    }),
+    placeholder: "ОТ",
+    disabled: $data.align_salary ? '' : _ctx.disabled
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_21), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_min, void 0, {
     trim: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"price-input \">{{transformPrice(form.salary_min)}} ₽</div> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.form.salary_max = $event;
     }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.v$.form.salary_max.$error ? '-error' : ''),
+    onKeyup: _cache[7] || (_cache[7] = function ($event) {
+      return $data.form.salary_max = $options.transformPrice($data.form.salary_max);
+    }),
     placeholder: "ДО"
-  }, null, 2 /* CLASS */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_max, void 0, {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.salary_max, void 0, {
     trim: true
-  }]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [$setup.v$.form.salary_min.$dirty && $setup.v$.form.salary_min.maxValue.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_22, " Нижняя граница не должна превышать значение верхней. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.v$.form.salary_max.$dirty && $setup.v$.form.salary_max.minValue.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_23, " Верхнее значение не должно быть ниже минимального. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"price-input\" >{{transformPrice(form.salary_max)}} ₽</div> ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>Уровнять</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "form-check-input",
+    onClick: _cache[8] || (_cache[8] = function ($event) {
+      return $options.alignSalary();
+    }),
+    type: "checkbox",
+    value: "",
+    id: "flexCheckDefault"
+  }), _hoisted_25]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [!$options.checkSalaryValidate && $data.salary_init ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, " Верхнее значение не должно быть ниже минимального. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     placeholder: "Описание к вакансии",
-    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
       return $data.form.description = $event;
     }),
     id: "",
@@ -4591,7 +4667,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     rows: "2"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description, void 0, {
     trim: true
-  }]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [$setup.v$.form.description.$dirty && $setup.v$.form.description.maxLength.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, " Размер описание не должен превышать 1000 символов. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), _hoisted_28])], 32 /* HYDRATE_EVENTS */);
+  }]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [$setup.v$.form.description.$dirty && $setup.v$.form.description.maxLength.$invalid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_31, " Размер описание не должен превышать 1000 символов. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), _hoisted_32])], 32 /* HYDRATE_EVENTS */);
 }
 
 /***/ }),

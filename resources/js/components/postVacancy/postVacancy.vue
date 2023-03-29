@@ -48,20 +48,30 @@
             </div>
             <div class="form-block">
                 <div class="heading">Зарплатная вилка:</div>
-                <div class="input-wrap text-input">
-                    <div class="row">
-                        <div class="col-6">
-                            <input type="text" v-model.trim="form.salary_min" :class="v$.form.salary_min.$error ? '-error' : ''" placeholder="ОТ">
+                <div class="input-wrap text-input price-inputs">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-6 price-input-wrap">
+                            <div class="price-input-wrap">
+                                <input type="text" v-model.trim="form.salary_min" @keyup="form.salary_min = transformPrice(form.salary_min)" placeholder="ОТ" :disabled="align_salary ? '' : disabled">
+                                <!-- <div class="price-input ">{{transformPrice(form.salary_min)}} ₽</div> -->
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <input type="text" v-model.trim="form.salary_max" :class="v$.form.salary_max.$error ? '-error' : ''" placeholder="ДО">
+                        <div class="col-6 ">
+                            <div class="price-input-wrap">
+                                <input type="text" v-model.trim="form.salary_max" @keyup="form.salary_max = transformPrice(form.salary_max)" placeholder="ДО">
+                                <!-- <div class="price-input" >{{transformPrice(form.salary_max)}} ₽</div> -->
+                            </div>
+                            
                         </div>
                     </div>
+                    <div class="form-check">
+                        <!-- <span>Уровнять</span> -->
+                        <input class="form-check-input"  @click="alignSalary()" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Уровнять</label>
+                    </div>
+                    
                     <div class="error-wrap">
-                        <p v-if="v$.form.salary_min.$dirty && v$.form.salary_min.maxValue.$invalid">
-                            Нижняя граница не должна превышать значение верхней.
-                        </p>
-                        <p v-if="v$.form.salary_max.$dirty && v$.form.salary_max.minValue.$invalid">
+                        <p v-if="!checkSalaryValidate && salary_init">
                             Верхнее значение не должно быть ниже минимального.
                         </p>
                     </div>
@@ -92,45 +102,109 @@
     export default {
         components: {useVuelidate, selectOptions},
         props: [
-            'cities', 'groups'
+            'cities', 'groups', 'vacancy'
         ],
         setup () {
+           
             return { v$: useVuelidate() }
         },
         data() {
-            
+            let vacancy_data = JSON.parse(this.vacancy);
+            console.log(vacancy_data);
             return {
                 groups_list: this.adaptObject(JSON.parse(this.groups)),
                 cities_list: JSON.parse(this.cities),
+                salary_init: false,
+                align_salary: false,
                 form: {
-                    city_id: '',
-                    group_id: '', 
-                    job_title: '',
-                    salary_min: '',
-                    salary_max: '',
-                    company_name: '',
-                    description: ''
-                }
+                    id: vacancy_data.id ?? '',
+                    city_id: vacancy_data.city ?? '',
+                    group_id: vacancy_data.job_group ?? '', 
+                    job_title: vacancy_data.job_title ?? '',
+                    salary_min: vacancy_data.min_salary ?? '',
+                    salary_max: vacancy_data.max_salary ?? '',
+                    company_name: vacancy_data.company_name ?? '',
+                    description: vacancy_data.description ?? ''
+                },
             }
+
+            
         },
+       
         validations () {
+            
             return {
                 form: {
                     job_title: {required, minLength: minLength(5), maxLength: maxLength(50)},
                     city_id: {required},
                     group_id: {required},
                     company_name: {required, minLength: minLength(1), maxLength: maxLength(100)},
-                    salary_min: {integer, maxValue: maxValue(parseInt(this.form.salary_max))},
-                    salary_max: {integer, minValue: minValue(parseInt(this.form.salary_min))},
                     description: {maxLength: maxLength(1000)}
                 }
             }
         },
+        mounted () {
+            console.log(this.form)
+           
+        },
+        computed: {
+            checkSalaryValidate() {
+                
+                if(parseInt(this.form.salary_min) == 0 && parseInt(this.form.salary_max) == 0) {
+                    return true;
+                }
+
+                if(!this.form.salary_max) {
+                    return false;
+                } 
+                console.log(this.align_salary);
+                if(this.align_salary) {
+                    this.form.salary_min = this.form.salary_max;
+                }
+
+                if(!this.form.salary_min) {
+                    this.form.salary_min = '0';
+                }
+                
+                let salary_min = parseInt(this.form.salary_min.split(' ').join(''));
+                let salary_max = parseInt(this.form.salary_max.split(' ').join(''));
+                // console.log(salary_min, salary_max);
+                if(salary_min > salary_max) {
+                    return false;
+                }
+                
+                return true;
+            },
+
+        },
         methods: {
+            alignSalary() {
+                console.log('alignSalary');
+                this.align_salary = !this.align_salary;
+            
+            },
+            transformPrice: function(price) {
+                console.log('transformPrice');
+                this.salary_init = true;
+                if(typeof price === 'string' || price instanceof String) {
+                    price = price.split(' ').join('');
+                }
+                
+                if (!price) return 0;
+                price = parseFloat(price).toString();
+                let parts = price.split('.');
+                parts[0] = parts[0].replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+                if (parts.length - 1) {
+                    parts[1] = parts[1].substr(0, 2);
+                    if (parts[1].length < 2) parts[1] += "0";
+                }
+                return parts[0] + ((parts.length - 1) ? ',' + parts[1] : '');
+            },
             checkForm() {
                 this.v$.form.$touch();
+                this.checkSalaryValidate();
                 if(this.v$.form.$dirty && !this.v$.form.$error) {
-                    this.publicateVacancy();
+                    // this.publicateVacancy();
                 }
             },
             adaptObject(obj) {
@@ -138,10 +212,16 @@
                     return {'id': obj.id, 'name': obj.group_name};
                 });
             },
-
+            
             publicateVacancy() {      
                 ajax.publicateVacancy(this.form).then((res) => {
-                    console.log(res);
+                    console.log(res.data.answer);
+                    if(res.data.answer) {
+                        alert('Вакансия была опубликована. Сейчас перенаправим вас в кабинет.');
+                        window.location.href = "/cabinet";
+                    } else {
+
+                    }
                 });
             }
 
