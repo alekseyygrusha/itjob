@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .main_login_block {
   max-width: 320px;
   margin: 0 auto;
@@ -506,12 +507,45 @@ button.button {
   color: white;
   cursor: pointer;
 }
+.select-custom .list .list-option.option-include {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.select-custom .list .list-option.option-include .option-text {
+  opacity: 0.3;
+}
+.select-custom .list .list-option.option-include::after {
+  content: "◉";
+  display: block;
+  margin-left: auto;
+  margin-right: 15px;
+  color: #59b999;
+}
+.select-custom .select-options {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+  width: 100%;
+}
+.select-custom .select-options .select-option-item {
+  border: 1px solid #59b999;
+  border-radius: 15px;
+  background-color: #59b999;
+  color: white;
+  padding: 2px 15px;
+  margin-bottom: 6px;
+}
+.select-custom .select-options .select-option-item:not(:last-child) {
+  margin-right: 6px;
+}
 .select-custom.select-open {
   z-index: 999;
   border-radius: 10px 10px 0 0;
 }
 .select-custom.select-open .select-option {
   border-bottom: 1px solid #59b999;
+  width: 100%;
 }
 .select-custom.select-open .list {
   display: block;

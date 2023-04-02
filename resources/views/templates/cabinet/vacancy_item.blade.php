@@ -8,7 +8,14 @@
     <a class="job-title">
         {{$vacancy->job_title}}
     </a>
-    <div class="salary">от {{$vacancy->min_salary}} - до {{$vacancy->max_salary}} руб.</div>
+    <div class="salary">
+        @if($vacancy->min_salary === $vacancy->max_salary) 
+            {{$vacancy->max_salary}}
+        @else 
+            от {{$vacancy->min_salary}} - до {{$vacancy->max_salary}}
+        @endif
+          руб.
+    </div>
     <div class="company">{{$vacancy->company_name}}</div>
     <div class="city">{{$vacancy->city_name}}</div>
     <div class="description">{{$vacancy->description}}</div>

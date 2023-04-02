@@ -77,7 +77,7 @@
                         },
                         success: function(result) {
                             $('#vacancy-container').html(result);
-                            deleteVacancy();
+                            // deleteVacancy();
                         }
                     });
                 }
