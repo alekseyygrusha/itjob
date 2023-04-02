@@ -31,4 +31,8 @@ class Vacancies extends Model
     public function bindCity() {
         return $this->hasOne(Cities::class, 'id', 'city');
     }
+
+    // public function skills_ids() {
+    //     return $this->hasMany(SkillLinks::class, 'vacancy_id');
+    // }
 }

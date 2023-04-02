@@ -523,11 +523,9 @@ button.button {
                 z-index: 99;
                 font-weight: bold;
                 font-size: 25px;
-                // opacity: 0;
             }
             .price-input { 
                 padding: 4px 20px;
-                
                 border: 1px solid #59b999;
                 border-radius: 10px;
                 position: absolute;
@@ -592,7 +590,46 @@ button.button {
                 color: white;
                 cursor: pointer;
             }
+
+            &.option-include {
+                position: relative;
+                display: flex;
+                align-items: center;
+                .option-text {
+                    opacity: .3;
+                }
+                &::after {
+                    content: '◉';
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 15px;
+                    color: #59b999;
+                }
+            }
         }
+    }
+
+    .select-options {
+        display: flex;
+        flex-wrap: wrap;
+        cursor: pointer;
+        width: 100%;
+        .select-option-item {
+            border: 1px solid #59b999;
+            border-radius: 15px;
+            background-color: #59b999;
+            color: white;
+            padding: 2px 15px;
+            margin-bottom: 6px;
+
+            &:not(:last-child) {
+                margin-right: 6px;
+            }
+        }
+    }
+
+    .multi-select {
+        
     }
 
     &.select-open {
@@ -600,6 +637,7 @@ button.button {
         border-radius: 10px 10px 0 0;
         .select-option {
             border-bottom: 1px solid #59b999;
+            width: 100%;
         }
         .list {
             display: block;

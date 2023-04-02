@@ -20,7 +20,8 @@
                 <div class="select-input" :class="v$.form.group_id.$error ? '-error' : ''">
                     <selectOptions     
                         placeholder="Выберите направление" 
-                        :options="groups_list" 
+                        :options="groups_list"
+                        :option="form.group_id" 
                         @update:option-value="form.group_id = $event"></selectOptions>
                 </div>
             </div>
@@ -43,9 +44,21 @@
                     <selectOptions      
                         placeholder="Выберите город"
                         :options="cities_list" 
+                        :option="form.city_id" 
                         @update:option-value="form.city_id = $event"></selectOptions>
                 </div>
             </div>
+
+            <div class="form-block">
+                <div class="select-input" :class="v$.form.city_id.$error ? '-error' : ''">
+                    <selectOptions      
+                        placeholder="Выбери необходимые навыки" 
+                        :options="skill_list"
+                        :multiselect=true 
+                        @update:option-value="form.vacancy_skills = $event"></selectOptions>
+                </div>
+            </div>
+
             <div class="form-block">
                 <div class="heading">Зарплатная вилка:</div>
                 <div class="input-wrap text-input price-inputs">
@@ -102,20 +115,23 @@
     export default {
         components: {useVuelidate, selectOptions},
         props: [
-            'cities', 'groups', 'vacancy'
+            'cities', 'groups', 'vacancy', 'skills'
         ],
         setup () {
            
             return { v$: useVuelidate() }
         },
         data() {
-            let vacancy_data = JSON.parse(this.vacancy);
+            let vacancy_data = this.vacancy ? JSON.parse(this.vacancy) : {};
             console.log(vacancy_data);
             return {
                 groups_list: this.adaptObject(JSON.parse(this.groups)),
                 cities_list: JSON.parse(this.cities),
                 salary_init: false,
                 align_salary: false,
+                salary_validate: true,
+                skill_list: JSON.parse(this.skills),
+        
                 form: {
                     id: vacancy_data.id ?? '',
                     city_id: vacancy_data.city ?? '',
@@ -124,15 +140,13 @@
                     salary_min: vacancy_data.min_salary ?? '',
                     salary_max: vacancy_data.max_salary ?? '',
                     company_name: vacancy_data.company_name ?? '',
-                    description: vacancy_data.description ?? ''
+                    description: vacancy_data.description ?? '',
+                    vacancy_skills: vacancy_data.skills ?? [],
                 },
             }
-
-            
         },
        
-        validations () {
-            
+        validations () {    
             return {
                 form: {
                     job_title: {required, minLength: minLength(5), maxLength: maxLength(50)},
@@ -144,7 +158,7 @@
             }
         },
         mounted () {
-            console.log(this.form)
+            console.log(this.skill_list)
            
         },
         computed: {
@@ -170,9 +184,10 @@
                 let salary_max = parseInt(this.form.salary_max.split(' ').join(''));
                 // console.log(salary_min, salary_max);
                 if(salary_min > salary_max) {
+                    this.salary_validate = false;
                     return false;
                 }
-                
+                this.salary_validate = true;
                 return true;
             },
 
@@ -202,9 +217,8 @@
             },
             checkForm() {
                 this.v$.form.$touch();
-                this.checkSalaryValidate();
                 if(this.v$.form.$dirty && !this.v$.form.$error) {
-                    // this.publicateVacancy();
+                    this.publicateVacancy();
                 }
             },
             adaptObject(obj) {
@@ -214,6 +228,7 @@
             },
             
             publicateVacancy() {      
+                console.log(this.form)
                 ajax.publicateVacancy(this.form).then((res) => {
                     console.log(res.data.answer);
                     if(res.data.answer) {

@@ -42,11 +42,13 @@ class VacancyController extends Controller
     }
 
     public static function getData () {
+    
         $data = [
             'skills' => response()->json(Skills::all()),
             'cities' => response()->json(Cities::all()),
             'groups' => response()->json(Groups::all())
         ];
+       
        
         View::share($data);
     }
@@ -59,16 +61,16 @@ class VacancyController extends Controller
     }
 
     public function postVacancy(Request $request) {
-        
-        if($request->vacancy_id) {
-            $vacancy =  Vacancies::where('id', $request->vacancy_id)
+       
+        if($request->id) {
+            $vacancy =  Vacancies::where('id', $request->id)
                 ->where('user_id', Auth::id())
                 ->first();
             if(!$vacancy) {
                 return false;
             }
             
-            Lib::fillVacancySkillLinks($request->skills, $request->vacancy_id);
+            Lib::fillVacancySkillLinks($request->vacancy_skills, $request->id);
         } else {
             $vacancy = new Vacancies();
         }
@@ -122,7 +124,7 @@ class VacancyController extends Controller
             ->where('id', $id)
             ->where('user_id', Auth::id())
             ->with('skills')
-            ->first();
+            ->first();    
         return $vacancy;
     }
 
