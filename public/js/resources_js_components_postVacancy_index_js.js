@@ -4356,7 +4356,6 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.form.salary_max) {
         return false;
       }
-      console.log(this.align_salary);
       if (this.align_salary) {
         this.form.salary_min = this.form.salary_max;
       }
@@ -4379,6 +4378,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log('alignSalary');
       this.align_salary = !this.align_salary;
     },
+    //это вынести отдельно 
     transformPrice: function transformPrice(price) {
       console.log('transformPrice');
       this.salary_init = true;
@@ -4436,23 +4436,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['options', 'option', 'optionValue', 'placeholder', 'multiselect'],
+  props: ['options', 'option', 'optionValue', 'placeholder', 'multiSelect', 'pickOptions'],
   data: function data() {
-    var _this$multiselect;
+    var _this$multiSelect, _this$pickOptions;
     return {
       placeholder_data: this.placeholder ? this.placeholder : 'Выберите значение',
       options_list: this.options,
       open: false,
       set_options_id: Number,
       select_option_name: '',
-      multiselect: (_this$multiselect = this.multiselect) !== null && _this$multiselect !== void 0 ? _this$multiselect : false,
-      select_options: [] //сюда будут приходить id
+      multiselect: (_this$multiSelect = this.multiSelect) !== null && _this$multiSelect !== void 0 ? _this$multiSelect : false,
+      select_options: (_this$pickOptions = this.pickOptions) !== null && _this$pickOptions !== void 0 ? _this$pickOptions : [] //сюда будут приходить id
     };
   },
   mounted: function mounted() {
-    console.log(this.select_options);
+    var _this = this;
     if (this.option) {
-      var pick_option = this.options_list[this.option];
+      var pick_option = this.options_list.find(function (item) {
+        return item.id === _this.option;
+      });
       this.setOptionId(pick_option.id, pick_option.name);
     }
   },
@@ -4471,13 +4473,30 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('update:optionValue', this.set_options_id);
       this.open = false;
     },
-    setMultiOptionId: function setMultiOptionId(id) {
-      if (this.select_options.includes(id)) {
-        var option_index = this.select_options.indexOf(id);
+    checkInSelected: function checkInSelected(select_option) {
+      return this.select_options.find(function (option) {
+        return option.id === select_option.id;
+      });
+    },
+    setMultiOptionId: function setMultiOptionId(select_option) {
+      var find_in_select = this.checkInSelected(select_option);
+      if (find_in_select) {
+        var option_index = this.select_options.indexOf(find_in_select);
+        console.log(option_index);
         this.select_options.splice(option_index, 1);
       } else {
-        this.select_options.push(id);
+        this.select_options.push(select_option);
       }
+      console.log(this.select_options);
+      // у нас сразу приходит готовый объект с именем и id. Надо тогда им и манипулировать
+
+      // if(this.select_options.includes(id)) {
+      //     let option_index = this.select_options.indexOf(id);
+      //     this.select_options.splice(option_index, 1);
+
+      // } else {
+      //     this.select_options.push(id);
+      // }
       this.$emit('update:optionValue', this.select_options);
     }
   }
@@ -4659,11 +4678,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_selectOptions, {
     placeholder: "Выбери необходимые навыки",
     options: $data.skill_list,
-    multiselect: true,
+    pickOptions: $data.form.vacancy_skills,
+    multiSelect: true,
     "onUpdate:optionValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.form.vacancy_skills = $event;
     })
-  }, null, 8 /* PROPS */, ["options"])], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, ["options", "pickOptions"])], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.form.salary_min = $event;
@@ -4762,19 +4782,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.openSelect && $options.openSelect.apply($options, arguments);
     })
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.select_options, function (option_id) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.select_options, function (option) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: option_id,
+      key: option.id,
       "class": "select-option-item"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.options_list.find(function (option) {
-      return option.id === option_id;
-    }).name), 1 /* TEXT */);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1 /* TEXT */);
   }), 128 /* KEYED_FRAGMENT */)), !$data.select_options.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.placeholder_data), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.options_list, function (option) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: option.id,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.select_options.includes(option.id) ? 'option-include' : '', "list-option"]),
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$options.checkInSelected(option) ? 'option-include' : '', "list-option"]),
       onClick: function onClick($event) {
-        return $options.setMultiOptionId(option.id);
+        return $options.setMultiOptionId(option);
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1 /* TEXT */)], 10 /* CLASS, PROPS */, _hoisted_5);
   }), 128 /* KEYED_FRAGMENT */))])], 2 /* CLASS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);

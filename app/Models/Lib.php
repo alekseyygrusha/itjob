@@ -60,11 +60,14 @@ class Lib
     public static function fillVacancySkillLinks($skills, $vacancy_id) {
         //Переписать на Laravel!
         self::deleteBindVacancySkills($vacancy_id);
+       
         if($skills) {
             foreach ($skills as $skill) {
+              
                 DB::table('skill_links')->insert(
-                    ['skills_id' => $skill, 'vacancy_id' => $vacancy_id],
+                    ['skills_id' => $skill['id'], 'vacancy_id' => $vacancy_id],
                 );
+                
             }
         }
         

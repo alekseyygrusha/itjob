@@ -61,7 +61,7 @@ class VacancyController extends Controller
     }
 
     public function postVacancy(Request $request) {
-       
+        
         if($request->id) {
             $vacancy =  Vacancies::where('id', $request->id)
                 ->where('user_id', Auth::id())
