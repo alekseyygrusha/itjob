@@ -54,7 +54,8 @@
                     <selectOptions      
                         placeholder="Выбери необходимые навыки" 
                         :options="skill_list"
-                        :multiselect=true 
+                        :pickOptions="form.vacancy_skills"
+                        :multiSelect='true' 
                         @update:option-value="form.vacancy_skills = $event"></selectOptions>
                 </div>
             </div>
@@ -171,7 +172,7 @@
                 if(!this.form.salary_max) {
                     return false;
                 } 
-                console.log(this.align_salary);
+             
                 if(this.align_salary) {
                     this.form.salary_min = this.form.salary_max;
                 }
@@ -198,6 +199,7 @@
                 this.align_salary = !this.align_salary;
             
             },
+            //это вынести отдельно 
             transformPrice: function(price) {
                 console.log('transformPrice');
                 this.salary_init = true;
