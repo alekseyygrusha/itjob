@@ -22,6 +22,7 @@ Route::prefix('ajax')->group(function () {
     Route::post('post-vacancy', [App\Http\Controllers\VacancyController::class, 'postVacancy'], function () {
         return view('post');
     });
+    Route::post('filter-vacancies', [App\Http\Controllers\VacancyController::class, 'filterVacancies'], function () {});
 });
 
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {

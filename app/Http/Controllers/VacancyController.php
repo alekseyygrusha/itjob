@@ -14,6 +14,7 @@ use App\Models\Skills;
 use App\Models\Cities;
 use App\Models\Groups;
 use App\Models\Lib;
+use App\Models\Experience;
 use View;
 
 
@@ -42,11 +43,12 @@ class VacancyController extends Controller
     }
 
     public static function getData () {
-    
+       
         $data = [
             'skills' => response()->json(Skills::all()),
             'cities' => response()->json(Cities::all()),
-            'groups' => response()->json(Groups::all())
+            'groups' => response()->json(Groups::all()),
+            'experiences' => response()->json(Experience::all()),
         ];
        
        
@@ -82,12 +84,18 @@ class VacancyController extends Controller
         $vacancy->city = $request->city_id;
         $vacancy->min_salary = $request->salary_min;
         $vacancy->max_salary = $request->salary_max;
+        $vacancy->expirience_id = $request->expirience_id;
         $vacancy->description = $request->description;
         $vacancy->save();
 
         return response()->json(['answer' => true]);
 
     }
+
+    public function filterVacancies(Request $request) {
+        dd($request);
+    }
+
     public function getVanacyByGroup($group_id) {
         $group = Groups::where('id', $group_id)->get()->first();
        

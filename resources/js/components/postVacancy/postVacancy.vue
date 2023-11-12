@@ -67,19 +67,16 @@
                         <div class="col-6 price-input-wrap">
                             <div class="price-input-wrap">
                                 <input type="text" v-model.trim="form.salary_min" @keyup="form.salary_min = transformPrice(form.salary_min)" placeholder="ОТ" :disabled="align_salary ? '' : disabled">
-                                <!-- <div class="price-input ">{{transformPrice(form.salary_min)}} ₽</div> -->
                             </div>
                         </div>
                         <div class="col-6 ">
                             <div class="price-input-wrap">
                                 <input type="text" v-model.trim="form.salary_max" @keyup="form.salary_max = transformPrice(form.salary_max)" placeholder="ДО">
-                                <!-- <div class="price-input" >{{transformPrice(form.salary_max)}} ₽</div> -->
                             </div>
                             
                         </div>
                     </div>
                     <div class="form-check">
-                        <!-- <span>Уровнять</span> -->
                         <input class="form-check-input"  @click="alignSalary()" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault">Уровнять</label>
                     </div>
@@ -88,6 +85,15 @@
                         <p v-if="!checkSalaryValidate && salary_init">
                             Верхнее значение не должно быть ниже минимального.
                         </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-block">
+                <div class="input-wrap text-input">
+                    <div class="radio-buttons"> 
+                        <div v-for="experience_item in experiences_list" v-bind:key="experience_item.id" class="radio-buttons-item" @click="pickExpirience(experience_item.id)" v-bind:class="experience_item.id == form.expirience_id ? '-active' : ''">
+                            {{ experience_item.text }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,7 +122,7 @@
     export default {
         components: {useVuelidate, selectOptions},
         props: [
-            'cities', 'groups', 'vacancy', 'skills'
+            'cities', 'groups', 'vacancy', 'skills', 'experiences'
         ],
         setup () {
            
@@ -132,7 +138,7 @@
                 align_salary: false,
                 salary_validate: true,
                 skill_list: JSON.parse(this.skills),
-        
+                experiences_list: JSON.parse(this.experiences), 
                 form: {
                     id: vacancy_data.id ?? '',
                     city_id: vacancy_data.city ?? '',
@@ -142,6 +148,7 @@
                     salary_max: vacancy_data.max_salary ?? '',
                     company_name: vacancy_data.company_name ?? '',
                     description: vacancy_data.description ?? '',
+                    expirience_id: vacancy_data.expirience_id ?? 1,
                     vacancy_skills: vacancy_data.skills ?? [],
                 },
             }
@@ -159,7 +166,7 @@
             }
         },
         mounted () {
-            console.log(this.skill_list)
+            console.log(this.experiences_list)
            
         },
         computed: {
@@ -199,7 +206,10 @@
                 this.align_salary = !this.align_salary;
             
             },
-            //это вынести отдельно 
+            pickExpirience(id) {
+                this.form.expirience_id = id;
+            },
+            //это вынести отдельно в миксины
             transformPrice: function(price) {
                 console.log('transformPrice');
                 this.salary_init = true;

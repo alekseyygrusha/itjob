@@ -4,6 +4,7 @@
         {{$vacancy->job_title}}
     </a>
     <div class="salary">от {{$vacancy->min_salary}} - до {{$vacancy->max_salary}} руб.</div>
+    <span class="experience">@if(!empty($vacancy->experience)) {{$vacancy->experience->text}}@endif</span>
     <div class="company">{{$vacancy->company_name}}</div>
     <div class="city">{{$vacancy->bindCity->name}}</div>
     <div class="description">{{$vacancy->description}}</div>

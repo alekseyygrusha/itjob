@@ -17600,6 +17600,9 @@ var postVacancy = function postVacancy() {
 var selectOptions = function selectOptions() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_selectOptions_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/selectOptions */ "./resources/js/components/selectOptions/index.js"));
 };
+var vacancyFilter = function vacancyFilter() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_vacancyFilter_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./components/vacancyFilter */ "./resources/js/components/vacancyFilter/index.js"));
+};
 
 // import modalsContainer from "./Modals/ModalsContainer.vue";
 
@@ -17621,16 +17624,20 @@ responseVacancy().then(function (_ref) {
   var initResponseVacancy = _ref.initResponseVacancy;
   initResponseVacancy({});
 });
-responseResume().then(function (_ref2) {
-  var initResponseResume = _ref2.initResponseResume;
+vacancyFilter().then(function (_ref2) {
+  var initVacancyFilter = _ref2.initVacancyFilter;
+  initVacancyFilter({});
+});
+responseResume().then(function (_ref3) {
+  var initResponseResume = _ref3.initResponseResume;
   initResponseResume({});
 });
-postVacancy().then(function (_ref3) {
-  var initPostVacancy = _ref3.initPostVacancy;
+postVacancy().then(function (_ref4) {
+  var initPostVacancy = _ref4.initPostVacancy;
   initPostVacancy({});
 });
-selectOptions().then(function (_ref4) {
-  var initSelectOptions = _ref4.initSelectOptions;
+selectOptions().then(function (_ref5) {
+  var initSelectOptions = _ref5.initSelectOptions;
   initSelectOptions({});
 });
 
@@ -19735,7 +19742,7 @@ function compileToFunction(template, options) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_responseVacancy_index_js":1,"resources_js_components_responseResume_index_js":1,"resources_js_components_postVacancy_index_js":1,"resources_js_components_selectOptions_index_js":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_responseVacancy_index_js":1,"resources_js_components_responseResume_index_js":1,"resources_js_components_postVacancy_index_js":1,"resources_js_components_selectOptions_index_js":1,"resources_js_components_vacancyFilter_index_js":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
