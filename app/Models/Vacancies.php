@@ -32,7 +32,7 @@ class Vacancies extends Model
         return $this->hasOne(Cities::class, 'id', 'city');
     }
 
-    // public function skills_ids() {
-    //     return $this->hasMany(SkillLinks::class, 'vacancy_id');
-    // }
+    public function experience() {
+        return $this->hasOne(Experience::class, 'id', 'expirience_id');
+    }
 }

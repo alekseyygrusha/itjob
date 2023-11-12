@@ -2334,6 +2334,14 @@ var ajax = {
       data: data,
       url: '/ajax/post-vacancy'
     });
+  },
+  filterVacancies: function filterVacancies(data) {
+    console.log('filter-vacancies');
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+      method: 'POST',
+      data: data,
+      url: '/ajax/filter-vacancies'
+    });
   }
 };
 

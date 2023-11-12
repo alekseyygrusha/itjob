@@ -43,11 +43,12 @@
                 set_options_id: Number,
                 select_option_name: '',
                 multiselect: this.multiSelect ?? false,
-                select_options: this.pickOptions ?? [], //сюда будут приходить id
+                select_options: this.pickOptions ?? []
                 
             }
         },  
         mounted() {
+            
             if(this.option) {
                 let pick_option = this.options_list.find(item => item.id === this.option);
                 this.setOptionId(pick_option.id, pick_option.name);

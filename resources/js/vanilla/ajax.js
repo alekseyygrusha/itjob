@@ -37,6 +37,15 @@ const ajax = {
             data,
             url: '/ajax/post-vacancy',
         })
+    },
+
+    filterVacancies(data) {
+        console.log('filter-vacancies');
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/filter-vacancies',
+        })
     }
 };
 

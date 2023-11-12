@@ -52,6 +52,58 @@ header .content .login_container {
     padding: 40px 0;
 }
 
+.filter-vacancy {
+    .filter-container {
+        // display: none;
+
+        &.-open {
+            display: flex;
+        }
+
+        .option-row {
+            .form-block {
+                margin-bottom: 15px;
+                .select-input {
+                    width: 100%;
+
+                    .select-custom {
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        font-size: 16px;
+                    }
+                }
+
+                .radio-buttons {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .radio-buttons-item {
+                        margin-bottom: 10px;
+                        font-size: 14px;
+                        padding-left: 8px;
+                        padding-right: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .filter-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #59b999;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 8px 6px;
+        cursor: pointer;
+        &:hover {
+            background-color: #4f957d;
+        }
+    }
+}
+
 .vacancies-container {
     .vacancies-card {
         display: flex;
@@ -83,6 +135,11 @@ header .content .login_container {
         }
         .company {
             margin: 2px 0;
+        }
+
+        .experience {
+            color: #59b999;
+            font-weight: 600;
         }
 
         .salary {
@@ -553,23 +610,42 @@ button.button {
 }
 .form-block {
     margin-bottom: 35px;
+
+    .radio-buttons {
+        display: flex;
+        .radio-buttons-item {
+            cursor: pointer;
+            padding: 8px 10px;
+            border: 1px solid #59b999;
+            border-radius: 15px;
+    
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &.-active {
+                background-color: #59b999;
+                color: white;
+            }
+        }
+        
+    }
 }
 .select-custom {
     width: 100%;
     border-radius: 10px;
     border: 1px solid #59b999;
-    padding: 8px 20px;
+    padding: 8px 20px 0;
+    
     font-size: 18px;
     position: relative;
     z-index: 9;
-    .select-option {
-        cursor: pointer;
-    }
 
     .select-option {
+        cursor: pointer;
         padding-top: 3px;
         border-bottom: 1px solid transparent;
-        padding-bottom: 3px;
+        padding-bottom: 8px; 
     }
     
     .list {

@@ -50,6 +50,45 @@ header .content .login_container {
   padding: 40px 0;
 }
 
+.filter-vacancy .filter-container.-open {
+  display: flex;
+}
+.filter-vacancy .filter-container .option-row .form-block {
+  margin-bottom: 15px;
+}
+.filter-vacancy .filter-container .option-row .form-block .select-input {
+  width: 100%;
+}
+.filter-vacancy .filter-container .option-row .form-block .select-input .select-custom {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+}
+.filter-vacancy .filter-container .option-row .form-block .radio-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter-vacancy .filter-container .option-row .form-block .radio-buttons .radio-buttons-item {
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.filter-vacancy .filter-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #59b999;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+.filter-vacancy .filter-button:hover {
+  background-color: #4f957d;
+}
+
 .vacancies-container .vacancies-card {
   display: flex;
   flex-direction: column;
@@ -76,6 +115,10 @@ header .content .login_container {
 }
 .vacancies-container .vacancies-card .company {
   margin: 2px 0;
+}
+.vacancies-container .vacancies-card .experience {
+  color: #59b999;
+  font-weight: 600;
 }
 .vacancies-container .vacancies-card .salary {
   font-size: 18px;
@@ -470,23 +513,37 @@ button.button {
 .form-block {
   margin-bottom: 35px;
 }
+.form-block .radio-buttons {
+  display: flex;
+}
+.form-block .radio-buttons .radio-buttons-item {
+  cursor: pointer;
+  padding: 8px 10px;
+  border: 1px solid #59b999;
+  border-radius: 15px;
+}
+.form-block .radio-buttons .radio-buttons-item:not(:last-child) {
+  margin-right: 10px;
+}
+.form-block .radio-buttons .radio-buttons-item.-active {
+  background-color: #59b999;
+  color: white;
+}
 
 .select-custom {
   width: 100%;
   border-radius: 10px;
   border: 1px solid #59b999;
-  padding: 8px 20px;
+  padding: 8px 20px 0;
   font-size: 18px;
   position: relative;
   z-index: 9;
 }
 .select-custom .select-option {
   cursor: pointer;
-}
-.select-custom .select-option {
   padding-top: 3px;
   border-bottom: 1px solid transparent;
-  padding-bottom: 3px;
+  padding-bottom: 8px;
 }
 .select-custom .list {
   display: none;

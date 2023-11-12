@@ -15,6 +15,7 @@ const responseVacancy = () => import('./components/responseVacancy');
 const responseResume = () => import('./components/responseResume');
 const postVacancy = () => import('./components/postVacancy');
 const selectOptions = () => import('./components/selectOptions');
+const vacancyFilter = () => import('./components/vacancyFilter');
 
 
 // import modalsContainer from "./Modals/ModalsContainer.vue";
@@ -38,6 +39,11 @@ createApp({
 responseVacancy().then(({initResponseVacancy}) => {
     initResponseVacancy({})
 });
+
+vacancyFilter().then(({initVacancyFilter}) => {
+    initVacancyFilter({})
+});
+
 
 responseResume().then(({initResponseResume}) => {
     initResponseResume({});
