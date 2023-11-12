@@ -12,6 +12,15 @@ let path = require('path');
  |
  */
 
+module.exports = {
+    //...
+    resolve: {
+        alias: {
+            Utilities: path.resolve(__dirname, 'src/utilities/'),
+            Templates: path.resolve(__dirname, 'src/templates/'),
+        },
+    },
+};
 // mix.js('resources/js/app.js', 'public/js')
 //     .postCss('resources/css/app.css', 'public/css', [
 //         //
@@ -24,20 +33,20 @@ mix.js('resources/js/app.js', 'public/js').vue()
     .alias({
         '@': path.join(__dirname, 'resources/js')
     });
-mix.js('resources/assets/js/app.js', 'public/js').vue({
+/*mix.js('resources/assets/js/app.js', 'public/js').vue({
     options: {
         compilerOptions: {
         isCustomElement: (tag) => ['md-linedivider'].includes(tag),
         },
     },
-})   
-    
+})*/
+
 mix.sass('resources/css/app.scss', 'public/css');
 
 
 
 
 
-    
+
 
 
