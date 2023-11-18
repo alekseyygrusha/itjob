@@ -442,54 +442,68 @@ button.button {
   -webkit-line-clamp: 2;
 }
 
-.post-vacancy {
+.post-vacancy,
+.resume-form {
   padding: 25px;
   border: 1px solid #59b999;
   border-radius: 10px;
   max-width: 800px;
   margin: 0 auto;
 }
-.post-vacancy .heading {
+.post-vacancy .heading,
+.resume-form .heading {
   font-size: 20px;
   text-align: center;
   padding-bottom: 12px;
 }
-.post-vacancy .input-wrap {
+.post-vacancy .input-wrap,
+.resume-form .input-wrap {
   width: 80%;
   margin: 0 auto;
   position: relative;
 }
-.post-vacancy .input-wrap input, .post-vacancy .input-wrap textarea {
+.post-vacancy .input-wrap input, .post-vacancy .input-wrap textarea,
+.resume-form .input-wrap input,
+.resume-form .input-wrap textarea {
   width: 100%;
   border-radius: 10px;
   border: 1px solid #59b999;
   padding: 8px 20px;
   font-size: 18px;
 }
-.post-vacancy .input-wrap input:focus, .post-vacancy .input-wrap textarea:focus {
+.post-vacancy .input-wrap input:focus, .post-vacancy .input-wrap textarea:focus,
+.resume-form .input-wrap input:focus,
+.resume-form .input-wrap textarea:focus {
   outline: none;
 }
-.post-vacancy .input-wrap input:disabled, .post-vacancy .input-wrap textarea:disabled {
+.post-vacancy .input-wrap input:disabled, .post-vacancy .input-wrap textarea:disabled,
+.resume-form .input-wrap input:disabled,
+.resume-form .input-wrap textarea:disabled {
   opacity: 0.5;
 }
-.post-vacancy .form-check {
+.post-vacancy .form-check,
+.resume-form .form-check {
   max-width: 250px;
   padding-left: 20px;
   margin-top: 15px;
 }
-.post-vacancy .form-check input {
+.post-vacancy .form-check input,
+.resume-form .form-check input {
   width: auto;
 }
-.post-vacancy .price-inputs .price-input-wrap {
+.post-vacancy .price-inputs .price-input-wrap,
+.resume-form .price-inputs .price-input-wrap {
   position: relative;
 }
-.post-vacancy .price-inputs .price-input-wrap input {
+.post-vacancy .price-inputs .price-input-wrap input,
+.resume-form .price-inputs .price-input-wrap input {
   position: relative;
   z-index: 99;
   font-weight: bold;
   font-size: 25px;
 }
-.post-vacancy .price-inputs .price-input-wrap .price-input {
+.post-vacancy .price-inputs .price-input-wrap .price-input,
+.resume-form .price-inputs .price-input-wrap .price-input {
   padding: 4px 20px;
   border: 1px solid #59b999;
   border-radius: 10px;
@@ -498,7 +512,9 @@ button.button {
   top: 0;
 }
 .post-vacancy .select-input .error-wrap,
-.post-vacancy .input-wrap .error-wrap {
+.post-vacancy .input-wrap .error-wrap,
+.resume-form .select-input .error-wrap,
+.resume-form .input-wrap .error-wrap {
   position: absolute;
   top: calc(100% + 2px);
   font-size: 12px;
@@ -506,7 +522,10 @@ button.button {
 }
 .post-vacancy .text-input input.-error,
 .post-vacancy .select-input.-error .select-custom,
-.post-vacancy .price-inputs .price-input.-error {
+.post-vacancy .price-inputs .price-input.-error,
+.resume-form .text-input input.-error,
+.resume-form .select-input.-error .select-custom,
+.resume-form .price-inputs .price-input.-error {
   border: 1px solid #f50606;
 }
 

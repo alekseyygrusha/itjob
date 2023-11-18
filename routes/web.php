@@ -7,6 +7,7 @@ Auth::routes();
 ##Cabinet
 Route::prefix('cabinet')->group(function () {
     Route::get('/',[App\Http\Controllers\CabinetController::class, 'index'])->name('cabinet');
+    Route::get('resume/', [App\Http\Controllers\CabinetController::class, 'newResume']);
     Route::get('resume/{resume_id}', [App\Http\Controllers\CabinetController::class, 'getResume']);
     Route::prefix('responses')->group(function () {
         Route::get('/', [App\Http\Controllers\CabinetController::class, 'getResposes'])->name('responses');
@@ -19,9 +20,10 @@ Route::prefix('ajax')->group(function () {
     Route::post('cancel-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'cancelResponseVacancy'])->name('cancel-vacancy-response');
     Route::post('accept-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'acceptResponseVacancy'])->name('accept-vacancy-response');
     Route::post('decline-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'declineResponseVacancy'])->name('decline-vacancy-response');
-    Route::post('post-vacancy', [App\Http\Controllers\VacancyController::class, 'postVacancy'], function () {
-        return view('post');
-    });
+    Route::post('post-vacancy', [App\Http\Controllers\VacancyController::class, 'postVacancy']);
+    Route::post('post-resume',  [App\Http\Controllers\CabinetController::class, 'publishResume'], function () {
+    })->name('resume-post');
+    Route::post('resume-delete',  [App\Http\Controllers\ResumeController::class, 'deleteResume'])->name('resume-delete');
     Route::post('filter-vacancies', [App\Http\Controllers\VacancyController::class, 'filterVacancies'], function () {});
 });
 
@@ -42,12 +44,8 @@ Route::get('/vacancy/edit/{id}', [App\Http\Controllers\VacancyController::class,
 Route::post('vacancy-delete',  [App\Http\Controllers\VacancyController::class, 'delete'])->name('vacancy-delete');
 Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hideVacancy'])->name('vacancy-hide');
 
-Route::post('resume-post',  [App\Http\Controllers\CabinetController::class, 'postResume'], function () {
-    return view('cabinet');
-})->name('resume-post');
-Route::post('resume-delete',  [App\Http\Controllers\ResumeController::class, 'deleteResume'], function () {
-    return view('cabinet');
-})->name('resume-delete');
+
+
 
 Route::prefix('filter')->group(function () {
     Route::get('/city/{city_id}',[App\Http\Controllers\VacancyController::class, 'getVanacyByCity'], function () {});

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
 use Spatie\Ignition\Config\IgnitionConfig;
@@ -25,10 +26,10 @@ class CabinetController extends Controller
      *
      * @return void
      */
-  
+
     public function __construct()
     {
-      
+
     }
 
     /**
@@ -44,41 +45,51 @@ class CabinetController extends Controller
 
     public function getResume($id) {
         $resume = ResumeLib::getResumeData($id);
-        $city_list = Cities::get()->all();
-        $groups_list = Groups::get()->all();
-        $skills = Skills::get()->all();
 
-        return view('resume.resume-card', ['resume' => $resume, 
-        'city_list' => $city_list, 
-        'groups_list' => $groups_list,
-        'skills' => $skills]);
+
+        /*dd($resume);*/
+        $data = [
+            'resume' => $resume,
+            'skills' => Skills::all(),
+            'cities' => Cities::all(),
+            'groups' => Groups::all(),
+            'experiences' => Experience::all(),
+        ];
+
+        return view('resume.resume-card', $data);
     }
 
-    public function postResume(Request $request) {
-      
+    public static function createResume()
+    {
+
+    }
+
+    public function publishResume(Request $request) {
+
         $resume_id = $request->resume_id;
-  
+
         if(!$resume = Resume::find($resume_id)->with(['skills'])->get()->first()) {
             $resume = new Resume;
             $resume_id = $resume->id;
-        } 
-        
+        }
+
         $resume->job_group = $request->job_group;
-      
+
         $resume->job_title = $request->job_title;
         $resume->city_id = $request->city_id;
-  
-       
-        $resume->min_salary = $request->min_salary;
-        $resume->max_salary = $request->max_salary;
-        
+        $resume->expirience_time = $request->expirience_id;
+
+        $resume->min_salary = $request->salary_min;
+        $resume->max_salary = $request->salary_max;
+
         if($resume_id) {
             ResumeLib::fillResumeSkillLinks($request->skills, $resume_id);
         }
+
         $resume->save();
         self::getData();
         return view('cabinet', ['success' => 'Изменения сохранены']);
-        
+
     }
 
     public static function getData () {
@@ -95,7 +106,7 @@ class CabinetController extends Controller
 
     public function getResposes() {
         $vacancies_responses = VacancyResponses::with(['getVacancy', 'getResume'])->where(['user_id' => Auth::id()])->get();
-        
+
         return view('responses', ['vacancies_responses' => $vacancies_responses]);
     }
 }

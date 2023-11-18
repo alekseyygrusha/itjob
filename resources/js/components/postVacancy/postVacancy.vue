@@ -119,15 +119,17 @@
     import { required, email, minLength , maxLength, integer, maxValue, minValue} from '@vuelidate/validators'
     import selectOptions from '../selectOptions/selectOptions.vue';
     import {ajax} from "@/vanilla/ajax.js";
+    import {objectsFormat} from "@/mixins/common.mixins";
+
     export default {
         components: {useVuelidate, selectOptions},
         props: [
             'cities', 'groups', 'vacancy', 'skills', 'experiences'
         ],
         setup () {
-
             return { v$: useVuelidate() }
         },
+        mixins: [objectsFormat],
         data() {
             let vacancy_data = this.vacancy ? JSON.parse(this.vacancy) : {};
             console.log(vacancy_data);
@@ -233,11 +235,7 @@
                     this.publicateVacancy();
                 }
             },
-            adaptObject(obj) {
-                return obj.map(function (obj) {
-                    return {'id': obj.id, 'name': obj.group_name};
-                });
-            },
+
 
             publicateVacancy() {
                 console.log(this.form)
@@ -246,8 +244,6 @@
                     if(res.data.answer) {
                         alert('Вакансия была опубликована. Сейчас перенаправим вас в кабинет.');
                         window.location.href = "/cabinet";
-                    } else {
-
                     }
                 });
             }

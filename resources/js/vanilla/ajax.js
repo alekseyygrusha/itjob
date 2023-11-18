@@ -39,6 +39,21 @@ const ajax = {
         })
     },
 
+    publicateResume(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/post-resume',
+        })
+    },
+    deleteResume(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/resume-delete',
+        })
+    },
+
     filterVacancies(data) {
         console.log('filter-vacancies');
         return axios({

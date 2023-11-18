@@ -25,7 +25,7 @@ class RootController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -41,16 +41,16 @@ class RootController extends Controller
 
     public static function getData () {
         $city_list = Cities::get()->all();
-       
+
         $list_vacancies = Vacancies::with(['vacancyResponses', 'bindCity', 'skills' , 'experience'])
             ->where('is_hidden', 0)
             ->where('is_blocked', 0)
             ->get();
-        
+
         $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
-       
+
         $groups_list = Groups::get()->all();
-     
+
         // dd($list_vacancies);
         $data = [
             'cities' => response()->json(Cities::all()),
@@ -60,7 +60,7 @@ class RootController extends Controller
             'skills' => response()->json(Skills::all()),
             'experiences' => response()->json(Experience::all()),
         ];
-        
+
         View::share($data);
     }
 }

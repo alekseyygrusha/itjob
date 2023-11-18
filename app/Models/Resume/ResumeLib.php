@@ -4,10 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 
-class ResumeLib extends Model 
+class ResumeLib extends Model
 {
-    public function getResumeData($resume_id) {
+    public static function getResumeData($resume_id) {
         $resume = Resume::find($resume_id)->with(['skills', 'city', 'group'])->get()->first();
+
         return $resume;
     }
 
@@ -19,16 +20,16 @@ class ResumeLib extends Model
 
     public static function fillResumeSkillLinks($skills, $resume_id) {
         //Переписать на Laravel!
+
         self::deleteBindResumeSkills($resume_id);
-    
+
         if($skills) {
             foreach ($skills as $skill) {
-                
                 DB::table('resume_skills')->insert(
-                    ['skill_id' => $skill, 'resume_id' => $resume_id],
+                    ['skill_id' => $skill['id'], 'resume_id' => $resume_id],
                 );
             }
         }
-    }  
-        
+    }
+
 }

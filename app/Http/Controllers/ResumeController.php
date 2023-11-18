@@ -16,7 +16,7 @@ class ResumeController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -31,9 +31,11 @@ class ResumeController extends Controller
 
 
     public function deleteResume(Request $request) {
+
         $resume = Resume::where(['id' => $request->id, 'user_id' => Auth::id()])->get()->first();
-        //ещё надо проверить все отклики с этим резюме и удалить их, если имеются
         dd($resume);
+        //ещё надо проверить все отклики с этим резюме и удалить их, если имеются
+
     }
 
 }

@@ -4,7 +4,7 @@
         <title>Личный кабинет</title>
         @include('templates.blocks.meta')
     </head>
-        
+
     <body>
         @include('templates.blocks.header');
         <div class="container">
@@ -15,6 +15,15 @@
                 </div>
             @endif
             <h4>Мои резюме</h4>
+            <div class="menu-block-buttons">
+                <div class="button-item">
+                    Опубликовать резюме
+                </div>
+
+                <div class="button-item">
+                    Опубликовать вакансию
+                </div>
+            </div>
             <div class="resume-wrap">
                 <div class="vacancies-container">
                     @if(!empty($user_resumes))
@@ -38,7 +47,7 @@
                                 <div class="description">{{$resume->description}}</div>
                                 <div class="button-wrap">
                                     <a class="btn btn-warning btn-hide" href='\cabinet\resume\{{$resume->id}}' data-value="{{$resume->id}}">
-                                        Редактировать    
+                                        Редактировать
                                     </a>
                                 </div>
                             </div>
@@ -82,6 +91,6 @@
                     });
                 }
             });
-        }    
+        }
     });
 </script>

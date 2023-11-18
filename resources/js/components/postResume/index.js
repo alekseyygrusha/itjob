@@ -1,8 +1,9 @@
 import {createApp} from "vue";
-import postVacancy from "./postVacancy.vue";
+import postResume from "./postResume.vue";
 
-const initPostVacancy = () => {
-    let elements = [...document.querySelectorAll('.post-vacancy-form')].filter(
+const initPostResume = () => {
+    console.log("initPostResume");
+    let elements = [...document.querySelectorAll('.post-resume-form')].filter(
         el => el.dataset.vApp === undefined
     );
 
@@ -10,7 +11,7 @@ const initPostVacancy = () => {
         for (let el of elements) {
             createApp({
                 components: {
-                    postVacancy
+                    postResume
                 }
             }).mount(el);
         }
@@ -18,4 +19,4 @@ const initPostVacancy = () => {
     }
 }
 
-export {initPostVacancy}
+export {initPostResume}
