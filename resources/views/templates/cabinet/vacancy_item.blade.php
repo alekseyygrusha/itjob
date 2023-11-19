@@ -4,14 +4,14 @@
             <div class="statis btn btn-warning">Скрыто администратором</div>
         @endif
     </div>
-    
+
     <a class="job-title">
         {{$vacancy->job_title}}
     </a>
     <div class="salary">
-        @if($vacancy->min_salary === $vacancy->max_salary) 
+        @if($vacancy->min_salary === $vacancy->max_salary)
             {{$vacancy->max_salary}}
-        @else 
+        @else
             от {{$vacancy->min_salary}} - до {{$vacancy->max_salary}}
         @endif
           руб.
@@ -29,12 +29,12 @@
         @endif
     </div>
     <div class="button-wrap">
-        <a href="/vacancy/response/{{$vacancy->id}}" class="button edit_button -green-color" data-value='{{$vacancy->id}}'>
+        <a href="/vacancy/response/{{$vacancy->id}}" class="button-st -transparent mr-2" data-value='{{$vacancy->id}}'>
             Отклики @if($vacancy->vacancyResponsesList)
             <span class="hint">{{$vacancy->vacancyResponsesList->count() < 99 ? $vacancy->vacancyResponsesList->count() :  '99+'}}</span>
             @endif
         </a>
-        <a href="/vacancy/edit/{{$vacancy->id}}" class="button edit_button -green-color" data-value='{{$vacancy->id}}'>Редактировать</a>
-        <a class="button delete_button -red-color" data-value='{{$vacancy->id}}'>Удалить</a>
+        <a href="/vacancy/edit/{{$vacancy->id}}" class="button-st -border-yellow mr-2" data-value='{{$vacancy->id}}'>Редактировать</a>
+<!--        <a class="button-st -red" data-value='{{$vacancy->id}}'>Удалить</a>-->
     </div>
 </div>

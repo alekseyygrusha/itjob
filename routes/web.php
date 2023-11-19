@@ -7,11 +7,17 @@ Auth::routes();
 ##Cabinet
 Route::prefix('cabinet')->group(function () {
     Route::get('/',[App\Http\Controllers\CabinetController::class, 'index'])->name('cabinet');
-    Route::get('resume/', [App\Http\Controllers\CabinetController::class, 'newResume']);
+    Route::prefix('resume')->group(function () {
+        Route::get('/', [App\Http\Controllers\CabinetController::class, 'createResume']);
+    });
+
     Route::get('resume/{resume_id}', [App\Http\Controllers\CabinetController::class, 'getResume']);
+    Route::get('vacancy', [App\Http\Controllers\VacancyController::class, 'index'])->name('post');
     Route::prefix('responses')->group(function () {
         Route::get('/', [App\Http\Controllers\CabinetController::class, 'getResposes'])->name('responses');
     });
+
+
 });
 
 // AJAX-запросы
@@ -23,6 +29,8 @@ Route::prefix('ajax')->group(function () {
     Route::post('post-vacancy', [App\Http\Controllers\VacancyController::class, 'postVacancy']);
     Route::post('post-resume',  [App\Http\Controllers\CabinetController::class, 'publishResume'], function () {
     })->name('resume-post');
+    Route::post('vacancy-delete',  [App\Http\Controllers\VacancyController::class, 'delete'])->name('vacancy-delete');
+
     Route::post('resume-delete',  [App\Http\Controllers\ResumeController::class, 'deleteResume'])->name('resume-delete');
     Route::post('filter-vacancies', [App\Http\Controllers\VacancyController::class, 'filterVacancies'], function () {});
 });
@@ -35,13 +43,10 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'], function () {
     return view('admin');
 })->name('admin');
-Route::get('post', [App\Http\Controllers\VacancyController::class, 'index'], function () {
-    return view('post');
-})->name('post');
+Route::get('post', [App\Http\Controllers\CabinetController::class, 'postPage'])->name('post');
 Route::get('/vacancy/response/{id}', [App\Http\Controllers\VacancyController::class, 'getVanacyResponses'], function () {});
 Route::get('/vacancy/edit/{id}', [App\Http\Controllers\VacancyController::class, 'getVanacy'], function () {})->name('edit-vacancy');
 
-Route::post('vacancy-delete',  [App\Http\Controllers\VacancyController::class, 'delete'])->name('vacancy-delete');
 Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hideVacancy'])->name('vacancy-hide');
 
 

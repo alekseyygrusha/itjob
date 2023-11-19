@@ -53,6 +53,14 @@ const ajax = {
             url: '/ajax/resume-delete',
         })
     },
+    deleteVacancy(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/vacancy-delete',
+        })
+    },
+
 
     filterVacancies(data) {
         console.log('filter-vacancies');

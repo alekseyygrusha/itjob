@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Experience;
+use App\Services\ProjectsServices;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
 use Spatie\Ignition\Config\IgnitionConfig;
@@ -45,11 +46,11 @@ class CabinetController extends Controller
 
     public function getResume($id) {
         $resume = ResumeLib::getResumeData($id);
+        $projects = ProjectsServices::getResumeProjects($id);
 
-
-        /*dd($resume);*/
         $data = [
             'resume' => $resume,
+            'projects' => $projects,
             'skills' => Skills::all(),
             'cities' => Cities::all(),
             'groups' => Groups::all(),
@@ -61,7 +62,20 @@ class CabinetController extends Controller
 
     public static function createResume()
     {
+        $data = [
+            'skills' => Skills::all(),
+            'cities' => Cities::all(),
+            'groups' => Groups::all(),
+            'experiences' => Experience::all(),
+        ];
 
+        return view('resume.resume-card', $data);
+    }
+
+
+    public static function postPage()
+    {
+        return view('cabinet.post_page');
     }
 
     public function publishResume(Request $request) {

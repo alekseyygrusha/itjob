@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="description">{{$resume->description}}</div>
                                 <div class="button-wrap">
-                                    <a class="btn btn-warning btn-hide" href='\cabinet\resume\{{$resume->id}}' data-value="{{$resume->id}}">
+                                    <a class="button-st -transparent -border-yellow" href='\cabinet\resume\{{$resume->id}}' data-value="{{$resume->id}}">
                                         Редактировать
                                     </a>
                                 </div>
@@ -67,30 +67,4 @@
     </body>
 </html>
 
-<script>
-    $(document).ready(function() {
-        //в отдельный JS файл вынести
-        deleteVacancy();
 
-        function deleteVacancy() {
-            $('.delete_button').click(function(e){
-                let vacancy_id = e.target.dataset.value;
-                e.preventDefault();
-                if (confirm('Удалить публикацию?')) {
-                    $.ajax({
-                        url: "{{ url('vacancy-delete') }}",
-                        method: 'post',
-                        data: {
-                            "_token": $('meta[name="csrf-token"]').attr('content'),
-                            "id": vacancy_id
-                        },
-                        success: function(result) {
-                            $('#vacancy-container').html(result);
-                            // deleteVacancy();
-                        }
-                    });
-                }
-            });
-        }
-    });
-</script>

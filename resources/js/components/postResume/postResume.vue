@@ -47,6 +47,50 @@
                 </div>
             </div>
 
+
+            <div class="form-block">
+                <div class="heading">Проекты в которых вы принимали участие (до 4х):</div>
+                <div class="select-input">
+                    <div class="projects-container">
+                        <div class="projects-list">
+                            <div class="row">
+                                <template  v-for="project in projects">
+                                    <div class="col-6">
+                                        <div class="projects-item">
+                                            <div class="-title">{{project.title}}</div>
+                                            <div class="content">
+                                                <div class="content-item -job-title">{{project.job_title}}</div>
+                                                <div class="skills-list">
+                                                    <div class="skill-item" v-for="skill in JSON.parse(project.skills)">
+                                                        {{skill}}
+                                                    </div>
+                                                </div>
+                                                <div class="content-item -description">{{project.description.length > 100 ? project.description.slice(0 , 100) + '...' : project.description}}</div>
+                                            </div>
+                                            <div class="footer">
+                                                <span class="duration">{{project.time_months}} месяцев</span>
+                                                <span class="company">{{project.company_name}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <div class="col-6" v-if="Object.keys(projects).length % 2 !== 0 && Object.keys(projects).length <= 4">
+                                    <div class="projects-item -add-project">
+                                        <div class="content">
+                                            <span>Добавить проект</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-project button-st -transparent" v-if="Object.keys(projects).length % 2 === 0 && Object.keys(projects).length <= 4">
+                            <span>Добавить проект</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-block">
                 <div class="heading">Желаемая зарплата:</div>
                 <div class="input-wrap text-input price-inputs">
@@ -95,12 +139,10 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <button class="button publicate -green-color" type="submite">Опубликовать</button>
-                <button class="publucate-button delete_button button -red-color ml-4" @click="deleteResume()">Архивировать</button>
+            <div class="input-wrap text-input d-flex">
+                <button class="button-st -transparent mr-2" type="submite">Опубликовать</button>
+                <a class="button-st -border-yellow" @click="deleteResume()">Архивировать</a>
             </div>
-
-
         </div>
     </form>
 </template>
@@ -114,7 +156,7 @@ import {objectsFormat} from "@/mixins/common.mixins";
 export default {
     components: {selectOptions},
     props: [
-        'cities', 'groups', 'resume', 'skills', 'experiences'
+        'cities', 'groups', 'resume', 'skills', 'experiences', 'projects'
     ],
     setup () {
         return { v$: useVuelidate() }
@@ -146,11 +188,9 @@ export default {
     mounted() {
         console.log(this.resume);
         console.log(this.form)
-        console.log(this.cities);
-        console.log(this.groups);
-        console.log(this.resume);
-        console.log(this.skills);
-        console.log(this.experiences);
+        console.log(this.projects)
+        console.log(JSON.parse(this.projects[0].skills))
+
     },
     methods: {
         checkForm() {

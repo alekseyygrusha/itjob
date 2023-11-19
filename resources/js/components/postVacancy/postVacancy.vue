@@ -107,8 +107,9 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <button class="button publicate -green-color" type="submite">Опубликовать</button>
+            <div class="input-wrap text-input d-flex">
+                <button class="button-st -transparent mr-2" type="submite">Опубликовать</button>
+                <a class="button-st -border-yellow" @click="deleteVacancy()">Архивировать</a>
             </div>
         </div>
     </form>
@@ -228,6 +229,12 @@
                     if (parts[1].length < 2) parts[1] += "0";
                 }
                 return parts[0] + ((parts.length - 1) ? ',' + parts[1] : '');
+            },
+            deleteVacancy() {
+                ajax.deleteVacancy({id: this.form.id}).then(() => {
+
+
+                });
             },
             checkForm() {
                 this.v$.form.$touch();

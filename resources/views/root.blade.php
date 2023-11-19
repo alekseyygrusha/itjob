@@ -6,7 +6,6 @@
     </head>
     <body>
         @include('templates.blocks.header')
-        
         <div class="main-content" id='app'>
             <div class="container">
                 <div class="row">
@@ -18,12 +17,12 @@
                         </div>
                     </div>
                     <div class="col-9">
-                        
+
                         <div class="vacancies-container">
                             @include('templates.vacancies.vacancies_list')
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
         @include('templates.blocks.footer')
