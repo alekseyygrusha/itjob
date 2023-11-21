@@ -4,20 +4,20 @@
             <div class="heading">Заполните данные резюме:</div>
             <div class="form-block">
                 <div class="input-wrap text-input">
-                    <input type="text" v-model.trim="form.job_title"  placeholder="Full-stack разработчик">
+                    <input type="text"  v-model.trim="form.job_title" :class="v$.form.job_title.$error ? '-error' : ''" placeholder="Full-stack разработчик">
                     <div class="error-wrap">
-<!--                        <p v-if="v$.form.job_title.$dirty && v$.form.job_title.maxLength.$invalid">
+                        <p v-if="v$.form.job_title.$dirty && v$.form.job_title.maxLength.$invalid">
                             Максимальное количество символов не должно превышать 50.
                         </p>
                         <p v-if="v$.form.job_title.$dirty && v$.form.job_title.minLength.$invalid">
                             Минимальное количество символов 5
-                        </p>-->
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div class="form-block">
-                <div class="select-input" >
+                <div class="select-input" :class="v$.form.job_group.$error ? '-error' : ''">
                     <selectOptions
                         placeholder="Выберите направление"
                         :options="groups_list"
@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-block">
-                <div class="select-input">
+                <div class="select-input" :class="v$.form.city_id.$error ? '-error' : ''">
                     <selectOptions
                         placeholder="Выберите город"
                         :options="cities_list"
@@ -67,7 +67,7 @@
                     <div class="row d-flex justify-content-between">
                         <div class="col-6 price-input-wrap">
                             <div class="price-input-wrap">
-                                <input type="text" v-model.trim="form.salary_min" @keyup="form.salary_min = transformPrice(form.salary_min)" placeholder="ОТ" :disabled="align_salary ? '' : disabled">
+                                <input type="text" v-model.trim="form.salary_min" @keyup="form.salary_min = transformPrice(form.salary_min)" placeholder="ОТ" >
                             </div>
                         </div>
                         <div class="col-6 ">
@@ -102,9 +102,9 @@
                 <div class="input-wrap text-input">
                     <textarea placeholder="Описание к вакансии" v-model.trim="form.description" id="" cols="20" rows="2"></textarea>
                     <div class="error-wrap">
-<!--                        <p v-if="v$.form.description.$dirty && v$.form.description.maxLength.$invalid">
+                        <p v-if="v$.form.description.$dirty && v$.form.description.maxLength.$invalid">
                             Размер описание не должен превышать 1000 символов.
-                        </p>-->
+                        </p>
                     </div>
                 </div>
             </div>
@@ -122,9 +122,10 @@
 import {ajax} from "@/vanilla/ajax.js";
 import selectOptions from "../selectOptions/selectOptions.vue";
 import {useVuelidate} from "@vuelidate/core";
-import {objectsFormat} from "@/mixins/common.mixins";
-import ProjectCard from "../Projects/ProjectCard/ProjectCard.vue";
+import {objectsFormat, priceFormat} from "@/mixins/common.mixins";
 import ProjectsList from "../Projects/ProjectsList/ProjectsList.vue";
+import {maxLength, minLength, required} from "@vuelidate/validators";
+
 export default {
     components: {ProjectsList, selectOptions},
     props: [
@@ -133,8 +134,17 @@ export default {
     setup () {
         return { v$: useVuelidate() }
     },
-    mixins: [objectsFormat],
-
+    mixins: [objectsFormat, priceFormat],
+    validations () {
+        return {
+            form: {
+                job_title: {required, minLength: minLength(5), maxLength: maxLength(50)},
+                city_id: {required},
+                job_group: {required},
+                description: {maxLength: maxLength(1000)}
+            }
+        }
+    },
     data() {
 
         return {
@@ -183,8 +193,36 @@ export default {
         deleteResume() {
             ajax.deleteResume({id: this.form.resume_id}).then(() => {
 
-
             });
+        },
+
+        checkSalaryValidate() {
+
+            if(parseInt(this.form.salary_min) === 0 && parseInt(this.form.salary_max) === 0) {
+                return true;
+            }
+
+            if(!this.form.salary_max) {
+                return false;
+            }
+
+            if(this.align_salary) {
+                this.form.salary_min = this.form.salary_max;
+            }
+
+            if(!this.form.salary_min) {
+                this.form.salary_min = '0';
+            }
+
+            let salary_min = parseInt(this.form.salary_min.split(' ').join(''));
+            let salary_max = parseInt(this.form.salary_max.split(' ').join(''));
+            // console.log(salary_min, salary_max);
+            if(salary_min > salary_max) {
+                this.salary_validate = false;
+                return false;
+            }
+            this.salary_validate = true;
+            return true;
         },
 
 
