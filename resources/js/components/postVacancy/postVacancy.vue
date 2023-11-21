@@ -133,7 +133,7 @@
         mixins: [objectsFormat, priceFormat],
         data() {
             let vacancy_data = this.vacancy ? JSON.parse(this.vacancy) : {};
-            console.log(vacancy_data);
+
             return {
                 groups_list: this.adaptObject(JSON.parse(this.groups)),
                 cities_list: JSON.parse(this.cities),
@@ -169,8 +169,6 @@
             }
         },
         mounted () {
-            console.log(this.experiences_list)
-
         },
         computed: {
             checkSalaryValidate() {
