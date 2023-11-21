@@ -4,13 +4,9 @@ import {selectors} from "./constants/app-selectors";
 import {createApp} from "vue";
 // window.Vue = require('vue').default
 // import App from "./App";
-import {ModalsContainer} from "vue-final-modal";
 
-// const globalModalsApp = createApp({
-//     name: 'GlobalModalsApp',
-//     components: {ModalsContainer}
-// });
-// globalModalsApp.mount("#global-modals-app");
+
+
 const responseVacancy = () => import('./components/responseVacancy');
 const responseResume = () => import('./components/responseResume');
 const postVacancy = () => import('./components/postVacancy');

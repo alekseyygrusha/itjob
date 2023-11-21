@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 class ResumeLib extends Model
 {
     public static function getResumeData($resume_id) {
-        $resume = Resume::find($resume_id)->with(['skills', 'city', 'group'])->get()->first();
+
+        $resume = Resume::where('id', '=', $resume_id)->get()->first();
 
         return $resume;
     }

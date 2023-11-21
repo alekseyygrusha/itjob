@@ -46,6 +46,7 @@ class CabinetController extends Controller
 
     public function getResume($id) {
         $resume = ResumeLib::getResumeData($id);
+
         $projects = ProjectsServices::getResumeProjects($id);
 
         $data = [
@@ -79,28 +80,25 @@ class CabinetController extends Controller
     }
 
     public function publishResume(Request $request) {
-
         $resume_id = $request->resume_id;
-
-        if(!$resume = Resume::find($resume_id)->with(['skills'])->get()->first()) {
-            $resume = new Resume;
-            $resume_id = $resume->id;
+        $resume = new Resume;
+        if($resume_id) {
+            $resume = Resume::find($resume_id)->with(['skills'])->get()->first();
         }
 
         $resume->job_group = $request->job_group;
-
+        $resume->user_id = Auth::id();
         $resume->job_title = $request->job_title;
         $resume->city_id = $request->city_id;
-        $resume->expirience_time = $request->expirience_id;
+        $resume->experience_time = $request->experience_time;
 
         $resume->min_salary = $request->salary_min;
         $resume->max_salary = $request->salary_max;
-
-        if($resume_id) {
-            ResumeLib::fillResumeSkillLinks($request->skills, $resume_id);
+        $resume->save();
+        if($resume->id) {
+            ResumeLib::fillResumeSkillLinks($request->skills, $resume->id);
         }
 
-        $resume->save();
         self::getData();
         return view('cabinet', ['success' => 'Изменения сохранены']);
 

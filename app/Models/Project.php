@@ -1,9 +1,10 @@
 <?php
 namespace App\Models;
+use App\Models\Resume\Resume;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class Projects extends Model
+class Project extends Model
 {
     /**
      * Таблица БД, ассоциированная с моделью.
@@ -14,13 +15,16 @@ class Projects extends Model
     protected $table = 'projects';
 
     public $timestamps = false;
-
+    public function link()
+    {
+        return $this->belongsToMany(Resume::class);
+    }
     public function getDefaultQuery(): Builder
     {
         return self::query()->select([
             'p.id', 'p.user_id', 'p.title', 'p.job_title', 'p.skills', 'p.description', 'p.time_months', 'p.company_name'
         ])->from("$this->table as p")
-            ->leftJoin("resume_projects_links as pl", "pl.project_id", "=", "p.id");
+            ->leftJoin("project_resume as pl", "pl.project_id", "=", "p.id");
 
     }
 }

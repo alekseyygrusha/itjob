@@ -443,7 +443,8 @@ button.button {
 }
 
 .post-vacancy,
-.resume-form {
+.resume-form,
+.project-card {
   padding: 25px;
   border: 1px solid #59b999;
   border-radius: 10px;
@@ -451,21 +452,32 @@ button.button {
   margin: 0 auto;
 }
 .post-vacancy .heading,
-.resume-form .heading {
+.resume-form .heading,
+.project-card .heading {
   width: 80%;
   font-size: 20px;
   padding-bottom: 12px;
   margin: 0 auto;
 }
+.post-vacancy .heading.-projects-annotate,
+.resume-form .heading.-projects-annotate,
+.project-card .heading.-projects-annotate {
+  font-size: 16px;
+  text-decoration: underline;
+  color: #59b999;
+}
 .post-vacancy .input-wrap,
-.resume-form .input-wrap {
+.resume-form .input-wrap,
+.project-card .input-wrap {
   width: 80%;
   margin: 0 auto;
   position: relative;
 }
 .post-vacancy .input-wrap input, .post-vacancy .input-wrap textarea,
 .resume-form .input-wrap input,
-.resume-form .input-wrap textarea {
+.resume-form .input-wrap textarea,
+.project-card .input-wrap input,
+.project-card .input-wrap textarea {
   width: 100%;
   border-radius: 10px;
   border: 1px solid #59b999;
@@ -474,37 +486,46 @@ button.button {
 }
 .post-vacancy .input-wrap input:focus, .post-vacancy .input-wrap textarea:focus,
 .resume-form .input-wrap input:focus,
-.resume-form .input-wrap textarea:focus {
+.resume-form .input-wrap textarea:focus,
+.project-card .input-wrap input:focus,
+.project-card .input-wrap textarea:focus {
   outline: none;
 }
 .post-vacancy .input-wrap input:disabled, .post-vacancy .input-wrap textarea:disabled,
 .resume-form .input-wrap input:disabled,
-.resume-form .input-wrap textarea:disabled {
+.resume-form .input-wrap textarea:disabled,
+.project-card .input-wrap input:disabled,
+.project-card .input-wrap textarea:disabled {
   opacity: 0.5;
 }
 .post-vacancy .form-check,
-.resume-form .form-check {
+.resume-form .form-check,
+.project-card .form-check {
   max-width: 250px;
   padding-left: 20px;
   margin-top: 15px;
 }
 .post-vacancy .form-check input,
-.resume-form .form-check input {
+.resume-form .form-check input,
+.project-card .form-check input {
   width: auto;
 }
 .post-vacancy .price-inputs .price-input-wrap,
-.resume-form .price-inputs .price-input-wrap {
+.resume-form .price-inputs .price-input-wrap,
+.project-card .price-inputs .price-input-wrap {
   position: relative;
 }
 .post-vacancy .price-inputs .price-input-wrap input,
-.resume-form .price-inputs .price-input-wrap input {
+.resume-form .price-inputs .price-input-wrap input,
+.project-card .price-inputs .price-input-wrap input {
   position: relative;
   z-index: 99;
   font-weight: bold;
   font-size: 25px;
 }
 .post-vacancy .price-inputs .price-input-wrap .price-input,
-.resume-form .price-inputs .price-input-wrap .price-input {
+.resume-form .price-inputs .price-input-wrap .price-input,
+.project-card .price-inputs .price-input-wrap .price-input {
   padding: 4px 20px;
   border: 1px solid #59b999;
   border-radius: 10px;
@@ -515,7 +536,9 @@ button.button {
 .post-vacancy .select-input .error-wrap,
 .post-vacancy .input-wrap .error-wrap,
 .resume-form .select-input .error-wrap,
-.resume-form .input-wrap .error-wrap {
+.resume-form .input-wrap .error-wrap,
+.project-card .select-input .error-wrap,
+.project-card .input-wrap .error-wrap {
   position: absolute;
   top: calc(100% + 2px);
   font-size: 12px;
@@ -526,12 +549,64 @@ button.button {
 .post-vacancy .price-inputs .price-input.-error,
 .resume-form .text-input input.-error,
 .resume-form .select-input.-error .select-custom,
-.resume-form .price-inputs .price-input.-error {
+.resume-form .price-inputs .price-input.-error,
+.project-card .text-input input.-error,
+.project-card .select-input.-error .select-custom,
+.project-card .price-inputs .price-input.-error {
   border: 1px solid #f50606;
+}
+.post-vacancy.project-card .form-block,
+.resume-form.project-card .form-block,
+.project-card.project-card .form-block {
+  margin-bottom: 15px;
+}
+.post-vacancy.project-card .form-block .heading,
+.resume-form.project-card .form-block .heading,
+.project-card.project-card .form-block .heading {
+  width: 100%;
+  font-size: 18px;
+}
+.post-vacancy.project-card .input-wrap,
+.resume-form.project-card .input-wrap,
+.project-card.project-card .input-wrap {
+  width: 100%;
+}
+.post-vacancy.project-card .input-wrap.-job_title input,
+.resume-form.project-card .input-wrap.-job_title input,
+.project-card.project-card .input-wrap.-job_title input {
+  color: #59b999;
+  font-weight: bold;
+}
+.post-vacancy.project-card .select-input,
+.resume-form.project-card .select-input,
+.project-card.project-card .select-input {
+  width: 100%;
+}
+.post-vacancy.project-card .footer .heading,
+.resume-form.project-card .footer .heading,
+.project-card.project-card .footer .heading {
+  font-size: 13px;
+  font-weight: 600;
+}
+.post-vacancy.project-card .footer .input-wrap input,
+.resume-form.project-card .footer .input-wrap input,
+.project-card.project-card .footer .input-wrap input {
+  font-weight: 600;
+}
+.post-vacancy.project-card .buttons-wrap,
+.resume-form.project-card .buttons-wrap,
+.project-card.project-card .buttons-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.post-vacancy.project-card .buttons-wrap .button-st,
+.resume-form.project-card .buttons-wrap .button-st,
+.project-card.project-card .buttons-wrap .button-st {
+  width: 100%;
 }
 
 .form-block {
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   font-weight: 500;
 }
 .form-block .radio-buttons {
@@ -787,5 +862,16 @@ button.button {
   transition: 0.3s;
   background-color: #59b999;
   font-weight: 600;
+}
+.modals-container .vfm__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modals-container .vfm__container .modal-content {
+  max-width: 620px;
+  margin: 0 auto;
+  border: 1px solid #59b999;
+  border-radius: 10px;
 }
 

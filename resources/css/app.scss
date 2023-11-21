@@ -530,7 +530,8 @@ button.button {
 }
 
 .post-vacancy,
-.resume-form {
+.resume-form,
+.project-card {
     padding: 25px;
     border: 1px solid #59b999;
     border-radius: 10px;
@@ -541,6 +542,12 @@ button.button {
         font-size: 20px;
         padding-bottom: 12px;
         margin: 0 auto;
+
+        &.-projects-annotate {
+            font-size: 16px;
+            text-decoration: underline;
+            color: #59b999;
+        }
     }
 
     .input-wrap {
@@ -609,9 +616,53 @@ button.button {
     .price-inputs .price-input.-error {
         border: 1px solid #f50606;
     }
+
+    &.project-card {
+        .form-block {
+            margin-bottom: 15px;
+
+            .heading {
+                width: 100%;
+                font-size: 18px;
+            }
+        }
+
+        .input-wrap {
+            width: 100%;
+
+            &.-job_title input{
+                color: #59b999;
+                font-weight: bold;
+            }
+        }
+
+        .select-input {
+            width: 100%;
+        }
+
+        .footer {
+            .heading {
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .input-wrap input {
+                font-weight: 600;
+            }
+        }
+        .buttons-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+
+            .button-st {
+                width: 100%;
+            }
+        }
+
+
+    }
 }
 .form-block {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     font-weight: 500;
     .radio-buttons {
         display: flex;
@@ -928,5 +979,23 @@ button.button {
     .add-project {
 
     }
+}
+
+.modals-container {
+    .vfm__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .modal-content {
+            max-width: 620px;
+            margin: 0 auto;
+            border: 1px solid #59b999;
+            border-radius: 10px;
+        }
+    }
+
+
+
 }
 

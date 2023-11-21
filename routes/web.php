@@ -27,12 +27,24 @@ Route::prefix('ajax')->group(function () {
     Route::post('accept-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'acceptResponseVacancy'])->name('accept-vacancy-response');
     Route::post('decline-vacancy-response',  [App\Http\Controllers\VacancyController::class, 'declineResponseVacancy'])->name('decline-vacancy-response');
     Route::post('post-vacancy', [App\Http\Controllers\VacancyController::class, 'postVacancy']);
-    Route::post('post-resume',  [App\Http\Controllers\CabinetController::class, 'publishResume'], function () {
-    })->name('resume-post');
+
+
     Route::post('vacancy-delete',  [App\Http\Controllers\VacancyController::class, 'delete'])->name('vacancy-delete');
 
-    Route::post('resume-delete',  [App\Http\Controllers\ResumeController::class, 'deleteResume'])->name('resume-delete');
+
     Route::post('filter-vacancies', [App\Http\Controllers\VacancyController::class, 'filterVacancies'], function () {});
+
+    Route::prefix('resume')->group(function () {
+        Route::post('post',  [App\Http\Controllers\CabinetController::class, 'publishResume']);
+        Route::post('resume',  [App\Http\Controllers\ResumeController::class, 'deleteResume']);
+    });
+
+    Route::prefix('project')->group(function () {
+        Route::get('get', [App\Http\Controllers\ProjectsController::class, 'getProject']);
+        Route::post('save', [App\Http\Controllers\ProjectsController::class, 'saveProject']);
+        Route::get('get-list', [App\Http\Controllers\ProjectsController::class, 'getProjectsList']);
+        Route::post('delete', [App\Http\Controllers\ProjectsController::class, 'deleteResumeProject']);
+    });
 });
 
 Route::get('/', [App\Http\Controllers\RootController::class, 'index'], function () {

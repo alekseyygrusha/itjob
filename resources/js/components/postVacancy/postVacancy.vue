@@ -123,7 +123,7 @@
     import {objectsFormat} from "@/mixins/common.mixins";
 
     export default {
-        components: {useVuelidate, selectOptions},
+        components: {selectOptions},
         props: [
             'cities', 'groups', 'vacancy', 'skills', 'experiences'
         ],

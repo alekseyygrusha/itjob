@@ -1,6 +1,7 @@
 import {createApp} from "vue";
 import postResume from "./postResume.vue";
-
+import globalModalsPlugin from "@/globalModalsPlugin";
+import {vfmPlugin} from 'vue-final-modal';
 const initPostResume = () => {
     console.log("initPostResume");
     let elements = [...document.querySelectorAll('.post-resume-form')].filter(
@@ -13,7 +14,10 @@ const initPostResume = () => {
                 components: {
                     postResume
                 }
-            }).mount(el);
+            })
+                .use(vfmPlugin)
+                .use(globalModalsPlugin)
+                .mount(el);
         }
 
     }

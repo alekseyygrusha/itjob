@@ -43,14 +43,14 @@ const ajax = {
         return axios({
             method: 'POST',
             data,
-            url: '/ajax/post-resume',
+            url: '/ajax/resume/post',
         })
     },
     deleteResume(data) {
         return axios({
             method: 'POST',
             data,
-            url: '/ajax/resume-delete',
+            url: '/ajax/resume/delete',
         })
     },
     deleteVacancy(data) {
@@ -68,6 +68,38 @@ const ajax = {
             method: 'POST',
             data,
             url: '/ajax/filter-vacancies',
+        })
+    },
+
+    getProject(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/project/get',
+        })
+    },
+
+    saveProject(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/project/save',
+        })
+    },
+
+    getProjectsList(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/project/get-list',
+        })
+    },
+
+    deleteProjectResume(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/project/delete',
         })
     }
 };

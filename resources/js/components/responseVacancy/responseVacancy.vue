@@ -21,7 +21,7 @@
                     <div class="description truncate-text truncate-2">
                         {{resume.description}}
                     </div>
-                    <div v-if="parseInt(resume.id) !== this.responsed_resume_id" @click="chooseResume(resume)" class="pick-resume btn" v-bind:class="[!responsed_resume_id ? 'btn-success' : 'btn-secondary'] ">Выбрать</div>
+                    <div v-if="parseInt(resume.id) !== this.responsed_resume_id" @click="chooseResume(resume)" class="button-st -transparent" v-bind:class="[!responsed_resume_id ? 'btn-success' : 'btn-secondary'] ">Выбрать</div>
                     <div v-else class="pick-resume btn btn-success" >Отправлено</div>
                 </div>
             </div>

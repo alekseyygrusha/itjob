@@ -15,6 +15,9 @@
     @include('templates.blocks.header')
     <div class="main-content" id='app'>
         <main class="py-4">
+            <div id="global-modals-app">
+                <modals-container></modals-container>
+            </div>
             @section('content')@show
         </main>
     </div>

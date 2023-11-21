@@ -49,46 +49,16 @@
 
 
             <div class="form-block">
-                <div class="heading">Проекты в которых вы принимали участие (до 4х):</div>
-                <div class="select-input">
-                    <div class="projects-container">
-                        <div class="projects-list">
-                            <div class="row">
-                                <template  v-for="project in projects">
-                                    <div class="col-6">
-                                        <div class="projects-item">
-                                            <div class="-title">{{project.title}}</div>
-                                            <div class="content">
-                                                <div class="content-item -job-title">{{project.job_title}}</div>
-                                                <div class="skills-list">
-                                                    <div class="skill-item" v-for="skill in JSON.parse(project.skills)">
-                                                        {{skill}}
-                                                    </div>
-                                                </div>
-                                                <div class="content-item -description">{{project.description.length > 100 ? project.description.slice(0 , 100) + '...' : project.description}}</div>
-                                            </div>
-                                            <div class="footer">
-                                                <span class="duration">{{project.time_months}} месяцев</span>
-                                                <span class="company">{{project.company_name}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
-
-                                <div class="col-6" v-if="Object.keys(projects).length % 2 !== 0 && Object.keys(projects).length <= 4">
-                                    <div class="projects-item -add-project">
-                                        <div class="content">
-                                            <span>Добавить проект</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="add-project button-st -transparent" v-if="Object.keys(projects).length % 2 === 0 && Object.keys(projects).length <= 4">
-                            <span>Добавить проект</span>
-                        </div>
+                <temaplate v-if="this.resume">
+                    <div class="heading">Проекты в которых вы принимали участие (до 4х):</div>
+                    <div class="select-input">
+                        <projects-list :projects="this.projects" :resume_id="this.form.resume_id"></projects-list>
                     </div>
-                </div>
+                </temaplate>
+                <template v-else>
+                    <div class="heading -projects-annotate">Добавьте проекты в которых вы участвовали после сохранения резюме</div>
+                </template>
+
             </div>
 
             <div class="form-block">
@@ -140,8 +110,8 @@
             </div>
 
             <div class="input-wrap text-input d-flex">
-                <button class="button-st -transparent mr-2" type="submite">Опубликовать</button>
-                <a class="button-st -border-yellow" @click="deleteResume()">Архивировать</a>
+                <button class="button-st -transparent mr-2" type="submite">Сохранить</button>
+                <a v-if="this.resume" class="button-st -border-yellow" @click="deleteResume()">Архивировать</a>
             </div>
         </div>
     </form>
@@ -153,8 +123,10 @@ import {ajax} from "@/vanilla/ajax.js";
 import selectOptions from "../selectOptions/selectOptions.vue";
 import {useVuelidate} from "@vuelidate/core";
 import {objectsFormat} from "@/mixins/common.mixins";
+import ProjectCard from "../Projects/ProjectCard/ProjectCard.vue";
+import ProjectsList from "../Projects/ProjectsList/ProjectsList.vue";
 export default {
-    components: {selectOptions},
+    components: {ProjectsList, selectOptions},
     props: [
         'cities', 'groups', 'resume', 'skills', 'experiences', 'projects'
     ],
@@ -162,6 +134,7 @@ export default {
         return { v$: useVuelidate() }
     },
     mixins: [objectsFormat],
+
     data() {
 
         return {
@@ -186,28 +159,25 @@ export default {
         }
     },
     mounted() {
-        console.log(this.resume);
-        console.log(this.form)
-        console.log(this.projects)
-        console.log(JSON.parse(this.projects[0].skills))
+        console.log(this.projects);
+
 
     },
     methods: {
         checkForm() {
-            /*this.v$.form.$touch();
+            this.v$.form.$touch();
             if(this.v$.form.$dirty && !this.v$.form.$error) {
+                this.publicateResume();
+            }
 
-            }*/
-            console.log("publicateResume");
-            console.log(this.form);
-            this.publicateResume();
+
         },
         publicateResume() {
-            console.log("publicateResume");
-            console.log(this.form);
-            ajax.publicateResume(this.form).then(() => {
-
-
+            ajax.publicateResume(this.form).then((res) => {
+                if(res.status === 200) {
+                    alert('Резюме сохранено. Сейчас перенаправим вас в кабинет.');
+                    window.location.href = "/cabinet";
+                }
             });
         },
         deleteResume() {
@@ -215,7 +185,8 @@ export default {
 
 
             });
-        }
+        },
+
 
     }
 }
