@@ -2,11 +2,18 @@
 node_modules
 /dist
 /vendor
+composer.lock
+package-lock.json
 
 
 # local env files
 .env.local
+.env
+/.env
+
 .env.*.local
+/public/js
+
 
 # Log files
 npm-debug.log*

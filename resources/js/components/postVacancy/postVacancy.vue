@@ -50,7 +50,7 @@
             </div>
 
             <div class="form-block">
-                <div class="select-input" :class="v$.form.city_id.$error ? '-error' : ''">
+                <div class="select-input" >
                     <selectOptions
                         placeholder="Выбери необходимые навыки"
                         :options="skill_list"
@@ -91,7 +91,7 @@
             <div class="form-block">
                 <div class="input-wrap text-input">
                     <div class="radio-buttons">
-                        <div v-for="experience_item in experiences_list" v-bind:key="experience_item.id" class="radio-buttons-item" @click="pickExpirience(experience_item.id)" v-bind:class="experience_item.id == form.expirience_id ? '-active' : ''">
+                        <div v-for="experience_item in experiences_list" v-bind:key="experience_item.id" class="radio-buttons-item" @click="pickExpirience(experience_item.id)" v-bind:class="experience_item.id === form.expirience_id ? '-active' : ''">
                             {{ experience_item.text }}
                         </div>
                     </div>
@@ -107,8 +107,9 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <button class="button publicate -green-color" type="submite">Опубликовать</button>
+            <div class="input-wrap text-input d-flex">
+                <button class="button-st -transparent mr-2" type="submite">Опубликовать</button>
+                <a class="button-st -border-yellow" @click="deleteVacancy()">Архивировать</a>
             </div>
         </div>
     </form>
@@ -119,18 +120,20 @@
     import { required, email, minLength , maxLength, integer, maxValue, minValue} from '@vuelidate/validators'
     import selectOptions from '../selectOptions/selectOptions.vue';
     import {ajax} from "@/vanilla/ajax.js";
+    import {objectsFormat, priceFormat} from "@/mixins/common.mixins";
+
     export default {
-        components: {useVuelidate, selectOptions},
+        components: {selectOptions},
         props: [
             'cities', 'groups', 'vacancy', 'skills', 'experiences'
         ],
         setup () {
-
             return { v$: useVuelidate() }
         },
+        mixins: [objectsFormat, priceFormat],
         data() {
             let vacancy_data = this.vacancy ? JSON.parse(this.vacancy) : {};
-            console.log(vacancy_data);
+
             return {
                 groups_list: this.adaptObject(JSON.parse(this.groups)),
                 cities_list: JSON.parse(this.cities),
@@ -166,13 +169,11 @@
             }
         },
         mounted () {
-            console.log(this.experiences_list)
-
         },
         computed: {
             checkSalaryValidate() {
 
-                if(parseInt(this.form.salary_min) == 0 && parseInt(this.form.salary_max) == 0) {
+                if(parseInt(this.form.salary_min) === 0 && parseInt(this.form.salary_max) === 0) {
                     return true;
                 }
 
@@ -209,23 +210,11 @@
             pickExpirience(id) {
                 this.form.expirience_id = id;
             },
-            //это вынести отдельно в миксины
-            transformPrice: function(price) {
-                console.log('transformPrice');
-                this.salary_init = true;
-                if(typeof price === 'string' || price instanceof String) {
-                    price = price.split(' ').join('');
-                }
+            deleteVacancy() {
+                ajax.deleteVacancy({id: this.form.id}).then(() => {
 
-                if (!price) return 0;
-                price = parseFloat(price).toString();
-                let parts = price.split('.');
-                parts[0] = parts[0].replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-                if (parts.length - 1) {
-                    parts[1] = parts[1].substr(0, 2);
-                    if (parts[1].length < 2) parts[1] += "0";
-                }
-                return parts[0] + ((parts.length - 1) ? ',' + parts[1] : '');
+
+                });
             },
             checkForm() {
                 this.v$.form.$touch();
@@ -233,12 +222,6 @@
                     this.publicateVacancy();
                 }
             },
-            adaptObject(obj) {
-                return obj.map(function (obj) {
-                    return {'id': obj.id, 'name': obj.group_name};
-                });
-            },
-
             publicateVacancy() {
                 console.log(this.form)
                 ajax.publicateVacancy(this.form).then((res) => {
@@ -246,8 +229,6 @@
                     if(res.data.answer) {
                         alert('Вакансия была опубликована. Сейчас перенаправим вас в кабинет.');
                         window.location.href = "/cabinet";
-                    } else {
-
                     }
                 });
             }
