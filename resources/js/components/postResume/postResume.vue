@@ -39,26 +39,25 @@
             <div class="form-block">
                 <div class="select-input" >
                     <selectOptions
-                        placeholder="Укажите ваши навыки"
+                        placeholder="Технологии с которыми вы работали"
                         :options="skill_list"
                         :pickOptions="form.skills"
+                        :addNewValue='true'
                         :multiSelect='true'
                         @update:option-value="form.skills = $event"></selectOptions>
                 </div>
             </div>
 
-
             <div class="form-block">
                 <temaplate v-if="this.resume">
                     <div class="heading">Проекты в которых вы принимали участие (до 4х):</div>
                     <div class="select-input">
-                        <projects-list :projects="this.projects" :resume_id="this.form.resume_id"></projects-list>
+                        <projects-list :projects="this.projects" :skills="this.skills" :resume_id="this.form.resume_id"></projects-list>
                     </div>
                 </temaplate>
                 <template v-else>
                     <div class="heading -projects-annotate">Добавьте проекты в которых вы участвовали после сохранения резюме</div>
                 </template>
-
             </div>
 
             <div class="form-block">
@@ -169,9 +168,9 @@ export default {
         }
     },
     mounted() {
-        console.log(this.projects);
-
-
+        /*console.log(this.skills);
+        console.log('123');
+        console.log(this.form.skills);*/
     },
     methods: {
         checkForm() {

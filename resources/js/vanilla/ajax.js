@@ -101,6 +101,35 @@ const ajax = {
             data,
             url: '/ajax/project/delete',
         })
+    },
+    getResume(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/resume/get-resume',
+        })
+    },
+
+    getVacancyCandidates(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/vacancy/get-candidates',
+        })
+    },
+    inviteCandidate(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/vacancy/invite-candidate',
+        })
+    },
+    declineCandidate(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/vacancy/decline-candidate',
+        })
     }
 };
 

@@ -1,6 +1,6 @@
 
-<div class="vacancies-card vue-response-vacancy">
-    <a class="job-title">
+<div  class="vacancies-card vue-response-vacancy">
+    <a href="/vacancy/{{$vacancy->id}}" class="job-title">
         {{$vacancy->job_title}}
     </a>
     <div class="salary">от {{$vacancy->min_salary}} - до {{$vacancy->max_salary}} руб.</div>
@@ -19,15 +19,14 @@
     </div>
     <div class="button-wrap">
         @if(Auth::user())
-            {{-- <a class="btn  @if(!$vacancy->vacancyResponses) vacansy_response btn-success @else btn btn-secondary @endif -green-color" data-value="{{$vacancy->id}}">Откликнуться</a> --}}
-            <response-vacancy 
-                resume_list="{{$resume_list->getContent()}}" 
+            <response-vacancy
+                resume_list="{{$resume_list->getContent()}}"
                 id="{{$vacancy->id}}"
                 responsed_id="@if(!empty($vacancy->vacancyResponses)){{$vacancy->vacancyResponses->resume_id}}@endif"
                 >
             </response-vacancy>
         @endif
-        
+
         {{-- <a class="btn btn-success -green-color" href='#'>Позвонить</a> --}}
     </div>
 </div>

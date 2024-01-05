@@ -1,12 +1,12 @@
 <template>
     <div class="response-button-wrap">
         <div class="picked-wrap">
-            <a v-if="!this.responsed_resume_id" class="button-st vacansy_response -transparent" @click="toggleResponseMenu()" >Откликнуться</a>
-            <div v-else class="btn vacansy_response -green-color btn-secondary" @click="toggleResponseMenu()" >Отклик отправлен</div>
+            <div v-if="!this.responsed_resume_id" class="button-st vacansy_response -transparent" @click.prevent="toggleResponseMenu()" >Откликнуться</div>
+            <div v-else class="btn vacansy_response -green-color btn-secondary" @click.prevent="toggleResponseMenu()" >Отклик отправлен</div>
             <div class="picked-resume">{{picked_resume}}</div>
         </div>
         <div v-if="response_menu_open" class="response-menu">
-            <div class="close" @click="toggleResponseMenu()">
+            <div class="close" @click.prevent="toggleResponseMenu()">
                 <i class="fa-solid fa-xmark"></i>
             </div>
             <div class="resume-wrap">

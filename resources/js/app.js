@@ -13,9 +13,15 @@ const postVacancy = () => import('./components/postVacancy');
 const postResume = () => import('./components/postResume');
 const selectOptions = () => import('./components/selectOptions');
 const vacancyFilter = () => import('./components/vacancyFilter');
+const vacancyCandidates = () => import('./components/vacancyCandidates');
 
 
 /** Динамические импорты **/
+vacancyCandidates().then(({initVacancyCandidates}) => {
+    initVacancyCandidates({})
+});
+
+
 responseVacancy().then(({initResponseVacancy}) => {
     initResponseVacancy({})
 });

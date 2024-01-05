@@ -8,7 +8,7 @@ class ResumeLib extends Model
 {
     public static function getResumeData($resume_id) {
 
-        $resume = Resume::where('id', '=', $resume_id)->get()->first();
+        $resume = Resume::where('id', '=', $resume_id)->with(['skills', 'experience', 'city'])->get()->first();
 
         return $resume;
     }

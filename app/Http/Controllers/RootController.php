@@ -40,7 +40,6 @@ class RootController extends Controller
     }
 
     public static function getData () {
-        $city_list = Cities::get()->all();
 
         $list_vacancies = Vacancies::with(['vacancyResponses', 'bindCity', 'skills' , 'experience'])
             ->where('is_hidden', 0)
@@ -51,7 +50,7 @@ class RootController extends Controller
 
         $groups_list = Groups::get()->all();
 
-        // dd($list_vacancies);
+
         $data = [
             'cities' => response()->json(Cities::all()),
             'groups_list' => $groups_list,

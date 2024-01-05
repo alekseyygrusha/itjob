@@ -13,12 +13,12 @@ class Lib
         foreach($vacancies as &$vacancy) {
             self::fillVacancySkills($vacancy);
         }
-        
+
         return $vacancies;
     }
 
     public static function fillVacancySkills($vacancy) {
-      
+
         $id = $vacancy->id;
 
         $skills =  DB::table('skill_links as sl')
@@ -26,7 +26,7 @@ class Lib
             ->join('skills as s','s.id', '=', 'sl.skills_id', )
             ->where('sl.vacancy_id', $vacancy->id)
             ->get();
-       
+
         $vacancy->skills = $skills;
     }
 
@@ -34,14 +34,14 @@ class Lib
         $vacancy = DB::table('vacancies')
             ->where('vacancies.user_id' , $user_id)
             ->where('vacancies.id' , $id);
-            
+
         if(!$vacancy) {
             return false;
         }
         self::deleteVacancyLinks($id);
         self::deleteBindVacancySkills($id);
         $vacancy->delete();
-        
+
         return true;
     }
 
@@ -60,20 +60,19 @@ class Lib
     public static function fillVacancySkillLinks($skills, $vacancy_id) {
         //Переписать на Laravel!
         self::deleteBindVacancySkills($vacancy_id);
-       
+
         if($skills) {
             foreach ($skills as $skill) {
-              
                 DB::table('skill_links')->insert(
                     ['skills_id' => $skill['id'], 'vacancy_id' => $vacancy_id],
                 );
-                
+
             }
         }
-        
+
     }
-    
 
 
-    
+
+
 }

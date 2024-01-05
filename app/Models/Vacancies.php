@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use App\Models\Resume\Resume;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,11 @@ class Vacancies extends Model
         // return $this->hasMany(Skills::class, 'foreign_key', 'local_key');
         return $this->belongsToMany(Skills::class, 'skill_links', 'vacancy_id', 'skills_id');
     }
-   
+
+    public function candidates() {
+        return $this->belongsToMany(Resume::class, 'vacancy_candidates', 'vacancy_id', 'resume_id');
+    }
+
     public function vacancyResponses() {
         return $this->hasOne(VacancyResponses::class, 'vacancy_id')->where(['user_id' => Auth::id()]);
     }

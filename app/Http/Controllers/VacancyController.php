@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Console\Commands\FillVacancyCandidates;
+use App\Models\VacancyCandidates;
+use App\Services\VacancyServices;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
@@ -129,13 +132,44 @@ class VacancyController extends Controller
         return view('post');
     }
 
+    public function viewVacancy($id) {
+        self::getData();
+        $vacancy = self::getVacancyData($id);
+
+        $vacancy_candidates = new FillVacancyCandidates();
+
+        $vacancy_candidates->start();
+
+        $data = [
+            'vacancy' =>  $vacancy
+        ];
+
+        View::share($data);
+
+        return view('vacancy.vacancy-card-view');
+    }
+
+    public function showVacancy($id) {
+        self::getData();
+        $vacancy = self::getVacancyData($id);
+
+
+        $data = [
+            'vacancy' =>  $vacancy
+        ];
+
+        View::share($data);
+
+
+        return view('vacancy.vacancy-card');
+    }
+
     public function getVacancyData($id) {
-        $vacancy = Vacancies::find($id)
+        return Vacancies::find($id)
             ->where('id', $id)
             ->where('user_id', Auth::id())
-            ->with('skills')
+            ->with(['skills', 'experience', 'bindCity'])
             ->first();
-        return $vacancy;
     }
 
     public function getVanacyResponses($id) {
@@ -244,6 +278,31 @@ class VacancyController extends Controller
         $vacancy_response->isChecked = true;
         $vacancy_response->isAccept = false;
         $vacancy_response->save();
+
+        return true;
+    }
+
+    public function getVacancyCandidates(Request $request): JsonResponse {
+        $candidates = VacancyServices::getVacancyCandidates($request->vacancy_id, 5);
+
+        return response()->json($candidates);
+    }
+
+    public function inviteVacancyCandidate(Request $request) {
+        $candidate = VacancyCandidates::where(['id' => $request->candidate_id])->get()->first();
+
+        $candidate->is_accept = 1;
+
+        $candidate->save();
+
+        return true;
+    }
+
+    public function declineVacancyCandidate(Request $request) {
+        $candidate = VacancyCandidates::where(['resume_id' => $request->resume_id, 'vacancy_id' => $request->vacancy_id]);
+
+        $candidate->rejected = 1;
+        $candidate->save();
 
         return true;
     }

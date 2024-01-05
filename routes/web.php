@@ -18,6 +18,17 @@ Route::prefix('cabinet')->group(function () {
     });
 
 
+
+    Route::prefix('vacancy')->group(function () {
+        Route::prefix('view')->group(function () {
+            Route::get('{id}', [App\Http\Controllers\VacancyController::class, 'viewVacancy'])->name('view-vacancy');
+        });
+    });
+
+});
+
+Route::prefix('vacancy')->group(function () {
+    Route::get('{id}', [App\Http\Controllers\VacancyController::class, 'showVacancy'])->name('show-vacancy');
 });
 
 // AJAX-запросы
@@ -34,9 +45,16 @@ Route::prefix('ajax')->group(function () {
 
     Route::post('filter-vacancies', [App\Http\Controllers\VacancyController::class, 'filterVacancies'], function () {});
 
+    Route::prefix('vacancy')->group(function () {
+        Route::get('get-candidates',  [App\Http\Controllers\VacancyController::class, 'getVacancyCandidates']);
+        Route::post('invite-candidate',  [App\Http\Controllers\VacancyController::class, 'inviteVacancyCandidate']);
+        Route::post('decline-candidate',  [App\Http\Controllers\VacancyController::class, 'declineVacancyCandidate']);
+    });
+
     Route::prefix('resume')->group(function () {
         Route::post('post',  [App\Http\Controllers\CabinetController::class, 'publishResume']);
         Route::post('resume',  [App\Http\Controllers\ResumeController::class, 'deleteResume']);
+        Route::get('get-resume',  [App\Http\Controllers\ResumeController::class, 'getResume']);
     });
 
     Route::prefix('project')->group(function () {
