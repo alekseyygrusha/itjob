@@ -5,8 +5,13 @@
         classes="modal-container"
         content-class="modal-content project-card"
     >
-
-        <div class="inner-content">
+        <div class="loader-box" v-if="showLoader">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="inner-content" v-else>
             <div class="form-block">
                 <div class="heading">Укажите название проекта:</div>
                 <div class="select-input">
@@ -95,6 +100,7 @@ export default {
         return {
             showModal: false,
             modalName: this.form_code,
+            showLoader: true,
             project_form: {
                 id: '',
                 company_name: '',
@@ -116,6 +122,7 @@ export default {
                   if(res.data) {
                       this.project_form = res.data;
                       this.project_form.resume_id = this.resume_id;
+                      this.showLoader = false;
 
                         if(res.data.skills.length) {
                             // хитрое решение для того сохранить реактивность
@@ -125,6 +132,8 @@ export default {
                         }
                   }
               });
+          } else {
+              this.showLoader = false;
           }
         },
         closeModal() {

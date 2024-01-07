@@ -7,11 +7,20 @@
                 <div class="col-12">
                     <div class="info-box">
                         <div class="content">
-                            <div class="content-item -title">Web-разработчик</div>
-                            <div class="content-item -salary">от 70 000 до 120 000 ₽</div>
-                            <div class="content-item -exp">Опыт работы: 3-6 лет</div>
-                            <div class="content-item -company">Uber</div>
-                            <div class="content-item -city">Санкт-Петербург</div>
+                            <div class="content-item -title">{{$vacancy->job_title}}</div>
+                            <div class="content-item -salary">
+                                @if(!empty($vacancy->min_salary) && $vacancy->min_salary !== 0 && !empty($vacancy->max_salary) && $vacancy->max_salary !== 0)
+                                    от {{$vacancy->min_salary}} до {{$vacancy->max_salary}} ₽
+                                @elseif(!empty($vacancy->max_salary) && $vacancy->max_salary !== 0)
+                                    до {{$vacancy->max_salary}} ₽
+                                @elseif(!empty($vacancy->min_salary) && $vacancy->min_salary !== 0)
+                                    от {{$vacancy->min_salary}}
+                                @else
+                                @endif
+                            </div>
+                            <div class="content-item -exp">Опыт работы: {{$vacancy->experience->text}}</div>
+                            <div class="content-item -company">{{$vacancy->company_name}}</div>
+                            <div class="content-item -city">{{$vacancy->bindCity->name}}</div>
                         </div>
                     </div>
                     <div class="main-description">
@@ -20,29 +29,31 @@
                                 <div class="info-box description-block">
                                     <div class="block-heading">Технологии</div>
                                     <div class="skills-box">
-                                        <div class="skills-box-item">Java</div>
-                                        <div class="skills-box-item">MySQL</div>
-                                        <div class="skills-box-item">PostgresSQL</div>
-                                        <div class="skills-box-item">Базы данных</div>
-                                        <div class="skills-box-item">Git</div>
-                                        <div class="skills-box-item">Java Spring Framework</div>
+                                        @foreach($vacancy->skills as $skill)
+                                            <div class="skills-box-item">{{$skill->name}}</div>
+                                        @endforeach
                                     </div>
+                                </div>
+                                <div class="buttons-wrap vue-response-vacancy">
+                                    @if(Auth::user())
+                                        <response-vacancy
+                                            resume_list="{{$resume_list->getContent()}}"
+                                            id="{{$vacancy->id}}"
+                                            responsed_id="@if(!empty($vacancy->vacancyResponses)){{$vacancy->vacancyResponses->resume_id}}@endif"
+                                        >
+                                        </response-vacancy>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="info-box description-block">
                                     <div class="block-heading">Описание вакансии</div>
                                     <div class="description">
-                                        Наша компания ищет web-разработчика. Разработка сайтов по макетам. Опыт работы обязателен. Рассматриваем удаленных сотрудников.
+                                        {!! $vacancy->description !!}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-4 mt-4">
-                    <div class="buttons-wrap">
-                        <div class="button-st -transparent">Откликнуться</div>
                     </div>
                 </div>
             </div>

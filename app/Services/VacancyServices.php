@@ -4,7 +4,7 @@ use App\Models\VacancyCandidates;
 
 class VacancyServices
 {
-    public static function getVacancyCandidates($vacancy_id, $limit = null)
+    public static function getVacancyCandidates($vacancy_id, $limit = null, $filter_code = 'rating')
     {
         $vacancy_candidates = new VacancyCandidates();
         $query = $vacancy_candidates->getDefaultQuery();
@@ -14,6 +14,11 @@ class VacancyServices
         if($limit) {
             $query->limit($limit);
         }
+
+        if($filter_code) {
+            $query->orderByDesc("vc.$filter_code");
+        }
+
         $candidates = $query->get();
         if($candidates) {
             foreach($candidates as $candidate) {

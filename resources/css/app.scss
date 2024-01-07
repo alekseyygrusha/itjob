@@ -5,13 +5,28 @@
     text-align: center;
     margin-top: 200px;
 }
+
+html {
+    height: 100%;
+}
 body {
     font-family: 'Manrope', sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #59b999;
+    color: white;
+    padding: 16px 0;
 }
 a {
     color: initial !important;
     text-decoration: none !important;
 }
+
 
 header {
     padding: 16px 0;
@@ -512,8 +527,15 @@ button.button {
         .picked-resume {
             font-size: 12px;
             padding-left: 10px;
+            padding-right: 10px;
             color: #0373d5;
             font-weight: 800;
+        }
+
+        &.resume-send {
+            border: 1px solid #59b999;
+            border-left: none;
+            border-radius: 13px;
         }
     }
 }
@@ -843,9 +865,10 @@ button.button {
     &.-green {
         background-color: #59b999;
         color: white !important;
-
+        border: 2px solid #59b999;
         &:hover {
             background-color: #528a78;
+            border: 2px solid #528a78;
         }
     }
 
@@ -856,6 +879,7 @@ button.button {
 
         &:hover {
             background-color: #59b999;
+            border: 2px solid #59b999;
             color: white !important;
         }
     }
@@ -1082,12 +1106,95 @@ button.button {
         }
     }
 
+    .response-button-wrap {
+        &.-open {
+            .picked-wrap {
+                .picked-wrap {
+                    display: none;
+                }
+            }
+
+            .response-menu {
+                .close {
+                    float: none;
+                    text-align: right;
+                    margin-bottom: 5px;
+                }
+            }
+
+            .response-menu {
+                .resume-wrap {
+                    .resume-item {
+                        padding: 10px 20px;
+                        border: 1px solid #59b999;
+                        border-radius: 10px;
+                        margin-bottom: 15px;
+
+                        .resume-title {
+                            font-size: 16px;
+                            font-weight: 600;
+                            color: #59b999 !important;
+                        }
+
+                        .city,
+                        .experience {
+                            padding-left: 5px;
+                            margin-bottom: 5px;
+                            border-left: 2px solid #59b999;
+                        }
+
+                        .description {
+                            margin: 10px 0;
+                        }
+
+
+                    }
+                }
+
+
+            }
+        }
+    }
+
     .candidates-block {
+        .candidates-filter {
+            display: flex;
+            flex-wrap: wrap;
+
+            .filter-item {
+                margin-right: 10px;
+                margin-bottom: 8px;
+                /*padding: 8px 10px;
+                border: 1px solid #59b999;
+                border-radius: 10px;*/
+                font-size: 10px;
+                font-weight: 600;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &.-active {
+
+                }
+
+
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
         .candidates-list {
             .candidates-list-item {
+
                 .content {
                     .content-item {
                         margin-bottom: 5px;
+                    }
+
+                    .salary-box {
+                        margin: 5px 0;
                     }
                     .name {
 
@@ -1096,7 +1203,7 @@ button.button {
                     .resume-title {
                         font-size: 16px;
                         font-weight: 600;
-                        color: #59b999;
+                        color: #59b999 !important;
                     }
 
                     .city,
@@ -1203,6 +1310,21 @@ button.button {
 
     .skills-box {
         font-size: 12px;
+    }
+}
+
+.user-vacancy-invites {
+    display: flex;
+    flex-direction: column;
+    .invite-item {
+        border-radius: 4px;
+        border: 1px solid #59b999;
+        padding: 10px;
+        margin-bottom: 15px;
+        a {
+            color: #59b999 !important;
+            font-weight: 500 ;
+        }
     }
 }
 

@@ -7,8 +7,22 @@
   margin-top: 200px;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Manrope", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #59b999;
+  color: white;
+  padding: 16px 0;
 }
 
 a {
@@ -425,8 +439,14 @@ button.button {
 .response-button-wrap .picked-wrap .picked-resume {
   font-size: 12px;
   padding-left: 10px;
+  padding-right: 10px;
   color: #0373d5;
   font-weight: 800;
+}
+.response-button-wrap .picked-wrap.resume-send {
+  border: 1px solid #59b999;
+  border-left: none;
+  border-radius: 13px;
 }
 
 .truncate-text {
@@ -761,9 +781,11 @@ button.button {
 .button-st.-green {
   background-color: #59b999;
   color: white !important;
+  border: 2px solid #59b999;
 }
 .button-st.-green:hover {
   background-color: #528a78;
+  border: 2px solid #528a78;
 }
 .button-st.-transparent {
   background-color: transparent;
@@ -772,6 +794,7 @@ button.button {
 }
 .button-st.-transparent:hover {
   background-color: #59b999;
+  border: 2px solid #59b999;
   color: white !important;
 }
 .button-st.-border-yellow {
@@ -957,15 +980,77 @@ button.button {
 .resume-card .skills-box .skills-box-item:not(:last-child) {
   margin-right: 6px;
 }
+.vacancy-card .response-button-wrap.-open .picked-wrap .picked-wrap,
+.resume-card .response-button-wrap.-open .picked-wrap .picked-wrap {
+  display: none;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .close,
+.resume-card .response-button-wrap.-open .response-menu .close {
+  float: none;
+  text-align: right;
+  margin-bottom: 5px;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item {
+  padding: 10px 20px;
+  border: 1px solid #59b999;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .resume-title,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .resume-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #59b999 !important;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .city,
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .experience,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .city,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .experience {
+  padding-left: 5px;
+  margin-bottom: 5px;
+  border-left: 2px solid #59b999;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .description,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .description {
+  margin: 10px 0;
+}
+.vacancy-card .candidates-block .candidates-filter,
+.resume-card .candidates-block .candidates-filter {
+  display: flex;
+  flex-wrap: wrap;
+}
+.vacancy-card .candidates-block .candidates-filter .filter-item,
+.resume-card .candidates-block .candidates-filter .filter-item {
+  margin-right: 10px;
+  margin-bottom: 8px;
+  /*padding: 8px 10px;
+  border: 1px solid #59b999;
+  border-radius: 10px;*/
+  font-size: 10px;
+  font-weight: 600;
+}
+.vacancy-card .candidates-block .candidates-filter .filter-item:last-child,
+.resume-card .candidates-block .candidates-filter .filter-item:last-child {
+  margin-right: 0;
+}
+.vacancy-card .candidates-block .candidates-filter .filter-item:hover,
+.resume-card .candidates-block .candidates-filter .filter-item:hover {
+  cursor: pointer;
+}
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .content-item,
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .content-item {
   margin-bottom: 5px;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .salary-box,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .salary-box {
+  margin: 5px 0;
 }
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .resume-title,
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .resume-title {
   font-size: 16px;
   font-weight: 600;
-  color: #59b999;
+  color: #59b999 !important;
 }
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .city,
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .experience,
@@ -1066,5 +1151,20 @@ button.button {
 }
 .resume-card .skills-box {
   font-size: 12px;
+}
+
+.user-vacancy-invites {
+  display: flex;
+  flex-direction: column;
+}
+.user-vacancy-invites .invite-item {
+  border-radius: 4px;
+  border: 1px solid #59b999;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.user-vacancy-invites .invite-item a {
+  color: #59b999 !important;
+  font-weight: 500;
 }
 

@@ -101,7 +101,7 @@ class VacancyController extends Controller
         dd($request);
     }
 
-    public function getVanacyByGroup($group_id) {
+    public function getVacancyByGroup($group_id) {
         $group = Groups::where('id', $group_id)->get()->first();
 
         $vacancies = Vacancies::where('job_group', $group_id)
@@ -112,7 +112,7 @@ class VacancyController extends Controller
 
         return view('templates.vacancies.vacancies_list', ['vacancies' => $vacancies, 'success' => 'Фильтр по направлению ' . $group->group_name]);
     }
-    public function getVanacyByCity($city_id) {
+    public function getVacancyByCity($city_id) {
         $city = Cities::where('id', $city_id)->get()->first();
 
         $vacancies = Vacancies::where('city', $city_id)
@@ -123,7 +123,7 @@ class VacancyController extends Controller
         return view('templates.vacancies.vacancies_list', ['vacancies' => $vacancies, 'success' => 'Фильтр по городу ' . $city->name]);
     }
 
-    public function getVanacy($id) {
+    public function getVacancy($id) {
 
         self::getData();
         $vacancy = self::getVacancyData($id);
@@ -133,16 +133,19 @@ class VacancyController extends Controller
     }
 
     public function viewVacancy($id) {
+
         self::getData();
         $vacancy = self::getVacancyData($id);
 
         $vacancy_candidates = new FillVacancyCandidates();
 
-        $vacancy_candidates->start();
+        /*$vacancy_candidates->start();*/
 
         $data = [
             'vacancy' =>  $vacancy
         ];
+
+
 
         View::share($data);
 
@@ -150,12 +153,19 @@ class VacancyController extends Controller
     }
 
     public function showVacancy($id) {
-        self::getData();
-        $vacancy = self::getVacancyData($id);
 
+        self::getData();
+
+        $vacancy = Vacancies::find($id)
+            ->where('id', $id)
+            ->with(['skills', 'experience', 'bindCity', 'vacancyResponses'])
+            ->first();
+
+        $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
 
         $data = [
-            'vacancy' =>  $vacancy
+            'vacancy' =>  $vacancy,
+            'resume_list' => response()->json($resume_list)
         ];
 
         View::share($data);
@@ -168,11 +178,11 @@ class VacancyController extends Controller
         return Vacancies::find($id)
             ->where('id', $id)
             ->where('user_id', Auth::id())
-            ->with(['skills', 'experience', 'bindCity'])
+            ->with(['skills', 'experience', 'bindCity', 'vacancyResponses'])
             ->first();
     }
 
-    public function getVanacyResponses($id) {
+    public function getVacancyResponses($id) {
         $vacancy_responses = VacancyResponses::where('vacancy_id', $id)
             ->with(['getResume', 'getVacancy'])
             ->get();
@@ -283,14 +293,12 @@ class VacancyController extends Controller
     }
 
     public function getVacancyCandidates(Request $request): JsonResponse {
-        $candidates = VacancyServices::getVacancyCandidates($request->vacancy_id, 5);
-
+        $candidates = VacancyServices::getVacancyCandidates($request->vacancy_id, 10, $request->filter);
         return response()->json($candidates);
     }
 
     public function inviteVacancyCandidate(Request $request) {
         $candidate = VacancyCandidates::where(['id' => $request->candidate_id])->get()->first();
-
         $candidate->is_accept = 1;
 
         $candidate->save();
@@ -299,9 +307,9 @@ class VacancyController extends Controller
     }
 
     public function declineVacancyCandidate(Request $request) {
-        $candidate = VacancyCandidates::where(['resume_id' => $request->resume_id, 'vacancy_id' => $request->vacancy_id]);
+        $candidate = VacancyCandidates::where(['id' => $request->candidate_id])->get()->first();
 
-        $candidate->rejected = 1;
+        $candidate->is_rejected = 1;
         $candidate->save();
 
         return true;

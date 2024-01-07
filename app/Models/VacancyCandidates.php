@@ -2,6 +2,7 @@
 namespace App\Models;
 
 
+use App\Models\Resume\Resume;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +20,7 @@ class VacancyCandidates extends Model
 
     public function getDefaultQuery(): Builder
     {
-        return self::query()->select(['r.id as resume_id','c.id as candidate_id', 'r.active', 'r.user_id', 'r.job_title', 'r.city_id', 'r.experience_time', 'r.description', 'r.max_salary', 'r.min_salary', 'r.job_group', 'c.name as city_name', 'vc.is_accept', 'vc.is_rejected'])
+        return self::query()->select(['r.id as resume_id','vc.id as candidate_id', 'r.active', 'r.user_id', 'r.job_title', 'r.city_id', 'r.experience_time', 'r.description', 'r.max_salary', 'r.min_salary', 'r.job_group', 'c.name as city_name', 'vc.is_accept', 'vc.is_rejected'])
             ->from("resume as r")
             ->leftJoin("$this->table as vc", "vc.resume_id", "=", "r.id")
             ->leftJoin('city_list as c', 'c.id', '=', 'r.city_id');
@@ -32,5 +33,15 @@ class VacancyCandidates extends Model
             ->from("resume_skills as rs")
             ->leftJoin("skills as s", "s.id", "=", "rs.skill_id");
 
+    }
+
+    public function resume()
+    {
+        return $this->hasOne(Resume::class, 'id', 'resume_id');
+    }
+
+    public function vacancy()
+    {
+        return $this->hasOne(Vacancies::class, 'id', 'vacancy_id');
     }
 }
