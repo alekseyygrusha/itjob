@@ -11,7 +11,7 @@
                                     <div class="content-item -job-title">{{project.job_title}}</div>
                                     <div class="skills-list">
                                         <div class="skill-item" v-for="skill in JSON.parse(project.skills)">
-                                            {{skill}}
+                                            {{skill.name}}
                                         </div>
                                     </div>
                                     <div class="content-item -description">{{project.description && project.description.length > 100 ? project.description.slice(0 , 100) + '...' : project.description}}</div>
@@ -44,35 +44,34 @@
 import {ajax} from "@/vanilla/ajax.js";
 import ProjectCard from "../ProjectCard/ProjectCard.vue";
 export default {
-    props: ['projects', 'resume_id'],
+    props: ['projects', 'resume_id', 'skills'],
     data () {
         return {
             projects_list: this.projects
         }
     },
     mounted() {
-        console.log(this.projects_list)
+
     },
     methods: {
         openProjectsCard(id = null) {
             let self = this; //костыль для сохранения контекста
-            console.log(this.resume_id);
-            console.log("openProjectsCard");
+
             this.$modal.show({
                 component: ProjectCard,
                 bind: {
                     form_code: 'form_code',
                     messageTest: '',
                     id: id,
-                    resume_id: this.resume_id
+                    resume_id: this.resume_id,
+                    skills: this.skills
                 },
                 on: {
                     updateList() {
-                        console.log("123123");
                         self.getProjectsList();
                     },
                 },
-            },);
+            });
         },
         getProjectsList() {
             ajax.getProjectsList({id: this.resume_id}).then((res) => {

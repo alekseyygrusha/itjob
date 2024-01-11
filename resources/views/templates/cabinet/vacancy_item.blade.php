@@ -5,7 +5,7 @@
         @endif
     </div>
 
-    <a class="job-title">
+    <a class="job-title" href="/cabinet/vacancy/view/{{$vacancy->id}}">
         {{$vacancy->job_title}}
     </a>
     <div class="salary">

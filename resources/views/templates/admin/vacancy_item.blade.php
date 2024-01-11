@@ -21,7 +21,7 @@
                     Скрыть
                 @else
                     Показать
-            @endif    
+            @endif
         </button>
         {{-- <a class="btn btn-danger" href='{{route('vacancy-block')}}'>Заблокировать</a> --}}
     </div>

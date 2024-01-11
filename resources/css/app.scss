@@ -5,13 +5,28 @@
     text-align: center;
     margin-top: 200px;
 }
+
+html {
+    height: 100%;
+}
 body {
     font-family: 'Manrope', sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #59b999;
+    color: white;
+    padding: 16px 0;
 }
 a {
-    color: black;
+    color: initial !important;
     text-decoration: none !important;
 }
+
 
 header {
     padding: 16px 0;
@@ -71,6 +86,8 @@ header .content .login_container {
                         padding-right: 10px;
                         font-size: 16px;
                     }
+
+
                 }
 
                 .radio-buttons {
@@ -510,8 +527,15 @@ button.button {
         .picked-resume {
             font-size: 12px;
             padding-left: 10px;
+            padding-right: 10px;
             color: #0373d5;
             font-weight: 800;
+        }
+
+        &.resume-send {
+            border: 1px solid #59b999;
+            border-left: none;
+            border-radius: 13px;
         }
     }
 }
@@ -566,6 +590,10 @@ button.button {
             &:disabled {
                 opacity: .5;
             }
+        }
+
+        textarea {
+            min-height: 350px;
         }
 
     }
@@ -778,6 +806,29 @@ button.button {
     width: 80%;
     margin: 0 auto;
     display: block;
+
+    &.-add-item-row {
+        padding: 5px 15px;
+        width: 100%;
+        .input-wrap {
+            position: relative;
+            width: 100%;
+            .button-add-wrap {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                top: 0;
+                bottom: 0;
+                right: 10px;
+
+                .button-add {
+                    font-size: 12px;
+                    border: 1px solid #59b999;
+                }
+            }
+
+        }
+    }
     .select2-container {
         .select2-selection {
             border: 1px solid #59b999;
@@ -814,9 +865,10 @@ button.button {
     &.-green {
         background-color: #59b999;
         color: white !important;
-
+        border: 2px solid #59b999;
         &:hover {
             background-color: #528a78;
+            border: 2px solid #528a78;
         }
     }
 
@@ -827,6 +879,7 @@ button.button {
 
         &:hover {
             background-color: #59b999;
+            border: 2px solid #59b999;
             color: white !important;
         }
     }
@@ -994,8 +1047,284 @@ button.button {
             border-radius: 10px;
         }
     }
+}
+
+.vacancy-card,
+.resume-card {
+    .block-heading {
+        font-size: 18px;
+        font-weight: 500;
+        color: #59b999;
+        margin-bottom: 6px;
+    }
+    .info-box {
+        padding: 10px 20px;
+        border: 1px solid #59b999;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        .content {
+            .content-item {
+                margin-bottom: 8px;
+                &.-name {
+                    font-weight: 500;
+                    margin-bottom: 0;
+                }
+                &.-title {
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #59b999;
+                }
+
+                &.-salary {
+                    font-weight: bold;
+                }
+
+                &.-exp,
+                &.-company,
+                &.-city {
+                    padding-left: 5px;
+                    border-left: 2px solid #59b999;
+                }
+            }
+        }
+    }
+
+    .skills-box {
+        display: flex;
+        flex-wrap: wrap;
+
+        .skills-box-item {
+            padding: 3px 6px;
+            border: 1px solid #59b999;
+            font-size: 13px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+
+            &:not(:last-child) {
+                margin-right: 6px;
+            }
+        }
+    }
+
+    .response-button-wrap {
+        &.-open {
+            .picked-wrap {
+                .picked-wrap {
+                    display: none;
+                }
+            }
+
+            .response-menu {
+                .close {
+                    float: none;
+                    text-align: right;
+                    margin-bottom: 5px;
+                }
+            }
+
+            .response-menu {
+                .resume-wrap {
+                    .resume-item {
+                        padding: 10px 20px;
+                        border: 1px solid #59b999;
+                        border-radius: 10px;
+                        margin-bottom: 15px;
+
+                        .resume-title {
+                            font-size: 16px;
+                            font-weight: 600;
+                            color: #59b999 !important;
+                        }
+
+                        .city,
+                        .experience {
+                            padding-left: 5px;
+                            margin-bottom: 5px;
+                            border-left: 2px solid #59b999;
+                        }
+
+                        .description {
+                            margin: 10px 0;
+                        }
+
+
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    .candidates-block {
+        .candidates-filter {
+            display: flex;
+            flex-wrap: wrap;
+
+            .filter-item {
+                margin-right: 10px;
+                margin-bottom: 8px;
+                /*padding: 8px 10px;
+                border: 1px solid #59b999;
+                border-radius: 10px;*/
+                font-size: 10px;
+                font-weight: 600;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &.-active {
+
+                }
 
 
 
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .candidates-list {
+            .candidates-list-item {
+
+                .content {
+                    .content-item {
+                        margin-bottom: 5px;
+                    }
+
+                    .salary-box {
+                        margin: 5px 0;
+                    }
+                    .name {
+
+                    }
+
+                    .resume-title {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #59b999 !important;
+                    }
+
+                    .city,
+                    .experience {
+                        padding-left: 5px;
+                        border-left: 2px solid #59b999;
+                    }
+
+                    .experience {
+
+                    }
+
+                    .button-wrap {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+
+
+                        .button-st {
+                            margin-bottom: 5px;
+                            width: 48%;
+                            font-size: 12px;
+                            font-weight: 600;
+                            &:last-child {
+                                width: 100%;
+                            }
+                        }
+
+                        .-status {
+                            width: 100%;
+
+                            &:hover {
+                                cursor: auto;
+                                background: none;
+                                border-color: #59b999;
+                                color: black !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.loader-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #59b999;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+
+.resume-card {
+    padding: 15px;
+
+    .info-box {
+        padding: 12px;
+    }
+
+    .skills-box {
+        font-size: 12px;
+    }
+}
+
+.user-vacancy-invites {
+    display: flex;
+    flex-direction: column;
+    .invite-item {
+        border-radius: 4px;
+        border: 1px solid #59b999;
+        padding: 10px;
+        margin-bottom: 15px;
+        a {
+            color: #59b999 !important;
+            font-weight: 500 ;
+        }
+    }
 }
 

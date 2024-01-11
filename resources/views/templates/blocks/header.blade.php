@@ -1,7 +1,7 @@
 <header>
     <?php
         if(isset($_SESSION['user_session']) && !empty($_SESSION['user_session'])) {
-            $login_user = $_SESSION['user_session']; 
+            $login_user = $_SESSION['user_session'];
         }
     ?>
 
@@ -16,7 +16,7 @@
                         <div class="header-item">
                             <a href="/">Вакансии</a>
                         </div>
-                        
+
                         @if (Auth::check())
                             @if(Auth::user()->user_group == 1)
                                 <div class="header-item">
@@ -29,21 +29,24 @@
                             <div class="header-item">
                                 <a href="/post">Разместить</a>
                             </div>
+                            <div class="header-item">
+                                <a href="/cabinet/invites">Приглашения</a>
+                            </div>
                             <div class="header-item name">
                                 <a href="/cabinet">
                                     Кабинет
                                 </a>
                             </div>
-                            <a href="/logout">Выйти</a>  
+                            <a href="/logout">Выйти</a>
                         @else
                             <div class="header-item">
                                 <a href="/register">Регистрация</a>
                             </div>
-                            <a href="/login">Войти</a>  
+                            <a href="/login">Войти</a>
                         @endif
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </header>

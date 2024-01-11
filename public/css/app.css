@@ -7,12 +7,26 @@
   margin-top: 200px;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Manrope", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #59b999;
+  color: white;
+  padding: 16px 0;
 }
 
 a {
-  color: black;
+  color: initial !important;
   text-decoration: none !important;
 }
 
@@ -425,8 +439,14 @@ button.button {
 .response-button-wrap .picked-wrap .picked-resume {
   font-size: 12px;
   padding-left: 10px;
+  padding-right: 10px;
   color: #0373d5;
   font-weight: 800;
+}
+.response-button-wrap .picked-wrap.resume-send {
+  border: 1px solid #59b999;
+  border-left: none;
+  border-radius: 13px;
 }
 
 .truncate-text {
@@ -497,6 +517,11 @@ button.button {
 .project-card .input-wrap input:disabled,
 .project-card .input-wrap textarea:disabled {
   opacity: 0.5;
+}
+.post-vacancy .input-wrap textarea,
+.resume-form .input-wrap textarea,
+.project-card .input-wrap textarea {
+  min-height: 350px;
 }
 .post-vacancy .form-check,
 .resume-form .form-check,
@@ -710,6 +735,26 @@ button.button {
   margin: 0 auto;
   display: block;
 }
+.select-input.-add-item-row {
+  padding: 5px 15px;
+  width: 100%;
+}
+.select-input.-add-item-row .input-wrap {
+  position: relative;
+  width: 100%;
+}
+.select-input.-add-item-row .input-wrap .button-add-wrap {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+}
+.select-input.-add-item-row .input-wrap .button-add-wrap .button-add {
+  font-size: 12px;
+  border: 1px solid #59b999;
+}
 .select-input .select2-container .select2-selection {
   border: 1px solid #59b999;
   padding: 8px 20px;
@@ -736,9 +781,11 @@ button.button {
 .button-st.-green {
   background-color: #59b999;
   color: white !important;
+  border: 2px solid #59b999;
 }
 .button-st.-green:hover {
   background-color: #528a78;
+  border: 2px solid #528a78;
 }
 .button-st.-transparent {
   background-color: transparent;
@@ -747,6 +794,7 @@ button.button {
 }
 .button-st.-transparent:hover {
   background-color: #59b999;
+  border: 2px solid #59b999;
   color: white !important;
 }
 .button-st.-border-yellow {
@@ -873,5 +921,250 @@ button.button {
   margin: 0 auto;
   border: 1px solid #59b999;
   border-radius: 10px;
+}
+
+.vacancy-card .block-heading,
+.resume-card .block-heading {
+  font-size: 18px;
+  font-weight: 500;
+  color: #59b999;
+  margin-bottom: 6px;
+}
+.vacancy-card .info-box,
+.resume-card .info-box {
+  padding: 10px 20px;
+  border: 1px solid #59b999;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.vacancy-card .info-box .content .content-item,
+.resume-card .info-box .content .content-item {
+  margin-bottom: 8px;
+}
+.vacancy-card .info-box .content .content-item.-name,
+.resume-card .info-box .content .content-item.-name {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.vacancy-card .info-box .content .content-item.-title,
+.resume-card .info-box .content .content-item.-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #59b999;
+}
+.vacancy-card .info-box .content .content-item.-salary,
+.resume-card .info-box .content .content-item.-salary {
+  font-weight: bold;
+}
+.vacancy-card .info-box .content .content-item.-exp, .vacancy-card .info-box .content .content-item.-company, .vacancy-card .info-box .content .content-item.-city,
+.resume-card .info-box .content .content-item.-exp,
+.resume-card .info-box .content .content-item.-company,
+.resume-card .info-box .content .content-item.-city {
+  padding-left: 5px;
+  border-left: 2px solid #59b999;
+}
+.vacancy-card .skills-box,
+.resume-card .skills-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.vacancy-card .skills-box .skills-box-item,
+.resume-card .skills-box .skills-box-item {
+  padding: 3px 6px;
+  border: 1px solid #59b999;
+  font-size: 13px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.vacancy-card .skills-box .skills-box-item:not(:last-child),
+.resume-card .skills-box .skills-box-item:not(:last-child) {
+  margin-right: 6px;
+}
+.vacancy-card .response-button-wrap.-open .picked-wrap .picked-wrap,
+.resume-card .response-button-wrap.-open .picked-wrap .picked-wrap {
+  display: none;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .close,
+.resume-card .response-button-wrap.-open .response-menu .close {
+  float: none;
+  text-align: right;
+  margin-bottom: 5px;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item {
+  padding: 10px 20px;
+  border: 1px solid #59b999;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .resume-title,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .resume-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #59b999 !important;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .city,
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .experience,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .city,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .experience {
+  padding-left: 5px;
+  margin-bottom: 5px;
+  border-left: 2px solid #59b999;
+}
+.vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .description,
+.resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .description {
+  margin: 10px 0;
+}
+.vacancy-card .candidates-block .candidates-filter,
+.resume-card .candidates-block .candidates-filter {
+  display: flex;
+  flex-wrap: wrap;
+}
+.vacancy-card .candidates-block .candidates-filter .filter-item,
+.resume-card .candidates-block .candidates-filter .filter-item {
+  margin-right: 10px;
+  margin-bottom: 8px;
+  /*padding: 8px 10px;
+  border: 1px solid #59b999;
+  border-radius: 10px;*/
+  font-size: 10px;
+  font-weight: 600;
+}
+.vacancy-card .candidates-block .candidates-filter .filter-item:last-child,
+.resume-card .candidates-block .candidates-filter .filter-item:last-child {
+  margin-right: 0;
+}
+.vacancy-card .candidates-block .candidates-filter .filter-item:hover,
+.resume-card .candidates-block .candidates-filter .filter-item:hover {
+  cursor: pointer;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .content-item,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .content-item {
+  margin-bottom: 5px;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .salary-box,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .salary-box {
+  margin: 5px 0;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .resume-title,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .resume-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #59b999 !important;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .city,
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .experience,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .city,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .experience {
+  padding-left: 5px;
+  border-left: 2px solid #59b999;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .button-st,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .button-st {
+  margin-bottom: 5px;
+  width: 48%;
+  font-size: 12px;
+  font-weight: 600;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .button-st:last-child,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .button-st:last-child {
+  width: 100%;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .-status,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .-status {
+  width: 100%;
+}
+.vacancy-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .-status:hover,
+.resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .-status:hover {
+  cursor: auto;
+  background: none;
+  border-color: #59b999;
+  color: black !important;
+}
+
+.loader-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #59b999;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+.resume-card {
+  padding: 15px;
+}
+.resume-card .info-box {
+  padding: 12px;
+}
+.resume-card .skills-box {
+  font-size: 12px;
+}
+
+.user-vacancy-invites {
+  display: flex;
+  flex-direction: column;
+}
+.user-vacancy-invites .invite-item {
+  border-radius: 4px;
+  border: 1px solid #59b999;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.user-vacancy-invites .invite-item a {
+  color: #59b999 !important;
+  font-weight: 500;
 }
 

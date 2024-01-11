@@ -1,7 +1,7 @@
 <template>
     <div v-if="this.isChecked" class="button-wrap">
         <template v-if="this.isAccept">
-            <div class="button vacansy_response -color-blue">Перейти в чат</div>
+            <div class="button vacancy_response -color-blue">Перейти в чат</div>
             <div>Отклик принят</div>
         </template>
         <template v-else>
@@ -9,8 +9,8 @@
         </template>
     </div>
     <div v-else class="button-wrap">
-        <div class="button vacansy_response -green-color btn-success" @click="acceptResponseVacancy()">Принять</div>
-        <div class="button btn-warning btn-hide" @click="declineResponseVacancy()">Отклонить</div>
+        <div class="button-st -transparent vacancy_response mr-2" @click="acceptResponseVacancy()">Принять</div>
+        <div class="button-st -border-yellow btn-hide" @click="declineResponseVacancy()">Отклонить</div>
     </div>
 </template>
 
@@ -24,11 +24,11 @@
                 isAccept: Number(this.is_accept),
                 isChecked: Number(this.is_checked),
             }
-        }, 
+        },
         mounted() {
         },
         methods: {
-          
+
             acceptResponseVacancy() {
                 let data = {
                     response_id: this.responseId,
@@ -44,7 +44,7 @@
                     } else {
                         alert("Произошла ошибка, попробуйте позже");
                     }
-                    
+
                 });
             },
 
@@ -58,14 +58,14 @@
                         return;
                     }
                     if(res.data) {
-                        
+
                         this.isAccept = false;
                         this.isChecked = true;
-                        
+
                     } else {
                         alert("Произошла ошибка, попробуйте позже");
                     }
-                    
+
                 });
             },
         }

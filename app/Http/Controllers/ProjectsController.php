@@ -33,7 +33,10 @@ class ProjectsController extends Controller
     {
         $id = $request->id;
         $project = ProjectsServices::getProject($id);
-        return response()->json($project->get()->first()->toArray());
+        $project = $project->get()->first();
+        $project->skills = json_decode($project->skills, true);
+
+        return response()->json($project);
     }
 
     public function saveProject(Request $request)
@@ -51,6 +54,7 @@ class ProjectsController extends Controller
         $project->description = $request->description;
         $project->time_months = $request->time_months;
         $project->company_name = $request->company_name;
+        $project->skills = json_encode($request->skills);
 
         //переделать. Надо создать модель для связующей таблицы
 

@@ -52,9 +52,10 @@
             <div class="form-block">
                 <div class="select-input" >
                     <selectOptions
-                        placeholder="Выбери необходимые навыки"
+                        placeholder="Требуемые навыки"
                         :options="skill_list"
                         :pickOptions="form.vacancy_skills"
+                        :addNewValue='true'
                         :multiSelect='true'
                         @update:option-value="form.vacancy_skills = $event"></selectOptions>
                 </div>

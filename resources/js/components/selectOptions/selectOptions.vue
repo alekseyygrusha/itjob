@@ -21,6 +21,18 @@
                 <div v-if="!select_options.length" class="select-option">{{ this.placeholder_data }}</div>
             </div>
             <div class="list">
+                <template v-if="addNewValue">
+                    <div class="select-input -add-item-row">
+                        <div class="input-wrap text-input -job_title">
+                            <input type="text" placeholder="Начните вводить название">
+                            <div class="button-add-wrap">
+                                <div class="button-add button-st -transparent">Добавить</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </template>
+
                 <template v-for="option in options_list" v-bind:key="option.id">
                     <div v-bind:class="checkInSelected(option) ? 'option-include' : ''" class="list-option" @click="setMultiOptionId(option)" >
                         <span class="option-text">{{option.name}}</span>
@@ -28,13 +40,14 @@
                 </template>
             </div>
         </div>
+
     </div>
 </template>
 
 <script>
 
     export default {
-        props: ['options', 'option', 'optionValue', 'placeholder', 'multiSelect', 'pickOptions'],
+        props: ['options', 'option', 'optionValue', 'placeholder', 'multiSelect', 'pickOptions', 'addNewValue'],
         data() {
             return {
                 placeholder_data: this.placeholder ? this.placeholder :  'Выберите значение',
@@ -44,11 +57,10 @@
                 select_option_name: '',
                 multiselect: this.multiSelect ?? false,
                 select_options: this.pickOptions ?? []
-                
+
             }
-        },  
+        },
         mounted() {
-            
             if(this.option) {
                 let pick_option = this.options_list.find(item => item.id === this.option);
                 this.setOptionId(pick_option.id, pick_option.name);
@@ -90,7 +102,7 @@
                 // if(this.select_options.includes(id)) {
                 //     let option_index = this.select_options.indexOf(id);
                 //     this.select_options.splice(option_index, 1);
-                    
+
                 // } else {
                 //     this.select_options.push(id);
                 // }

@@ -1,11 +1,11 @@
 <?php
 namespace App\Models\Resume;
+use App\Models\Experience;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Skills;
 use App\Models\Cities;
 use App\Models\Groups;
-use App\Models\VacancyResponses;
 
 class Resume extends Model
 {
@@ -17,6 +17,14 @@ class Resume extends Model
     }
     public function skills() {
         return $this->belongsToMany(Skills::class, 'resume_skills', 'resume_id', 'skill_id');
+    }
+
+    public function projects() {
+        return $this->belongsToMany(Project::class, 'project_resume', 'resume_id', 'project_id');
+    }
+
+    public function experience() {
+        return $this->hasOne(Experience::class, 'id', 'experience_time');
     }
 
     public function city() {

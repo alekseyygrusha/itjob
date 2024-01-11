@@ -12,10 +12,10 @@
             <div class="users-list">
                 <div class="resume-wrap">
                     <div class="vacancies-container">
-                        @if(!empty($vacancy_responses) && count($vacancy_responses) > 1)
+                        @if(!empty($vacancy_responses) && count($vacancy_responses) >= 1)
                             @foreach($vacancy_responses as $response)
                                 <div class="vacancies-card vue-response-resume">
-                                    <div class="name"><b>Иванов Иван Иванович (тут имя должно быть)</b></div>
+                                    <div class="name"><b>Иванов Иван Иванович</b></div>
                                     <a class="job-title resume-title">
                                         {{$response->getResume->job_title}}
                                     </a>
@@ -23,7 +23,7 @@
                                     <div class="experience">
                                         Опыт: {{$response->getResume->experience_time}} года
                                     </div>
-                                    @if(!empty($response->getResume->skills)) 
+                                    @if(!empty($response->getResume->skills))
                                         <div class="skills">
                                             @foreach ($response->getResume->skills as $skill)
                                                 <div class="skill__item">
@@ -33,7 +33,7 @@
                                         </div>
                                     @endif
                                     <div class="description">{{$response->getResume->description}}</div>
-                                    <response-resume 
+                                    <response-resume
                                         response_id="{{$response->id}}"
                                         is_accept="{{$response->isAccept}}"
                                         is_checked="{{$response->isChecked}}">

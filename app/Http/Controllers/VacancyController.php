@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Console\Commands\FillVacancyCandidates;
+use App\Models\VacancyCandidates;
+use App\Services\VacancyServices;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
@@ -98,7 +101,7 @@ class VacancyController extends Controller
         dd($request);
     }
 
-    public function getVanacyByGroup($group_id) {
+    public function getVacancyByGroup($group_id) {
         $group = Groups::where('id', $group_id)->get()->first();
 
         $vacancies = Vacancies::where('job_group', $group_id)
@@ -109,7 +112,7 @@ class VacancyController extends Controller
 
         return view('templates.vacancies.vacancies_list', ['vacancies' => $vacancies, 'success' => 'Фильтр по направлению ' . $group->group_name]);
     }
-    public function getVanacyByCity($city_id) {
+    public function getVacancyByCity($city_id) {
         $city = Cities::where('id', $city_id)->get()->first();
 
         $vacancies = Vacancies::where('city', $city_id)
@@ -120,7 +123,7 @@ class VacancyController extends Controller
         return view('templates.vacancies.vacancies_list', ['vacancies' => $vacancies, 'success' => 'Фильтр по городу ' . $city->name]);
     }
 
-    public function getVanacy($id) {
+    public function getVacancy($id) {
 
         self::getData();
         $vacancy = self::getVacancyData($id);
@@ -129,16 +132,51 @@ class VacancyController extends Controller
         return view('post');
     }
 
-    public function getVacancyData($id) {
-        $vacancy = Vacancies::find($id)
-            ->where('id', $id)
-            ->where('user_id', Auth::id())
-            ->with('skills')
-            ->first();
-        return $vacancy;
+    public function viewVacancy($id) {
+
+        self::getData();
+        $vacancy = self::getVacancyData($id);
+
+        $data = [
+            'vacancy' =>  $vacancy
+        ];
+
+        View::share($data);
+
+        return view('vacancy.vacancy-card-view');
     }
 
-    public function getVanacyResponses($id) {
+    public function showVacancy($id) {
+
+        self::getData();
+
+        $vacancy = Vacancies::find($id)
+            ->where('id', $id)
+            ->with(['skills', 'experience', 'bindCity', 'vacancyResponses'])
+            ->first();
+
+        $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
+
+        $data = [
+            'vacancy' =>  $vacancy,
+            'resume_list' => response()->json($resume_list)
+        ];
+
+        View::share($data);
+
+
+        return view('vacancy.vacancy-card');
+    }
+
+    public function getVacancyData($id) {
+        return Vacancies::find($id)
+            ->where('id', $id)
+            ->where('user_id', Auth::id())
+            ->with(['skills', 'experience', 'bindCity', 'vacancyResponses'])
+            ->first();
+    }
+
+    public function getVacancyResponses($id) {
         $vacancy_responses = VacancyResponses::where('vacancy_id', $id)
             ->with(['getResume', 'getVacancy'])
             ->get();
@@ -244,6 +282,29 @@ class VacancyController extends Controller
         $vacancy_response->isChecked = true;
         $vacancy_response->isAccept = false;
         $vacancy_response->save();
+
+        return true;
+    }
+
+    public function getVacancyCandidates(Request $request): JsonResponse {
+        $candidates = VacancyServices::getVacancyCandidates($request->vacancy_id, 10, $request->filter);
+        return response()->json($candidates);
+    }
+
+    public function inviteVacancyCandidate(Request $request) {
+        $candidate = VacancyCandidates::where(['id' => $request->candidate_id])->get()->first();
+        $candidate->is_accept = 1;
+
+        $candidate->save();
+
+        return true;
+    }
+
+    public function declineVacancyCandidate(Request $request) {
+        $candidate = VacancyCandidates::where(['id' => $request->candidate_id])->get()->first();
+
+        $candidate->is_rejected = 1;
+        $candidate->save();
 
         return true;
     }

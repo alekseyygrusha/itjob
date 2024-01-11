@@ -2,12 +2,16 @@
     <vue-final-modal
         :name="modalName"
         v-model="showModal"
-        @before-close="beforeClose"
         classes="modal-container"
         content-class="modal-content project-card"
     >
-
-        <div class="inner-content">
+        <div class="loader-box" v-if="showLoader">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="inner-content" v-else>
             <div class="form-block">
                 <div class="heading">Укажите название проекта:</div>
                 <div class="select-input">
@@ -23,6 +27,18 @@
                     <div class="input-wrap text-input -job_title">
                         <input type="text" v-model="project_form.job_title" placeholder="Backend-разработчик">
                     </div>
+                </div>
+            </div>
+
+            <div class="form-block">
+                <div class="select-input" >
+                    <selectOptions
+                        placeholder="Технологии с которыми вы работали"
+                        :options="this.skills"
+                        :pickOptions="this.skills_project"
+                        :addNewValue='true'
+                        :multiSelect='true'
+                        @update:option-value="this.skills_project = $event"></selectOptions>
                 </div>
             </div>
             <div class="form-block">
@@ -64,60 +80,68 @@
                 <div class="button-st -transparent mr-2" @click="saveProject()">Сохранить</div>
                 <div v-if="this.id" class="button-st -border-yellow" @click="unbindResumeProject()">Отвязать</div>
             </div>
-
-
         </div>
     </vue-final-modal>
 </template>
 <script>
 import {ajax} from "@/vanilla/ajax.js";
-import selectOptions from "../../selectOptions/selectOptions.vue";
+
+import SelectOptions from "../../selectOptions/selectOptions.vue";
 export default {
     name: "MessagePopup",
-    props: ['form_code', 'id', 'resume_id'],
+    components: {SelectOptions},
+    props: ['form_code', 'id', 'resume_id', 'skills'],
 
     mounted() {
-        console.log(this.resume_id)
+
         this.loadProjectDada();
     },
     data() {
         return {
             showModal: false,
             modalName: this.form_code,
+            showLoader: true,
             project_form: {
                 id: '',
                 company_name: '',
                 description: '',
                 job_title: '',
-                skills: '',
+                skills: [],
                 time_months: '',
                 title: '',
                 user_id: ''
-            }
+            },
+            skills_project: []
         }
     },
     methods: {
         loadProjectDada() {
+
           if(this.id) {
               ajax.getProject({id: this.id, resume_id: this.resume_id}).then((res) => {
-
                   if(res.data) {
                       this.project_form = res.data;
                       this.project_form.resume_id = this.resume_id;
+                      this.showLoader = false;
+
+                        if(res.data.skills.length) {
+                            // хитрое решение для того сохранить реактивность
+                            res.data.skills.forEach(el => {
+                                this.skills_project.push(el);
+                            })
+                        }
                   }
               });
+          } else {
+              this.showLoader = false;
           }
         },
         closeModal() {
-            console.log("closeModal");
             this.$vfm.hide(this.modalName);
         },
-        beforeClose() {
-            console.log('beforeClose');
-        },
-
         saveProject() {
             this.project_form.resume_id = this.resume_id;
+            console.log(this.project_form)
             ajax.saveProject(this.project_form).then((res) => {
                 if(res.status === 200) {
                     //дёргаем перерисовку списка проектов

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Experience;
+use App\Models\VacancyCandidates;
 use App\Services\ProjectsServices;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
@@ -71,6 +72,16 @@ class CabinetController extends Controller
         ];
 
         return view('resume.resume-card', $data);
+    }
+
+    public static function invites()
+    {
+        $user_resumes = Resume::where(['user_id' => Auth::id()])->get()->pluck('id');
+
+        $vacancies_invites = VacancyCandidates::whereIn('resume_id', $user_resumes)
+            ->where(['is_accept' => 1])->with(['resume', 'vacancy.bindCity'])->get()->all();
+
+        return view('cabinet.invites', ['vacancies_invites' => $vacancies_invites]);
     }
 
 
