@@ -9,8 +9,8 @@
         </template>
     </div>
     <div v-else class="button-wrap">
-        <div class="button vacancy_response -green-color btn-success" @click="acceptResponseVacancy()">Принять</div>
-        <div class="button btn-warning btn-hide" @click="declineResponseVacancy()">Отклонить</div>
+        <div class="button-st -transparent vacancy_response mr-2" @click="acceptResponseVacancy()">Принять</div>
+        <div class="button-st -border-yellow btn-hide" @click="declineResponseVacancy()">Отклонить</div>
     </div>
 </template>
 

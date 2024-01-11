@@ -38,9 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hideVacancy'])->name('vacancy-hide');
 });
 
-
-
-
 // AJAX-запросы
 Route::prefix('ajax')->group(function () {
     Route::post('vacancy-response',  [App\Http\Controllers\VacancyController::class, 'vacancyResponse'])->name('vacancy-response');
@@ -81,10 +78,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'], function () {
     return view('admin');
 })->name('admin');
-
-
-
-
 
 Route::prefix('filter')->group(function () {
     Route::get('/city/{city_id}',[App\Http\Controllers\VacancyController::class, 'getVacancyByCity'], function () {});

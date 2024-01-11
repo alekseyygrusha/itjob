@@ -137,15 +137,9 @@ class VacancyController extends Controller
         self::getData();
         $vacancy = self::getVacancyData($id);
 
-        $vacancy_candidates = new FillVacancyCandidates();
-
-        /*$vacancy_candidates->start();*/
-
         $data = [
             'vacancy' =>  $vacancy
         ];
-
-
 
         View::share($data);
 
