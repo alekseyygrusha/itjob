@@ -42,6 +42,11 @@
                                             responsed_id="@if(!empty($vacancy->vacancyResponses)){{$vacancy->vacancyResponses->resume_id}}@endif"
                                         >
                                         </response-vacancy>
+                                    @else
+                                        <div class="info-box block-to-login">
+                                            <div class="login-text mb-2">Для отклика на вакансию требуется авторизация</div>
+                                            <a class="link-to-login button-st -transparent" href="/login/">Войти</a>
+                                        </div>
                                     @endif
                                 </div>
                             </div>

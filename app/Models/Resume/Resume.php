@@ -2,6 +2,7 @@
 namespace App\Models\Resume;
 use App\Models\Experience;
 use App\Models\Project;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Skills;
 use App\Models\Cities;
@@ -9,6 +10,8 @@ use App\Models\Groups;
 
 class Resume extends Model
 {
+    Use HasFactory;
+
     public $timestamps = false;
     protected $table = 'resume';
     public function link()

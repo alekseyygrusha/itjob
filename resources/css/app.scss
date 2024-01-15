@@ -305,7 +305,9 @@ header .content .login_container {
             position: absolute;
             right: 15px;
             top: 15px;
-            font-weight: 700;
+            font-weight: 500;
+
+            border-bottom: 3px solid initial;
         }
 
         .response-resume-title {
@@ -886,11 +888,12 @@ button.button {
 
     &.-border-yellow {
         border: 2px solid #ffc107;
-
+        background-color: transparent;
         color: black;
 
         &:hover {
             background-color: #ffc107;
+            border: 2px solid #ffc107;
             color: white !important;
 
         }
@@ -898,9 +901,10 @@ button.button {
 
     &.-red {
         border: 2px solid red;
-
+        background-color: transparent;
         &:hover {
             background-color: red;
+            border: 2px solid red;
             color: white !important;
         }
     }
@@ -1087,6 +1091,13 @@ button.button {
                 }
             }
         }
+    }
+
+    .block-to-login {
+        display: flex;
+        flex-direction: column;
+
+
     }
 
     .skills-box {
@@ -1325,6 +1336,20 @@ button.button {
             color: #59b999 !important;
             font-weight: 500 ;
         }
+    }
+}
+
+.auth-form {
+    .card-header {
+        background-color: #59b999;
+        color: white;
+    }
+
+    .register-link {
+        font-size: 14px;
+        margin-top: 6px;
+        color: #59b999 !important;
+        display: block;
     }
 }
 

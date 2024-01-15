@@ -41,21 +41,18 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        self::getData();
-        return view('post');
+        $data = self::getData();
+        return view('post', $data);
     }
 
     public static function getData () {
 
-        $data = [
+        return [
             'skills' => response()->json(Skills::all()),
             'cities' => response()->json(Cities::all()),
             'groups' => response()->json(Groups::all()),
             'experiences' => response()->json(Experience::all()),
         ];
-
-
-        View::share($data);
     }
 
     public function delete(Request $request) {
