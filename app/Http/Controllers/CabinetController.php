@@ -116,7 +116,8 @@ class CabinetController extends Controller
     }
 
     public static function getData () {
-        $vacancies = Vacancies::with(['vacancyResponsesList', 'bindCity', 'skills'])->where(['user_id' => Auth::id()])->get();
+        $vacancies = Vacancies::with(['vacancyResponsesList', 'bindCity', 'skills', 'status'])->where(['user_id' => Auth::id()])->get();
+
         $user_resume = Resume::where(['user_id' => Auth::id()])->with(['city', 'skills'])->get();
         // dd($user_resume);
         $data = [

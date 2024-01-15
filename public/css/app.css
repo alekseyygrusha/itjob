@@ -261,7 +261,8 @@ header .content .login_container {
   position: absolute;
   right: 15px;
   top: 15px;
-  font-weight: 700;
+  font-weight: 500;
+  border-bottom: 3px solid initial;
 }
 .vacancies-container .vacancies-card .response-resume-title {
   position: absolute;
@@ -803,6 +804,7 @@ button.button {
 }
 .button-st.-border-yellow:hover {
   background-color: #ffc107;
+  border: 2px solid #ffc107;
   color: white !important;
 }
 .button-st.-red {
@@ -810,6 +812,7 @@ button.button {
 }
 .button-st.-red:hover {
   background-color: red;
+  border: 2px solid red;
   color: white !important;
 }
 
@@ -962,6 +965,11 @@ button.button {
 .resume-card .info-box .content .content-item.-city {
   padding-left: 5px;
   border-left: 2px solid #59b999;
+}
+.vacancy-card .block-to-login,
+.resume-card .block-to-login {
+  display: flex;
+  flex-direction: column;
 }
 .vacancy-card .skills-box,
 .resume-card .skills-box {
@@ -1166,5 +1174,16 @@ button.button {
 .user-vacancy-invites .invite-item a {
   color: #59b999 !important;
   font-weight: 500;
+}
+
+.auth-form .card-header {
+  background-color: #59b999;
+  color: white;
+}
+.auth-form .register-link {
+  font-size: 14px;
+  margin-top: 6px;
+  color: #59b999 !important;
+  display: block;
 }
 

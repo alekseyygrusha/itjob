@@ -1,12 +1,14 @@
 <?php
 namespace App\Models;
 use App\Models\Resume\Resume;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 
 class Vacancies extends Model
 {
+    Use HasFactory;
     /**
      * Таблица БД, ассоциированная с моделью.
      *
@@ -39,5 +41,9 @@ class Vacancies extends Model
 
     public function experience() {
         return $this->hasOne(Experience::class, 'id', 'expirience_id');
+    }
+
+    public function status() {
+        return $this->hasOne(VacancyStatus::class, 'id', 'status_id');
     }
 }

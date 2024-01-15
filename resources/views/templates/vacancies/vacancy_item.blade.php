@@ -3,7 +3,16 @@
     <a href="/vacancy/{{$vacancy->id}}" class="job-title">
         {{$vacancy->job_title}}
     </a>
-    <div class="salary">от {{$vacancy->min_salary}} - до {{$vacancy->max_salary}} руб.</div>
+    <div class="salary">
+        @if(!empty($vacancy->min_salary) && $vacancy->min_salary !== 0 && !empty($vacancy->max_salary) && $vacancy->max_salary !== 0)
+            от {{$vacancy->min_salary}} до {{$vacancy->max_salary}} ₽
+        @elseif(!empty($vacancy->max_salary) && $vacancy->max_salary !== 0)
+            до {{$vacancy->max_salary}} ₽
+        @elseif(!empty($vacancy->min_salary) && $vacancy->min_salary !== 0)
+            от {{$vacancy->min_salary}}
+        @else
+        @endif
+    </div>
     <span class="experience">@if(!empty($vacancy->experience)) {{$vacancy->experience->text}}@endif</span>
     <div class="company">{{$vacancy->company_name}}</div>
     <div class="city">{{$vacancy->bindCity->name}}</div>

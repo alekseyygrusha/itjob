@@ -27,15 +27,17 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::prefix('vacancy')->group(function () {
-        Route::get('{id}', [App\Http\Controllers\VacancyController::class, 'showVacancy'])->name('show-vacancy');
-    });
+
 
     Route::get('post', [App\Http\Controllers\CabinetController::class, 'postPage'])->name('post');
     Route::get('/vacancy/response/{id}', [App\Http\Controllers\VacancyController::class, 'getVacancyResponses'], function () {});
     Route::get('/vacancy/edit/{id}', [App\Http\Controllers\VacancyController::class, 'getVacancy'], function () {})->name('edit-vacancy');
 
     Route::post('vacancy-hide',  [App\Http\Controllers\AdminController::class, 'hideVacancy'])->name('vacancy-hide');
+});
+
+Route::prefix('vacancy')->group(function () {
+    Route::get('{id}', [App\Http\Controllers\VacancyController::class, 'showVacancy'])->name('show-vacancy');
 });
 
 // AJAX-запросы

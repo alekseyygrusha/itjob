@@ -35,8 +35,8 @@ class RootController extends Controller
      */
     public function index()
     {
-        self::getData();
-        return view('root');
+        $data = self::getData();
+        return view('root', $data);
     }
 
     public static function getData () {
@@ -51,7 +51,7 @@ class RootController extends Controller
         $groups_list = Groups::get()->all();
 
 
-        $data = [
+        return  [
             'cities' => response()->json(Cities::all()),
             'groups_list' => $groups_list,
             'vacancies' => $list_vacancies,
@@ -60,6 +60,5 @@ class RootController extends Controller
             'experiences' => response()->json(Experience::all()),
         ];
 
-        View::share($data);
     }
 }

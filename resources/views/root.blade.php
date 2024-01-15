@@ -17,7 +17,6 @@
                         </div>
                     </div>
                     <div class="col-9">
-
                         <div class="vacancies-container">
                             @include('templates.vacancies.vacancies_list')
                         </div>

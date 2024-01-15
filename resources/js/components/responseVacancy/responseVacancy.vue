@@ -10,23 +10,28 @@
                 <i class="fa-solid fa-xmark"></i>
             </div>
             <div class="resume-wrap">
-                <div class="resume-item" v-bind:key="resume.id" v-for="resume in resumes">
-                    <div class="resume-title truncate-text truncate-1">
-                        {{resume.job_title}}
+                <template v-if="resumes.length">
+                    <div class="resume-item" v-bind:key="resume.id" v-for="resume in resumes">
+                        <div class="resume-title truncate-text truncate-1">
+                            {{resume.job_title}}
+                        </div>
+                        <div class="city">{{resume.city.name}}</div>
+                        <div class="experience">
+                            Опыт: {{resume.experience_time}} год(а)
+                        </div>
+                        <div class="description truncate-text truncate-2">
+                            {{resume.description}}
+                        </div>
+                        <div v-if="parseInt(resume.id) !== this.responsed_resume_id" @click="chooseResume(resume)" class="button-st -transparent" v-bind:class="[!responsed_resume_id ? 'btn-success' : 'btn-secondary'] ">Выбрать</div>
+                        <div v-else class="button-st -green pick-resume" >Отправлено</div>
                     </div>
-                    <div class="city">{{resume.city.name}}</div>
-                    <div class="experience">
-                        Опыт: {{resume.experience_time}} год(а)
-                    </div>
-                    <div class="description truncate-text truncate-2">
-                        {{resume.description}}
-                    </div>
-                    <div v-if="parseInt(resume.id) !== this.responsed_resume_id" @click="chooseResume(resume)" class="button-st -transparent" v-bind:class="[!responsed_resume_id ? 'btn-success' : 'btn-secondary'] ">Выбрать</div>
-                    <div v-else class="button-st -green pick-resume" >Отправлено</div>
-                </div>
+                </template>
+                <template v-else>
+                    У вас ещё не создано ни одного резюме. <a href="/cabinet/resume/" class="button-st -green">Создать резюме</a>
+                </template>
+
             </div>
         </div>
-        <!-- Надо будет добавить условие, при котором предлагается создать резюме при его отсуствии.  -->
     </div>
 </template>
 
