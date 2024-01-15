@@ -25,7 +25,9 @@
         @endif
     </div>
     <div class="button-wrap">
-        <button class="btn btn-warning btn-hide" data-value="{{$vacancy->id}}">
+        <button class="button-st -green mr-2">Разрешить публикацию</button>
+        <button class="button-st -red mr-2">Отклонить публикацию</button>
+        <button class="button-st -transparent btn-ban" data-value="{{$vacancy->id}}">
             @if(!$vacancy->is_hidden)
                     Скрыть
                 @else

@@ -888,7 +888,7 @@ button.button {
 
     &.-border-yellow {
         border: 2px solid #ffc107;
-
+        background-color: transparent;
         color: black;
 
         &:hover {
@@ -901,7 +901,7 @@ button.button {
 
     &.-red {
         border: 2px solid red;
-
+        background-color: transparent;
         &:hover {
             background-color: red;
             border: 2px solid red;

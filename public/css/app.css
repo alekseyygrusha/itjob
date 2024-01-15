@@ -800,6 +800,7 @@ button.button {
 }
 .button-st.-border-yellow {
   border: 2px solid #ffc107;
+  background-color: transparent;
   color: black;
 }
 .button-st.-border-yellow:hover {
@@ -809,6 +810,7 @@ button.button {
 }
 .button-st.-red {
   border: 2px solid red;
+  background-color: transparent;
 }
 .button-st.-red:hover {
   background-color: red;
