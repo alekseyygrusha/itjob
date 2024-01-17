@@ -99,7 +99,7 @@
             </div>
             <div class="form-block">
                 <div class="input-wrap text-input">
-                    <textarea placeholder="Описание к вакансии" v-model.trim="form.description" id="" cols="20" rows="2"></textarea>
+                    <textarea placeholder="Коротко о вас" v-model.trim="form.description" id="" cols="20" rows="2"></textarea>
                     <div class="error-wrap">
                         <p v-if="v$.form.description.$dirty && v$.form.description.maxLength.$invalid">
                             Размер описание не должен превышать 1000 символов.

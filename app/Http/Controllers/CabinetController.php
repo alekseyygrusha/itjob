@@ -92,9 +92,10 @@ class CabinetController extends Controller
 
     public function publishResume(Request $request) {
         $resume_id = $request->resume_id;
+
         $resume = new Resume;
         if($resume_id) {
-            $resume = Resume::find($resume_id)->with(['skills'])->get()->first();
+            $resume = Resume::where(['id' => $resume_id])->with(['skills'])->get()->first();
         }
 
         $resume->job_group = $request->job_group;
