@@ -267,6 +267,7 @@ header .content .login_container {
 
         .skills {
             display: flex;
+            flex-wrap: wrap;
             margin-bottom: 5px;
             .skill__item {
                 padding: 2px 7px;
@@ -274,6 +275,7 @@ header .content .login_container {
                 color: white;
                 border-radius: 8px;
                 margin-right: 4px;
+                margin-bottom: 5px;
             }
         }
 
