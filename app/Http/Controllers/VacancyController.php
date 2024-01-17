@@ -122,23 +122,20 @@ class VacancyController extends Controller
 
     public function getVacancy($id) {
 
-        self::getData();
+        $data = self::getData();
         $vacancy = self::getVacancyData($id);
+        $data['vacancy'] = $vacancy;
 
-        View::share('vacancy',  $vacancy);
-        return view('post');
+        return view('post', $data);
     }
 
     public function viewVacancy($id) {
 
-        self::getData();
+        $data = self::getData();
         $vacancy = self::getVacancyData($id);
 
-        $data = [
-            'vacancy' =>  $vacancy
-        ];
-
-        View::share($data);
+        $data['vacancy'] = $vacancy;
+        View::share($data, $data);
 
         return view('vacancy.vacancy-card-view');
     }
