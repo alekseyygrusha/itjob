@@ -303,4 +303,34 @@ class VacancyController extends Controller
         return true;
     }
 
+    public function acceptVacancy(Request $request) {
+        $vacancy = Vacancies::where(['id' => $request->vacancy_id])->get()->first();
+
+        $vacancy->status_code = 'rejected';
+        $vacancy->save();
+
+        return true;
+    }
+
+    public function setVacancyStatus(Request $request) {
+        $vacancy = Vacancies::where(['id' => $request->vacancy_id])->get()->first();
+
+        $vacancy->status_code = $request->status_code;
+        $vacancy->save();
+
+        return true;
+    }
+
+    public function getVacancyList(Request $request): JsonResponse {
+        $vacancies = Vacancies::where(['status_code' => $request->status_code])->with(['status'])->get();
+
+        return response()->json($vacancies);
+    }
+
+    public function getVacancyCard(Request $request): JsonResponse {
+        $vacancy = Vacancies::where(['id' => $request->vacancy_id])->with(['bindCity', 'experience', 'skills'])->get()->first();
+
+        return response()->json($vacancy);
+    }
+
 }

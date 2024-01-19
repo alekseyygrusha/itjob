@@ -53,9 +53,12 @@ Route::prefix('ajax')->group(function () {
     Route::post('filter-vacancies', [App\Http\Controllers\VacancyController::class, 'filterVacancies'], function () {});
 
     Route::prefix('vacancy')->group(function () {
+        Route::get('get-list',  [App\Http\Controllers\VacancyController::class, 'getVacancyList']);
+        Route::get('get-card',  [App\Http\Controllers\VacancyController::class, 'getVacancyCard']);
         Route::get('get-candidates',  [App\Http\Controllers\VacancyController::class, 'getVacancyCandidates']);
         Route::post('invite-candidate',  [App\Http\Controllers\VacancyController::class, 'inviteVacancyCandidate']);
         Route::post('decline-candidate',  [App\Http\Controllers\VacancyController::class, 'declineVacancyCandidate']);
+        Route::post('set-vacancy-status',  [App\Http\Controllers\VacancyController::class, 'setVacancyStatus']);
     });
 
     Route::prefix('resume')->group(function () {

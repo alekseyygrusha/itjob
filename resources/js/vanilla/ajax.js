@@ -130,6 +130,30 @@ const ajax = {
             data,
             url: '/ajax/vacancy/decline-candidate',
         })
+    },
+
+    getVacancyList(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/vacancy/get-list',
+        })
+    },
+
+    setVacancyStatus(data) {
+        return axios({
+            method: 'POST',
+            data,
+            url: '/ajax/vacancy/set-vacancy-status',
+        })
+    },
+
+    getVacancy(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/vacancy/get-card',
+        })
     }
 };
 
