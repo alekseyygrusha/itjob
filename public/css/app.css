@@ -227,6 +227,7 @@ header .content .login_container {
 }
 .vacancies-container .vacancies-card .skills {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 5px;
 }
 .vacancies-container .vacancies-card .skills .skill__item {
@@ -235,6 +236,7 @@ header .content .login_container {
   color: white;
   border-radius: 8px;
   margin-right: 4px;
+  margin-bottom: 5px;
 }
 .vacancies-container .vacancies-card .response-status {
   position: absolute;
@@ -769,6 +771,10 @@ button.button {
 .select-input .select2-container .select2-selection .select2-results__option {
   padding: 8px 20px;
 }
+.vacancy-card-form {
+  padding: 10px;
+}
+
 .button-st {
   display: flex;
   align-items: center;

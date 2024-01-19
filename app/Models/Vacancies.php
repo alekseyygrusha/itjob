@@ -44,6 +44,6 @@ class Vacancies extends Model
     }
 
     public function status() {
-        return $this->hasOne(VacancyStatus::class, 'id', 'status_id');
+        return $this->hasOne(VacancyStatus::class, 'code', 'status_code');
     }
 }

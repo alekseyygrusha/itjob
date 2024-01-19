@@ -14,13 +14,16 @@ const postResume = () => import('./components/postResume');
 const selectOptions = () => import('./components/selectOptions');
 const vacancyFilter = () => import('./components/vacancyFilter');
 const vacancyCandidates = () => import('./components/vacancyCandidates');
+const adminPanel = () => import('./components/adminPanel');
 
 
 /** Динамические импорты **/
 vacancyCandidates().then(({initVacancyCandidates}) => {
     initVacancyCandidates({})
 });
-
+adminPanel().then(({initAdminPanel}) => {
+    initAdminPanel({})
+});
 
 responseVacancy().then(({initResponseVacancy}) => {
     initResponseVacancy({})
