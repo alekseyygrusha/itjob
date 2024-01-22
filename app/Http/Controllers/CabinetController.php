@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Experience;
 use App\Models\VacancyCandidates;
 use App\Services\ProjectsServices;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\FlareClient\Flare;
 use Spatie\Ignition\Config\IgnitionConfig;
@@ -53,7 +54,7 @@ class CabinetController extends Controller
         $data = [
             'resume' => $resume,
             'projects' => $projects,
-            'skills' => Skills::all(),
+            'skills' => Skills::orderBy('name', 'asc')->where(['is_accept' => 1])->take(10)->get(),
             'cities' => Cities::all(),
             'groups' => Groups::all(),
             'experiences' => Experience::all(),
@@ -65,7 +66,7 @@ class CabinetController extends Controller
     public static function createResume()
     {
         $data = [
-            'skills' => Skills::all(),
+            'skills' => Skills::orderBy('name', 'asc')->where(['is_accept' => 1])->take(10)->get(),
             'cities' => Cities::all(),
             'groups' => Groups::all(),
             'experiences' => Experience::all(),
@@ -133,5 +134,27 @@ class CabinetController extends Controller
         $vacancies_responses = VacancyResponses::with(['getVacancy', 'getResume'])->where(['user_id' => Auth::id()])->get();
 
         return view('responses', ['vacancies_responses' => $vacancies_responses]);
+    }
+
+    public function getSkills(Request $request): JsonResponse {
+        $skills = Skills::whereRaw('LOWER(name) LIKE LOWER(?)', ["%$request->search_text%"])->where(['is_accept' => 1])->orderBy('name', 'asc');
+
+        $skill_not_exist = Skills::where(['name' => $request->search_text, 'is_accept' => 1])->get()->count() === 0;
+
+        return response()->json([
+            'skill_list' => $skills->take(10)->get(),
+            'item_not_exist' => $skill_not_exist
+        ]);
+    }
+
+    public function addSkill(Request $request): JsonResponse {
+        $skill = new Skills();
+
+        $skill->name = $request->skill_name;
+        $skill->code = str_replace(' ', '_', Lib::translit($request->skill_name));
+        $skill->is_accept = 0;
+        $skill->save();
+
+        return response()->json($skill);
     }
 }

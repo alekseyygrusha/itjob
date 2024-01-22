@@ -146,8 +146,12 @@ class VacancyController extends Controller
 
         $vacancy = Vacancies::find($id)
             ->where('id', $id)
-            ->with(['skills', 'experience', 'bindCity', 'vacancyResponses'])
+            ->with(['skills', 'experience', 'bindCity', 'vacancyResponses', 'status'])
             ->first();
+
+        if($vacancy && $vacancy->status_code !== 'published') {
+            return view('vacancy.vacancy404', ['status' => $vacancy->status_code]);
+        }
 
         $resume_list = Resume::where(['user_id' => Auth::id()])->with(['city'])->get()->all();
 

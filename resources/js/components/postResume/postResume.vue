@@ -37,14 +37,18 @@
             </div>
 
             <div class="form-block">
-                <div class="select-input" >
+                <div class="select-input">
                     <selectOptions
                         placeholder="Технологии с которыми вы работали"
                         :options="skill_list"
                         :pickOptions="form.skills"
                         :addNewValue='true'
                         :multiSelect='true'
-                        @update:option-value="form.skills = $event"></selectOptions>
+                        :itemNotExist="this.item_not_exist"
+
+                        @updateList="getSkills"
+                        @update:option-value="form.skills = $event"
+                        @update:search-text="search_text = $event"></selectOptions>
                 </div>
             </div>
 
@@ -147,6 +151,8 @@ export default {
     data() {
 
         return {
+            search_text: '',
+            item_not_exist: false,
             groups_list: this.adaptObject(this.groups),
             cities_list: this.cities,
             salary_init: false,
@@ -195,6 +201,19 @@ export default {
             });
         },
 
+        getSkills() {
+            ajax.getSkills({skills_type: '', search_text: this.search_text}).then((res) => {
+                // хитрое решение для того сохранить реактивность
+                this.skill_list.splice(0, this.skill_list.length)
+                this.item_not_exist = res.data.item_not_exist;
+
+                res.data.skill_list.forEach((el, index) => {
+                    this.skill_list[index] = el;
+                })
+
+            });
+        },
+
         checkSalaryValidate() {
 
             if(parseInt(this.form.salary_min) === 0 && parseInt(this.form.salary_max) === 0) {
@@ -223,6 +242,8 @@ export default {
             this.salary_validate = true;
             return true;
         },
+
+
 
 
     }

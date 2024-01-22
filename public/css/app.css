@@ -20,7 +20,7 @@ body {
 
 footer {
   margin-top: auto;
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
   padding: 16px 0;
 }
@@ -32,7 +32,7 @@ a {
 
 header {
   padding: 16px 0;
-  background-color: #59b999;
+  background-color: #133A5F;
 }
 header .content {
   display: flex;
@@ -91,7 +91,7 @@ header .content .login_container {
 .filter-vacancy .filter-button {
   width: 100%;
   padding: 10px;
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
   font-size: 18px;
   text-align: center;
@@ -125,13 +125,13 @@ header .content .login_container {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #59b999 !important;
+  color: #133A5F !important;
 }
 .vacancies-container .vacancies-card .company {
   margin: 2px 0;
 }
 .vacancies-container .vacancies-card .experience {
-  color: #59b999;
+  color: #133A5F;
   font-weight: 600;
 }
 .vacancies-container .vacancies-card .salary {
@@ -160,7 +160,7 @@ header .content .login_container {
   margin-right: 0;
 }
 .vacancies-container .vacancies-card .button-wrap .button.-color-blue {
-  background-color: #237cff;
+  background-color: #A9D8F1;
   color: white;
 }
 .vacancies-container .vacancies-card .button-wrap .hint {
@@ -168,7 +168,7 @@ header .content .login_container {
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: #59b999;
+  background-color: #133A5F;
   width: 25px;
   height: 25px;
   border-radius: 8px;
@@ -195,7 +195,7 @@ header .content .login_container {
 }
 .vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item {
   width: 200px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   padding: 10px;
   border-radius: 8px;
   margin-right: 15px;
@@ -206,7 +206,7 @@ header .content .login_container {
 .vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .resume-title {
   font-size: 15px;
   font-weight: 600;
-  color: #59b999;
+  color: #133A5F;
 }
 .vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .pick-resume {
   font-size: 14px;
@@ -232,7 +232,7 @@ header .content .login_container {
 }
 .vacancies-container .vacancies-card .skills .skill__item {
   padding: 2px 7px;
-  background-color: #237cff;
+  background-color: #256fb5;
   color: white;
   border-radius: 8px;
   margin-right: 4px;
@@ -248,12 +248,12 @@ header .content .login_container {
 }
 .vacancies-container .vacancies-card .response-status .status-color {
   width: 15px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 8px;
   height: 80%;
 }
 .vacancies-container .vacancies-card .response-status .status-color.-accept {
-  background-color: #59b999;
+  background-color: #133A5F;
 }
 .vacancies-container .vacancies-card .response-status .status-color.-declined {
   border-color: #fd3300;
@@ -294,7 +294,7 @@ header .content .login_container {
   padding: 0 12px;
   height: 37px;
   border-radius: 25px;
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
   margin-right: 5px;
   text-transform: uppercase;
@@ -317,20 +317,16 @@ button.button {
   cursor: pointer;
 }
 .button.-green-color {
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white !important;
 }
 .button.-red-color {
   color: white !important;
-  background-color: red;
+  background-color: #cf3f3f;
 }
 .button.-yellow-color {
   color: white !important;
   background-color: #e7c844;
-}
-.button.-light-green-color {
-  color: white !important;
-  background-color: #8be334;
 }
 
 .header_items {
@@ -411,8 +407,8 @@ button.button {
   width: 100% !important;
 }
 .select_input .select2-container .select2-selection--multiple .select2-selection__choice {
-  border: 1px solid #237cff;
-  background-color: #237cff;
+  border: 1px solid #A9D8F1;
+  background-color: #A9D8F1;
   color: white;
   border-radius: 8px;
   padding: 4px 12px;
@@ -447,7 +443,7 @@ button.button {
   font-weight: 800;
 }
 .response-button-wrap .picked-wrap.resume-send {
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-left: none;
   border-radius: 13px;
 }
@@ -469,7 +465,7 @@ button.button {
 .resume-form,
 .project-card {
   padding: 25px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 10px;
   max-width: 800px;
   margin: 0 auto;
@@ -487,7 +483,7 @@ button.button {
 .project-card .heading.-projects-annotate {
   font-size: 16px;
   text-decoration: underline;
-  color: #59b999;
+  color: #133A5F;
 }
 .post-vacancy .input-wrap,
 .resume-form .input-wrap,
@@ -503,7 +499,7 @@ button.button {
 .project-card .input-wrap textarea {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   padding: 8px 20px;
   font-size: 18px;
 }
@@ -555,7 +551,7 @@ button.button {
 .resume-form .price-inputs .price-input-wrap .price-input,
 .project-card .price-inputs .price-input-wrap .price-input {
   padding: 4px 20px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 10px;
   position: absolute;
   width: 100%;
@@ -570,7 +566,7 @@ button.button {
   position: absolute;
   top: calc(100% + 2px);
   font-size: 12px;
-  color: red;
+  color: #cf3f3f;
 }
 .post-vacancy .text-input input.-error,
 .post-vacancy .select-input.-error .select-custom,
@@ -602,7 +598,7 @@ button.button {
 .post-vacancy.project-card .input-wrap.-job_title input,
 .resume-form.project-card .input-wrap.-job_title input,
 .project-card.project-card .input-wrap.-job_title input {
-  color: #59b999;
+  color: #133A5F;
   font-weight: bold;
 }
 .post-vacancy.project-card .select-input,
@@ -643,21 +639,21 @@ button.button {
 .form-block .radio-buttons .radio-buttons-item {
   cursor: pointer;
   padding: 8px 10px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 15px;
 }
 .form-block .radio-buttons .radio-buttons-item:not(:last-child) {
   margin-right: 10px;
 }
 .form-block .radio-buttons .radio-buttons-item.-active {
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
 }
 
 .select-custom {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   padding: 8px 20px 0;
   font-size: 18px;
   position: relative;
@@ -674,7 +670,7 @@ button.button {
   position: absolute;
   width: calc(100% + 2px);
   left: -1px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   top: 100%;
   border-top: none;
   background-color: white;
@@ -684,7 +680,7 @@ button.button {
 }
 .select-custom .list .list-option:hover {
   transition: 0.3s;
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
   cursor: pointer;
 }
@@ -701,7 +697,7 @@ button.button {
   display: block;
   margin-left: auto;
   margin-right: 15px;
-  color: #59b999;
+  color: #133A5F;
 }
 .select-custom .select-options {
   display: flex;
@@ -710,9 +706,9 @@ button.button {
   width: 100%;
 }
 .select-custom .select-options .select-option-item {
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 15px;
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
   padding: 2px 15px;
   margin-bottom: 6px;
@@ -720,12 +716,15 @@ button.button {
 .select-custom .select-options .select-option-item:not(:last-child) {
   margin-right: 6px;
 }
+.select-custom .select-options .select-option-item.-not-accept {
+  opacity: 0.5;
+}
 .select-custom.select-open {
   z-index: 999;
   border-radius: 10px 10px 0 0;
 }
 .select-custom.select-open .select-option {
-  border-bottom: 1px solid #59b999;
+  border-bottom: 1px solid #133A5F;
   width: 100%;
 }
 .select-custom.select-open .list {
@@ -756,10 +755,10 @@ button.button {
 }
 .select-input.-add-item-row .input-wrap .button-add-wrap .button-add {
   font-size: 12px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
 }
 .select-input .select2-container .select2-selection {
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   padding: 8px 20px;
   height: auto;
   border-radius: 10px;
@@ -780,28 +779,31 @@ button.button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.4s;
   padding: 6px 20px;
   border-radius: 10px;
   font-weight: 500;
 }
+.button-st.-not-active {
+  opacity: 0.5;
+}
 .button-st.-green {
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white !important;
-  border: 2px solid #59b999;
+  border: 2px solid #133A5F;
 }
 .button-st.-green:hover {
-  background-color: #528a78;
-  border: 2px solid #528a78;
+  background-color: #256fb5;
+  border: 2px solid #256fb5;
 }
 .button-st.-transparent {
   background-color: transparent;
-  border: 2px solid #59b999;
+  border: 2px solid #133A5F;
   color: black;
 }
 .button-st.-transparent:hover {
-  background-color: #59b999;
-  border: 2px solid #59b999;
+  background-color: #133A5F;
+  border: 2px solid #133A5F;
   color: white !important;
 }
 .button-st.-border-yellow {
@@ -815,12 +817,12 @@ button.button {
   color: white !important;
 }
 .button-st.-red {
-  border: 2px solid red;
+  border: 2px solid #cf3f3f;
   background-color: transparent;
 }
 .button-st.-red:hover {
-  background-color: red;
-  border: 2px solid red;
+  background-color: #cf3f3f;
+  border: 2px solid #cf3f3f;
   color: white !important;
 }
 
@@ -829,7 +831,7 @@ button.button {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 2px solid #59b999;
+  border: 2px solid #133A5F;
   border-radius: 10px;
   width: 100%;
   height: 50vh;
@@ -838,7 +840,7 @@ button.button {
 }
 .full-page-menu .menu-item .description {
   font-weight: 600;
-  color: #59b999;
+  color: #133A5F;
   font-size: 20px;
 }
 .full-page-menu .menu-item:hover {
@@ -856,7 +858,7 @@ button.button {
 }
 
 .projects-container .projects-list .projects-item {
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -866,7 +868,7 @@ button.button {
   min-height: 240px;
 }
 .projects-container .projects-list .projects-item .-title {
-  border-bottom: 1px solid #59b999;
+  border-bottom: 1px solid #133A5F;
   padding: 8px 12px;
   color: black;
   font-weight: 500;
@@ -878,7 +880,7 @@ button.button {
   font-weight: 600;
   margin-bottom: 7px;
   margin-top: 5px;
-  color: #59b999;
+  color: #133A5F;
 }
 .projects-container .projects-list .projects-item .content .content-item.-duration {
   font-size: 14px;
@@ -888,7 +890,7 @@ button.button {
   flex-wrap: wrap;
 }
 .projects-container .projects-list .projects-item .content .skills-list .skill-item {
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 15px;
   color: black;
   font-weight: 500;
@@ -899,7 +901,7 @@ button.button {
 }
 .projects-container .projects-list .projects-item .footer {
   padding: 8px 12px;
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
   font-weight: 600;
   display: flex;
@@ -919,7 +921,7 @@ button.button {
 .projects-container .projects-list .projects-item.-add-project:hover {
   color: white;
   transition: 0.3s;
-  background-color: #59b999;
+  background-color: #133A5F;
   font-weight: 600;
 }
 .modals-container .vfm__container {
@@ -930,7 +932,7 @@ button.button {
 .modals-container .vfm__container .modal-content {
   max-width: 620px;
   margin: 0 auto;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 10px;
 }
 
@@ -938,13 +940,13 @@ button.button {
 .resume-card .block-heading {
   font-size: 18px;
   font-weight: 500;
-  color: #59b999;
+  color: #133A5F;
   margin-bottom: 6px;
 }
 .vacancy-card .info-box,
 .resume-card .info-box {
   padding: 10px 20px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 10px;
   margin-bottom: 15px;
 }
@@ -961,7 +963,7 @@ button.button {
 .resume-card .info-box .content .content-item.-title {
   font-size: 24px;
   font-weight: 600;
-  color: #59b999;
+  color: #133A5F;
 }
 .vacancy-card .info-box .content .content-item.-salary,
 .resume-card .info-box .content .content-item.-salary {
@@ -972,7 +974,7 @@ button.button {
 .resume-card .info-box .content .content-item.-company,
 .resume-card .info-box .content .content-item.-city {
   padding-left: 5px;
-  border-left: 2px solid #59b999;
+  border-left: 2px solid #133A5F;
 }
 .vacancy-card .block-to-login,
 .resume-card .block-to-login {
@@ -987,7 +989,7 @@ button.button {
 .vacancy-card .skills-box .skills-box-item,
 .resume-card .skills-box .skills-box-item {
   padding: 3px 6px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   font-size: 13px;
   border-radius: 10px;
   margin-bottom: 8px;
@@ -996,9 +998,20 @@ button.button {
 .resume-card .skills-box .skills-box-item:not(:last-child) {
   margin-right: 6px;
 }
+.vacancy-card .response-button-wrap,
+.resume-card .response-button-wrap {
+  position: relative;
+}
 .vacancy-card .response-button-wrap.-open .picked-wrap .picked-wrap,
 .resume-card .response-button-wrap.-open .picked-wrap .picked-wrap {
   display: none;
+}
+.vacancy-card .response-button-wrap.-open .response-menu,
+.resume-card .response-button-wrap.-open .response-menu {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: white;
 }
 .vacancy-card .response-button-wrap.-open .response-menu .close,
 .resume-card .response-button-wrap.-open .response-menu .close {
@@ -1009,7 +1022,7 @@ button.button {
 .vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item,
 .resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item {
   padding: 10px 20px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   border-radius: 10px;
   margin-bottom: 15px;
 }
@@ -1017,7 +1030,7 @@ button.button {
 .resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .resume-title {
   font-size: 16px;
   font-weight: 600;
-  color: #59b999 !important;
+  color: #133A5F !important;
 }
 .vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .city,
 .vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .experience,
@@ -1025,7 +1038,7 @@ button.button {
 .resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .experience {
   padding-left: 5px;
   margin-bottom: 5px;
-  border-left: 2px solid #59b999;
+  border-left: 2px solid #133A5F;
 }
 .vacancy-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .description,
 .resume-card .response-button-wrap.-open .response-menu .resume-wrap .resume-item .description {
@@ -1041,7 +1054,7 @@ button.button {
   margin-right: 10px;
   margin-bottom: 8px;
   /*padding: 8px 10px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F ;
   border-radius: 10px;*/
   font-size: 10px;
   font-weight: 600;
@@ -1066,14 +1079,14 @@ button.button {
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .resume-title {
   font-size: 16px;
   font-weight: 600;
-  color: #59b999 !important;
+  color: #133A5F !important;
 }
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .city,
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .experience,
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .city,
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .experience {
   padding-left: 5px;
-  border-left: 2px solid #59b999;
+  border-left: 2px solid #133A5F;
 }
 .vacancy-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap,
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap {
@@ -1100,7 +1113,7 @@ button.button {
 .resume-card .candidates-block .candidates-list .candidates-list-item .content .button-wrap .-status:hover {
   cursor: auto;
   background: none;
-  border-color: #59b999;
+  border-color: #133A5F;
   color: black !important;
 }
 
@@ -1119,7 +1132,7 @@ button.button {
 
 .lds-ripple div {
   position: absolute;
-  border: 4px solid #59b999;
+  border: 4px solid #133A5F;
   opacity: 1;
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -1175,23 +1188,23 @@ button.button {
 }
 .user-vacancy-invites .invite-item {
   border-radius: 4px;
-  border: 1px solid #59b999;
+  border: 1px solid #133A5F;
   padding: 10px;
   margin-bottom: 15px;
 }
 .user-vacancy-invites .invite-item a {
-  color: #59b999 !important;
+  color: #133A5F !important;
   font-weight: 500;
 }
 
 .auth-form .card-header {
-  background-color: #59b999;
+  background-color: #133A5F;
   color: white;
 }
 .auth-form .register-link {
   font-size: 14px;
   margin-top: 6px;
-  color: #59b999 !important;
+  color: #133A5F !important;
   display: block;
 }
 

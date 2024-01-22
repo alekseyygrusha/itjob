@@ -14,11 +14,11 @@
                     </a>
                     <div class="company">{{vacancy.company_name}}</div>
                     <div class="city">{{vacancy.city_name}}</div>
-<!--                    <div class="description">{{vacancy.description}}</div>-->
+                    <div class="description">{{vacancy.description}}</div>
 
                     <div class="button-wrap">
-                        <button class="button-st -green mr-2" v-if="filter.status_code !== 'published'" @click="setVacancyStatus(vacancy.id, 'published')">Разрешить публикацию</button>
-                        <button class="button-st -red mr-2" v-if="filter.status_code !== 'rejected'" @click="openNotePanel(vacancy.id, 'vacancy')">Отклонить публикацию</button>
+                        <button class="button-st -green mr-2" v-if="filter.status_code !== 'published'" @click="setVacancyStatus(vacancy.id, 'published')">Разрешить</button>
+                        <button class="button-st -red mr-2" v-if="filter.status_code !== 'rejected'" @click="setVacancyStatus(vacancy.id, 'rejected')">Отклонить</button>
                         <div class="button-st -transparent -border-yellow" @click="openVacancyCard(vacancy.id)">Подробнее</div>
                     </div>
                 </div>
