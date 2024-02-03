@@ -38,7 +38,7 @@
 <script>
 import {ajax} from "@/vanilla/ajax.js";
 import vacancyCard from "../vacancyCard/vacancyCard.vue";
-import notePanel from "../AdminPanel/notePanel/notePanel.vue";
+import notePanel from "./notePanel/notePanel.vue";
 export default {
     props: [],
     data () {

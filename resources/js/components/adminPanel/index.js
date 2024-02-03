@@ -1,9 +1,9 @@
-import {createApp} from "vue";
+/*import {createApp} from "vue";
 import adminPanel from "./adminPanel.vue";
 import globalModalsPlugin from "@/globalModalsPlugin";
-import {vfmPlugin} from 'vue-final-modal';
+import {vfmPlugin} from 'vue-final-modal';*/
 const initAdminPanel = () => {
-    let elements = [...document.querySelectorAll('.admin-panel-vue')].filter(
+    /*let elements = [...document.querySelectorAll('.admin-panel-vue')].filter(
         el => el.dataset.vApp === undefined
     );
 
@@ -20,7 +20,7 @@ const initAdminPanel = () => {
                 .mount(el);
         }
 
-    }
+    }*/
 }
 
 export {initAdminPanel}
