@@ -154,6 +154,20 @@ const ajax = {
             params: data,
             url: '/ajax/vacancy/get-card',
         })
+    },
+    getSkills(data) {
+        return axios({
+            method: 'GET',
+            params: data,
+            url: '/ajax/skills/get-list',
+        })
+    },
+    addSkill(data) {
+        return axios({
+            method: 'POST',
+            params: data,
+            url: '/ajax/skills/add-skill',
+        })
     }
 };
 

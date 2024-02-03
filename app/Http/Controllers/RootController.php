@@ -41,7 +41,8 @@ class RootController extends Controller
 
     public static function getData () {
 
-        $list_vacancies = Vacancies::with(['vacancyResponses', 'bindCity', 'skills' , 'experience'])
+        $list_vacancies = Vacancies::with(['vacancyResponses', 'bindCity', 'skills' , 'experience', 'status'])
+            ->whereRelation('status', 'code', '=', 'published')
             ->where('is_hidden', 0)
             ->where('is_blocked', 0)
             ->get();

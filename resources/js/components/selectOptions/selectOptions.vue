@@ -14,7 +14,7 @@
         <div v-if="multiselect" class="select-custom multi-select" v-bind:class="[open ? 'select-open' : '']">
             <div class="select-options" @click="openSelect">
                 <template v-for="option in select_options" v-bind:key="option.id">
-                    <div class="select-option-item">
+                    <div class="select-option-item" :class="option.is_accept === 0 ? '-not-accept' : ''" :title="option.is_accept === 0 ? 'Элемент ещё не подтверждён администратором' : ''">
                         {{ option.name }}
                     </div>
                 </template>
@@ -24,11 +24,10 @@
                 <template v-if="addNewValue">
                     <div class="select-input -add-item-row">
                         <div class="input-wrap text-input -job_title">
-                            <input type="text" placeholder="Начните вводить название">
+                            <input type="text" @keyup="updateList" v-model="search_text" placeholder="Начните вводить название">
                             <div class="button-add-wrap">
-                                <div class="button-add button-st -transparent">Добавить</div>
+                                <div class="button-add button-st " :class="!itemNotExist ? '-not-active' : '-transparent'" @click="addSkill()">Создать новый</div>
                             </div>
-
                         </div>
                     </div>
                 </template>
@@ -46,8 +45,9 @@
 
 <script>
 
+    import {ajax} from "@/vanilla/ajax.js";
     export default {
-        props: ['options', 'option', 'optionValue', 'placeholder', 'multiSelect', 'pickOptions', 'addNewValue'],
+        props: ['options', 'option', 'optionValue', 'placeholder', 'multiSelect', 'pickOptions', 'addNewValue', 'itemNotExist'],
         data() {
             return {
                 placeholder_data: this.placeholder ? this.placeholder :  'Выберите значение',
@@ -56,7 +56,8 @@
                 set_options_id: Number,
                 select_option_name: '',
                 multiselect: this.multiSelect ?? false,
-                select_options: this.pickOptions ?? []
+                select_options: this.pickOptions ?? [],
+                search_text: ''
 
             }
         },
@@ -66,7 +67,7 @@
                 this.setOptionId(pick_option.id, pick_option.name);
             }
         },
-        emits: ['update:optionValue'],
+        emits: ['update:optionValue','update:searchText', 'updateList'],
         methods: {
             openSelect () {
                 if(this.open) {
@@ -108,6 +109,24 @@
                 // }
                 this.$emit('update:optionValue', this.select_options);
             },
+            updateList() {
+                this.$emit('update:searchText', this.search_text);
+                this.$emit('updateList');
+            },
+
+            addSkill() {
+                if(!this.itemNotExist) {
+                    return;
+                }
+                let data = {
+                    skill_name: this.search_text
+                }
+                ajax.addSkill(data).then((res) => {
+                    this.select_options.push(res.data);
+                    console.log(this.select_options);
+                    this.updateList();
+                });
+            }
         }
     }
 </script>

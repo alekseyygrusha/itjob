@@ -60,6 +60,10 @@ Route::prefix('ajax')->group(function () {
         Route::post('decline-candidate',  [App\Http\Controllers\VacancyController::class, 'declineVacancyCandidate']);
         Route::post('set-vacancy-status',  [App\Http\Controllers\VacancyController::class, 'setVacancyStatus']);
     });
+    Route::prefix('skills')->group(function () {
+        Route::get('get-list',  [App\Http\Controllers\CabinetController::class, 'getSkills']);
+        Route::post('add-skill',  [App\Http\Controllers\CabinetController::class, 'addSkill']);
+    });
 
     Route::prefix('resume')->group(function () {
         Route::post('post',  [App\Http\Controllers\CabinetController::class, 'publishResume']);

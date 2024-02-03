@@ -7,7 +7,7 @@
     >
 
         <div>
-            notePanel
+
         </div>
     </vue-final-modal>
 </template>
