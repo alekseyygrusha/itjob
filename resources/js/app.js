@@ -14,7 +14,7 @@ const postResume = () => import('./components/postResume');
 const selectOptions = () => import('./components/selectOptions');
 const vacancyFilter = () => import('./components/vacancyFilter');
 const vacancyCandidates = () => import('./components/vacancyCandidates');
-/*const adminPanel = () => import('./components/adminPanel');*/
+const adminPanel = () => import('./components/adminPanel');
 
 
 /** Динамические импорты **/
