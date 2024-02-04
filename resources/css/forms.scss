@@ -1,0 +1,235 @@
+
+.form-block {
+    margin-bottom: 25px;
+    font-weight: 500;
+    .radio-buttons {
+        display: flex;
+        .radio-buttons-item {
+            cursor: pointer;
+            padding: 8px 10px;
+            border: 1px solid #133A5F ;
+            border-radius: 15px;
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &.-active {
+                background-color: #133A5F ;
+                color: white;
+            }
+        }
+
+    }
+}
+.select-custom {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #133A5F ;
+    padding: 8px 20px 0;
+
+    font-size: 18px;
+    position: relative;
+    z-index: 9;
+
+    .select-option {
+        cursor: pointer;
+        padding-top: 3px;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 8px;
+    }
+
+    .list {
+        display: none;
+        position: absolute;
+        width: calc(100% + 2px);
+        left: -1px;
+        border: 1px solid #133A5F ;
+        top: 100%;
+        border-top: none;
+        background-color: white;
+
+        .list-option {
+            padding: 8px 20px;
+            &:hover {
+                transition: .3s;
+                background-color: #133A5F ;
+                color: white;
+                cursor: pointer;
+            }
+
+            &.option-include {
+                position: relative;
+                display: flex;
+                align-items: center;
+                .option-text {
+                    opacity: .3;
+                }
+                &::after {
+                    content: '◉';
+                    display: block;
+                    margin-left: auto;
+                    margin-right: 15px;
+                    color: #133A5F ;
+                }
+            }
+        }
+    }
+
+    .select-options {
+        display: flex;
+        flex-wrap: wrap;
+        cursor: pointer;
+        width: 100%;
+        .select-option-item {
+            border: 1px solid #133A5F ;
+            border-radius: 15px;
+            background-color: #133A5F ;
+            color: white;
+            padding: 2px 15px;
+            margin-bottom: 6px;
+
+            &:not(:last-child) {
+                margin-right: 6px;
+            }
+
+            &.-not-accept {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .multi-select {
+
+    }
+
+    &.select-open {
+        z-index: 999;
+        border-radius: 10px 10px 0 0;
+        .select-option {
+            border-bottom: 1px solid #133A5F ;
+            width: 100%;
+        }
+        .list {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+    }
+}
+.select-input {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+
+    &.-add-item-row {
+        padding: 5px 15px;
+        width: 100%;
+        .input-wrap {
+            position: relative;
+            width: 100%;
+            .button-add-wrap {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                top: 0;
+                bottom: 0;
+                right: 10px;
+
+                .button-add {
+                    font-size: 12px;
+                    border: 1px solid #133A5F ;
+                }
+            }
+
+        }
+    }
+    .select2-container {
+        .select2-selection {
+            border: 1px solid #133A5F ;
+            padding: 8px 20px;
+            height: auto;
+            border-radius: 10px;
+
+            .select2-selection__arrow {
+                height: 100%;
+                right: 20px;
+            }
+
+            .select2-results__option {
+                padding: 8px 20px;
+            }
+        }
+    }
+
+    .select2-results {
+
+    }
+}
+
+.select_input {
+    .select2-container {
+        width: 100% !important;
+
+        .select2-selection--multiple {
+            .select2-selection__choice {
+                border: 1px solid #A9D8F1;
+                background-color: #A9D8F1;
+                color: white;
+                border-radius: 8px;
+                padding: 4px 12px;
+                border-right: none;
+                .select2-selection__choice__remove {
+                    padding: 0 4px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    bottom: 0;
+                    top: 0;
+
+                    span {
+                        visibility: hidden;
+                    }
+
+                    &:hover {
+                        background-color: transparent;
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.form_block {
+    // background-color: #cf3f3f;
+    max-width: 600px;
+
+    .form_input {
+        width: 100%;
+        max-width: 378px;
+        padding: 10px 0;
+        input,
+        textarea {
+            padding: 0 5px;
+            width: 100%;
+        }
+    }
+}
+
+.modals-container {
+    .vfm__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .modal-content {
+            max-width: 620px;
+            margin: 0 auto;
+            border: 1px solid #133A5F ;
+            border-radius: 10px;
+        }
+    }
+}
+

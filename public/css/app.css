@@ -1,305 +1,54 @@
 @charset "UTF-8";
-.main_login_block {
-  max-width: 320px;
-  margin: 0 auto;
-  padding: 60px 0;
-  text-align: center;
-  margin-top: 200px;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  font-family: "Manrope", sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-footer {
-  margin-top: auto;
-  background-color: #133A5F;
-  color: white;
-  padding: 16px 0;
-}
-
-a {
-  color: initial !important;
-  text-decoration: none !important;
-}
-
-header {
-  padding: 16px 0;
-  background-color: #133A5F;
-}
-header .content {
-  display: flex;
-  color: white;
-  align-items: center;
-}
-header .content .login_container .user_name {
-  padding-right: 15px;
-  padding: 0 6px;
-  border-bottom: 1px solid white;
-  margin-right: 10px;
-}
-header .content a {
-  color: white !important;
-}
-
-.logo {
-  font-size: 21px;
-  font-weight: 500;
-}
-
-header .content .login_container {
-  margin-left: auto;
-  display: flex;
-  cursor: pointer;
-}
-
-.main-content {
-  padding: 40px 0;
-}
-
-.filter-vacancy .filter-container.-open {
-  display: flex;
-}
-.filter-vacancy .filter-container .option-row .form-block {
-  margin-bottom: 15px;
-}
-.filter-vacancy .filter-container .option-row .form-block .select-input {
-  width: 100%;
-}
-.filter-vacancy .filter-container .option-row .form-block .select-input .select-custom {
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 16px;
-}
-.filter-vacancy .filter-container .option-row .form-block .radio-buttons {
-  display: flex;
-  flex-wrap: wrap;
-}
-.filter-vacancy .filter-container .option-row .form-block .radio-buttons .radio-buttons-item {
-  margin-bottom: 10px;
-  font-size: 14px;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.filter-vacancy .filter-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #133A5F;
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  border-radius: 5px;
-  padding: 8px 6px;
-  cursor: pointer;
-}
-.filter-vacancy .filter-button:hover {
-  background-color: #4f957d;
-}
-
-.vacancies-container .vacancies-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  box-shadow: 0 2px 12px #edeff0;
-  padding: 15px;
-  justify-content: normal;
-  border: 1px solid transparent;
-  position: relative;
-  margin-bottom: 16px;
-  transition: height 1s ease-in, padding-bottom 0.1s, padding-top 0.1s;
-}
-.vacancies-container .vacancies-card a {
-  color: black;
-}
-.vacancies-container .vacancies-card .btn.btn-success {
-  color: white !important;
-}
-.vacancies-container .vacancies-card .job-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #133A5F !important;
-}
-.vacancies-container .vacancies-card .company {
-  margin: 2px 0;
-}
-.vacancies-container .vacancies-card .experience {
-  color: #133A5F;
-  font-weight: 600;
-}
-.vacancies-container .vacancies-card .salary {
-  font-size: 18px;
-  font-weight: 700;
-}
-.vacancies-container .vacancies-card .city {
-  margin-bottom: 5px;
-}
-.vacancies-container .vacancies-card .description {
-  margin-bottom: 5px;
-  line-height: 1.4;
-}
-.vacancies-container .vacancies-card .button-wrap {
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.vacancies-container .vacancies-card .button-wrap .button {
-  margin-right: 12px;
-  display: flex;
-  align-items: center;
-}
-.vacancies-container .vacancies-card .button-wrap .button:last-child {
-  margin-right: 0;
-}
-.vacancies-container .vacancies-card .button-wrap .button.-color-blue {
-  background-color: #A9D8F1;
-  color: white;
-}
-.vacancies-container .vacancies-card .button-wrap .hint {
+.button-st {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-color: #133A5F;
-  width: 25px;
-  height: 25px;
-  border-radius: 8px;
-  text-align: center;
-  margin-left: 6px;
-  font-size: 11px;
-  line-height: 1;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu {
-  position: absolute;
-  background-color: white;
-  bottom: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  font-size: 14px;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item {
-  width: 200px;
-  border: 1px solid #133A5F;
-  padding: 10px;
-  border-radius: 8px;
-  margin-right: 15px;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item:last-child {
-  margin-right: 0;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .resume-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #133A5F;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .pick-resume {
-  font-size: 14px;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .description {
-  height: 40px;
-}
-.vacancies-container .vacancies-card .button-wrap .response-menu .close {
   cursor: pointer;
+  transition: 0.4s;
+  padding: 6px 20px;
+  border-radius: 10px;
+  font-weight: 500;
 }
-.vacancies-container .vacancies-card .blocked-title {
-  font-weight: 700;
-  color: #fb6060;
+.button-st.-not-active {
+  opacity: 0.5;
 }
-.vacancies-container .vacancies-card .hidden-title {
-  font-weight: 700;
-  color: #efd800;
+.button-st.-green {
+  background-color: #133A5F;
+  color: white !important;
+  border: 2px solid #133A5F;
 }
-.vacancies-container .vacancies-card .skills {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 5px;
-}
-.vacancies-container .vacancies-card .skills .skill__item {
-  padding: 2px 7px;
+.button-st.-green:hover {
   background-color: #256fb5;
-  color: white;
-  border-radius: 8px;
-  margin-right: 4px;
-  margin-bottom: 5px;
+  border: 2px solid #256fb5;
 }
-.vacancies-container .vacancies-card .response-status {
-  position: absolute;
-  left: 15px;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
+.button-st.-transparent {
+  background-color: transparent;
+  border: 2px solid #133A5F;
+  color: black;
 }
-.vacancies-container .vacancies-card .response-status .status-color {
-  width: 15px;
-  border: 1px solid #133A5F;
-  border-radius: 8px;
-  height: 80%;
-}
-.vacancies-container .vacancies-card .response-status .status-color.-accept {
+.button-st.-transparent:hover {
   background-color: #133A5F;
+  border: 2px solid #133A5F;
+  color: white !important;
 }
-.vacancies-container .vacancies-card .response-status .status-color.-declined {
-  border-color: #fd3300;
-  background-color: #fd3300;
+.button-st.-border-yellow {
+  border: 2px solid #ffc107;
+  background-color: transparent;
+  color: black;
 }
-.vacancies-container .vacancies-card .response-status-title {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  font-weight: 500;
-  border-bottom: 3px solid initial;
+.button-st.-border-yellow:hover {
+  background-color: #ffc107;
+  border: 2px solid #ffc107;
+  color: white !important;
 }
-.vacancies-container .vacancies-card .response-resume-title {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  font-size: 12px;
+.button-st.-red {
+  border: 2px solid #cf3f3f;
+  background-color: transparent;
 }
-.vacancies-container.responses-list .vacancies-card {
-  padding-left: 45px;
-}
-
-.options-bar .heading {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #303233;
-}
-.options-bar .wrap {
-  display: flex;
-  flex-wrap: wrap;
-}
-.options-bar .options-bar-item {
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  height: 37px;
-  border-radius: 25px;
-  background-color: #133A5F;
-  color: white;
-  margin-right: 5px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  font-weight: 500;
+.button-st.-red:hover {
+  background-color: #cf3f3f;
+  border: 2px solid #cf3f3f;
+  color: white !important;
 }
 
 button.button {
@@ -329,79 +78,146 @@ button.button {
   background-color: #e7c844;
 }
 
-.header_items {
-  margin-right: 40px;
-}
-.header_items .wrap {
-  display: flex;
-}
-.header_items .wrap .header-item {
-  margin-right: 10px;
-}
-
-.form_block {
-  max-width: 600px;
-}
-.form_block .form_input {
-  width: 100%;
-  max-width: 378px;
-  padding: 10px 0;
-}
-.form_block .form_input input,
-.form_block .form_input textarea {
-  padding: 0 5px;
-  width: 100%;
-}
-
-.login-registration-block {
-  margin-top: 200px;
-  display: flex;
-  justify-content: center;
-}
-.login-registration-block .login-heading {
-  text-align: center;
-  font-size: 17px;
+.form-block {
   margin-bottom: 25px;
   font-weight: 500;
-  text-transform: uppercase;
 }
-.login-registration-block input {
-  margin-bottom: 15px;
+.form-block .radio-buttons {
+  display: flex;
 }
-.login-registration-block .button {
-  margin: 0 auto;
+.form-block .radio-buttons .radio-buttons-item {
+  cursor: pointer;
+  padding: 8px 10px;
+  border: 1px solid #133A5F;
+  border-radius: 15px;
+}
+.form-block .radio-buttons .radio-buttons-item:not(:last-child) {
+  margin-right: 10px;
+}
+.form-block .radio-buttons .radio-buttons-item.-active {
+  background-color: #133A5F;
+  color: white;
+}
+
+.select-custom {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #133A5F;
+  padding: 8px 20px 0;
+  font-size: 18px;
+  position: relative;
+  z-index: 9;
+}
+.select-custom .select-option {
+  cursor: pointer;
+  padding-top: 3px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 8px;
+}
+.select-custom .list {
+  display: none;
+  position: absolute;
+  width: calc(100% + 2px);
+  left: -1px;
+  border: 1px solid #133A5F;
+  top: 100%;
+  border-top: none;
+  background-color: white;
+}
+.select-custom .list .list-option {
+  padding: 8px 20px;
+}
+.select-custom .list .list-option:hover {
+  transition: 0.3s;
+  background-color: #133A5F;
+  color: white;
+  cursor: pointer;
+}
+.select-custom .list .list-option.option-include {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.select-custom .list .list-option.option-include .option-text {
+  opacity: 0.3;
+}
+.select-custom .list .list-option.option-include::after {
+  content: "◉";
   display: block;
+  margin-left: auto;
+  margin-right: 15px;
+  color: #133A5F;
+}
+.select-custom .select-options {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
   width: 100%;
 }
-
-.loader-wrap .loader {
-  display: none;
+.select-custom .select-options .select-option-item {
+  border: 1px solid #133A5F;
+  border-radius: 15px;
+  background-color: #133A5F;
+  color: white;
+  padding: 2px 15px;
+  margin-bottom: 6px;
 }
-.loader-wrap.-loader-active .loader {
+.select-custom .select-options .select-option-item:not(:last-child) {
+  margin-right: 6px;
+}
+.select-custom .select-options .select-option-item.-not-accept {
+  opacity: 0.5;
+}
+.select-custom.select-open {
+  z-index: 999;
+  border-radius: 10px 10px 0 0;
+}
+.select-custom.select-open .select-option {
+  border-bottom: 1px solid #133A5F;
+  width: 100%;
+}
+.select-custom.select-open .list {
+  display: block;
+  border-radius: 0 0 10px 10px;
+}
+
+.select-input {
+  width: 80%;
+  margin: 0 auto;
   display: block;
 }
-.loader-wrap.-loader-active .button-text {
-  display: none;
+.select-input.-add-item-row {
+  padding: 5px 15px;
+  width: 100%;
 }
-
-.loader {
-  border: 6px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 6px solid #3498db;
-  width: 25px;
-  height: 25px; /* Safari */
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
+.select-input.-add-item-row .input-wrap {
+  position: relative;
+  width: 100%;
 }
-
-/* Safari */
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.select-input.-add-item-row .input-wrap .button-add-wrap {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+}
+.select-input.-add-item-row .input-wrap .button-add-wrap .button-add {
+  font-size: 12px;
+  border: 1px solid #133A5F;
+}
+.select-input .select2-container .select2-selection {
+  border: 1px solid #133A5F;
+  padding: 8px 20px;
+  height: auto;
+  border-radius: 10px;
+}
+.select-input .select2-container .select2-selection .select2-selection__arrow {
+  height: 100%;
+  right: 20px;
+}
+.select-input .select2-container .select2-selection .select2-results__option {
+  padding: 8px 20px;
 }
 .select_input .select2-container {
   width: 100% !important;
@@ -431,34 +247,61 @@ button.button {
   color: #333;
 }
 
-.response-button-wrap .picked-wrap {
-  display: flex;
-  align-items: center;
+.form_block {
+  max-width: 600px;
 }
-.response-button-wrap .picked-wrap .picked-resume {
-  font-size: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: #0373d5;
-  font-weight: 800;
+.form_block .form_input {
+  width: 100%;
+  max-width: 378px;
+  padding: 10px 0;
 }
-.response-button-wrap .picked-wrap.resume-send {
-  border: 1px solid #133A5F;
-  border-left: none;
-  border-radius: 13px;
+.form_block .form_input input,
+.form_block .form_input textarea {
+  padding: 0 5px;
+  width: 100%;
 }
 
-.truncate-text {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.modals-container .vfm__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.truncate-text.truncate-1 {
-  -webkit-line-clamp: 1;
+.modals-container .vfm__container .modal-content {
+  max-width: 620px;
+  margin: 0 auto;
+  border: 1px solid #133A5F;
+  border-radius: 10px;
 }
-.truncate-text.truncate-2 {
-  -webkit-line-clamp: 2;
+
+.main_login_block {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 60px 0;
+  text-align: center;
+  margin-top: 200px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #133A5F;
+  color: white;
+  padding: 16px 0;
+}
+
+a {
+  color: initial !important;
+  text-decoration: none !important;
 }
 
 .post-vacancy,
@@ -627,313 +470,6 @@ button.button {
 .resume-form.project-card .buttons-wrap .button-st,
 .project-card.project-card .buttons-wrap .button-st {
   width: 100%;
-}
-
-.form-block {
-  margin-bottom: 25px;
-  font-weight: 500;
-}
-.form-block .radio-buttons {
-  display: flex;
-}
-.form-block .radio-buttons .radio-buttons-item {
-  cursor: pointer;
-  padding: 8px 10px;
-  border: 1px solid #133A5F;
-  border-radius: 15px;
-}
-.form-block .radio-buttons .radio-buttons-item:not(:last-child) {
-  margin-right: 10px;
-}
-.form-block .radio-buttons .radio-buttons-item.-active {
-  background-color: #133A5F;
-  color: white;
-}
-
-.select-custom {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #133A5F;
-  padding: 8px 20px 0;
-  font-size: 18px;
-  position: relative;
-  z-index: 9;
-}
-.select-custom .select-option {
-  cursor: pointer;
-  padding-top: 3px;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 8px;
-}
-.select-custom .list {
-  display: none;
-  position: absolute;
-  width: calc(100% + 2px);
-  left: -1px;
-  border: 1px solid #133A5F;
-  top: 100%;
-  border-top: none;
-  background-color: white;
-}
-.select-custom .list .list-option {
-  padding: 8px 20px;
-}
-.select-custom .list .list-option:hover {
-  transition: 0.3s;
-  background-color: #133A5F;
-  color: white;
-  cursor: pointer;
-}
-.select-custom .list .list-option.option-include {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.select-custom .list .list-option.option-include .option-text {
-  opacity: 0.3;
-}
-.select-custom .list .list-option.option-include::after {
-  content: "◉";
-  display: block;
-  margin-left: auto;
-  margin-right: 15px;
-  color: #133A5F;
-}
-.select-custom .select-options {
-  display: flex;
-  flex-wrap: wrap;
-  cursor: pointer;
-  width: 100%;
-}
-.select-custom .select-options .select-option-item {
-  border: 1px solid #133A5F;
-  border-radius: 15px;
-  background-color: #133A5F;
-  color: white;
-  padding: 2px 15px;
-  margin-bottom: 6px;
-}
-.select-custom .select-options .select-option-item:not(:last-child) {
-  margin-right: 6px;
-}
-.select-custom .select-options .select-option-item.-not-accept {
-  opacity: 0.5;
-}
-.select-custom.select-open {
-  z-index: 999;
-  border-radius: 10px 10px 0 0;
-}
-.select-custom.select-open .select-option {
-  border-bottom: 1px solid #133A5F;
-  width: 100%;
-}
-.select-custom.select-open .list {
-  display: block;
-  border-radius: 0 0 10px 10px;
-}
-
-.select-input {
-  width: 80%;
-  margin: 0 auto;
-  display: block;
-}
-.select-input.-add-item-row {
-  padding: 5px 15px;
-  width: 100%;
-}
-.select-input.-add-item-row .input-wrap {
-  position: relative;
-  width: 100%;
-}
-.select-input.-add-item-row .input-wrap .button-add-wrap {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  right: 10px;
-}
-.select-input.-add-item-row .input-wrap .button-add-wrap .button-add {
-  font-size: 12px;
-  border: 1px solid #133A5F;
-}
-.select-input .select2-container .select2-selection {
-  border: 1px solid #133A5F;
-  padding: 8px 20px;
-  height: auto;
-  border-radius: 10px;
-}
-.select-input .select2-container .select2-selection .select2-selection__arrow {
-  height: 100%;
-  right: 20px;
-}
-.select-input .select2-container .select2-selection .select2-results__option {
-  padding: 8px 20px;
-}
-.vacancy-card-form {
-  padding: 10px;
-}
-
-.button-st {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.4s;
-  padding: 6px 20px;
-  border-radius: 10px;
-  font-weight: 500;
-}
-.button-st.-not-active {
-  opacity: 0.5;
-}
-.button-st.-green {
-  background-color: #133A5F;
-  color: white !important;
-  border: 2px solid #133A5F;
-}
-.button-st.-green:hover {
-  background-color: #256fb5;
-  border: 2px solid #256fb5;
-}
-.button-st.-transparent {
-  background-color: transparent;
-  border: 2px solid #133A5F;
-  color: black;
-}
-.button-st.-transparent:hover {
-  background-color: #133A5F;
-  border: 2px solid #133A5F;
-  color: white !important;
-}
-.button-st.-border-yellow {
-  border: 2px solid #ffc107;
-  background-color: transparent;
-  color: black;
-}
-.button-st.-border-yellow:hover {
-  background-color: #ffc107;
-  border: 2px solid #ffc107;
-  color: white !important;
-}
-.button-st.-red {
-  border: 2px solid #cf3f3f;
-  background-color: transparent;
-}
-.button-st.-red:hover {
-  background-color: #cf3f3f;
-  border: 2px solid #cf3f3f;
-  color: white !important;
-}
-
-.full-page-menu .menu-item {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid #133A5F;
-  border-radius: 10px;
-  width: 100%;
-  height: 50vh;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.full-page-menu .menu-item .description {
-  font-weight: 600;
-  color: #133A5F;
-  font-size: 20px;
-}
-.full-page-menu .menu-item:hover {
-  box-shadow: inset 0 0 10px rgba(89, 185, 153, 0.5);
-}
-.full-page-menu .menu-item.-border-yellow {
-  border-color: #ffc107;
-  color: #ffc107;
-}
-.full-page-menu .menu-item.-border-yellow .description {
-  color: #ffc107;
-}
-.full-page-menu .menu-item.-border-yellow:hover {
-  box-shadow: inset 0 0 10px rgba(255, 193, 7, 0.5);
-}
-
-.projects-container .projects-list .projects-item {
-  border: 1px solid #133A5F;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  border-radius: 15px;
-  overflow: hidden;
-  cursor: pointer;
-  min-height: 240px;
-}
-.projects-container .projects-list .projects-item .-title {
-  border-bottom: 1px solid #133A5F;
-  padding: 8px 12px;
-  color: black;
-  font-weight: 500;
-}
-.projects-container .projects-list .projects-item .content {
-  padding: 0 12px 12px;
-}
-.projects-container .projects-list .projects-item .content .content-item.-job-title {
-  font-weight: 600;
-  margin-bottom: 7px;
-  margin-top: 5px;
-  color: #133A5F;
-}
-.projects-container .projects-list .projects-item .content .content-item.-duration {
-  font-size: 14px;
-}
-.projects-container .projects-list .projects-item .content .skills-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-.projects-container .projects-list .projects-item .content .skills-list .skill-item {
-  border: 1px solid #133A5F;
-  border-radius: 15px;
-  color: black;
-  font-weight: 500;
-  padding: 2px 10px;
-  margin-bottom: 6px;
-  font-size: 12px;
-  margin-right: 2px;
-}
-.projects-container .projects-list .projects-item .footer {
-  padding: 8px 12px;
-  background-color: #133A5F;
-  color: white;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-}
-.projects-container .projects-list .projects-item .footer .company {
-  font-size: 12px;
-}
-.projects-container .projects-list .projects-item.-add-project {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-.projects-container .projects-list .projects-item.-add-project:hover {
-  color: white;
-  transition: 0.3s;
-  background-color: #133A5F;
-  font-weight: 600;
-}
-.modals-container .vfm__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modals-container .vfm__container .modal-content {
-  max-width: 620px;
-  margin: 0 auto;
-  border: 1px solid #133A5F;
-  border-radius: 10px;
 }
 
 .vacancy-card .block-heading,
@@ -1117,6 +653,157 @@ button.button {
   color: black !important;
 }
 
+.projects-container .projects-list .projects-item {
+  border: 1px solid #133A5F;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 240px;
+}
+.projects-container .projects-list .projects-item .-title {
+  border-bottom: 1px solid #133A5F;
+  padding: 8px 12px;
+  color: black;
+  font-weight: 500;
+}
+.projects-container .projects-list .projects-item .content {
+  padding: 0 12px 12px;
+}
+.projects-container .projects-list .projects-item .content .content-item.-job-title {
+  font-weight: 600;
+  margin-bottom: 7px;
+  margin-top: 5px;
+  color: #133A5F;
+}
+.projects-container .projects-list .projects-item .content .content-item.-duration {
+  font-size: 14px;
+}
+.projects-container .projects-list .projects-item .content .skills-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.projects-container .projects-list .projects-item .content .skills-list .skill-item {
+  border: 1px solid #133A5F;
+  border-radius: 15px;
+  color: black;
+  font-weight: 500;
+  padding: 2px 10px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  margin-right: 2px;
+}
+.projects-container .projects-list .projects-item .footer {
+  padding: 8px 12px;
+  background-color: #133A5F;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.projects-container .projects-list .projects-item .footer .company {
+  font-size: 12px;
+}
+.projects-container .projects-list .projects-item.-add-project {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.projects-container .projects-list .projects-item.-add-project:hover {
+  color: white;
+  transition: 0.3s;
+  background-color: #133A5F;
+  font-weight: 600;
+}
+.response-button-wrap .picked-wrap {
+  display: flex;
+  align-items: center;
+}
+.response-button-wrap .picked-wrap .picked-resume {
+  font-size: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #0373d5;
+  font-weight: 800;
+}
+.response-button-wrap .picked-wrap.resume-send {
+  border: 1px solid #133A5F;
+  border-left: none;
+  border-radius: 13px;
+}
+
+.main-content {
+  padding: 40px 0;
+}
+
+.login-registration-block {
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+}
+.login-registration-block .login-heading {
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 25px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.login-registration-block input {
+  margin-bottom: 15px;
+}
+.login-registration-block .button {
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+}
+
+.loader-wrap .loader {
+  display: none;
+}
+.loader-wrap.-loader-active .loader {
+  display: block;
+}
+.loader-wrap.-loader-active .button-text {
+  display: none;
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #3498db;
+  width: 25px;
+  height: 25px; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+/* Safari */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.truncate-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.truncate-text.truncate-1 {
+  -webkit-line-clamp: 1;
+}
+.truncate-text.truncate-2 {
+  -webkit-line-clamp: 2;
+}
+
 .loader-box {
   display: flex;
   justify-content: center;
@@ -1172,6 +859,17 @@ button.button {
     opacity: 0;
   }
 }
+.auth-form .card-header {
+  background-color: #133A5F;
+  color: white;
+}
+.auth-form .register-link {
+  font-size: 14px;
+  margin-top: 6px;
+  color: #133A5F !important;
+  display: block;
+}
+
 .resume-card {
   padding: 15px;
 }
@@ -1197,14 +895,315 @@ button.button {
   font-weight: 500;
 }
 
-.auth-form .card-header {
-  background-color: #133A5F;
+.vacancy-card-form {
+  padding: 10px;
+}
+
+.vacancies-container .vacancies-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px #edeff0;
+  padding: 15px;
+  justify-content: normal;
+  border: 1px solid transparent;
+  position: relative;
+  margin-bottom: 16px;
+  transition: height 1s ease-in, padding-bottom 0.1s, padding-top 0.1s;
+}
+.vacancies-container .vacancies-card a {
+  color: black;
+}
+.vacancies-container .vacancies-card .btn.btn-success {
+  color: white !important;
+}
+.vacancies-container .vacancies-card .job-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #133A5F !important;
+}
+.vacancies-container .vacancies-card .company {
+  margin: 2px 0;
+}
+.vacancies-container .vacancies-card .experience {
+  color: #133A5F;
+  font-weight: 600;
+}
+.vacancies-container .vacancies-card .salary {
+  font-size: 18px;
+  font-weight: 700;
+}
+.vacancies-container .vacancies-card .city {
+  margin-bottom: 5px;
+}
+.vacancies-container .vacancies-card .description {
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+.vacancies-container .vacancies-card .button-wrap {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vacancies-container .vacancies-card .button-wrap .button {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+.vacancies-container .vacancies-card .button-wrap .button:last-child {
+  margin-right: 0;
+}
+.vacancies-container .vacancies-card .button-wrap .button.-color-blue {
+  background-color: #A9D8F1;
   color: white;
 }
-.auth-form .register-link {
+.vacancies-container .vacancies-card .button-wrap .hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #133A5F;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  text-align: center;
+  margin-left: 6px;
+  font-size: 11px;
+  line-height: 1;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu {
+  position: absolute;
+  background-color: white;
+  bottom: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
   font-size: 14px;
-  margin-top: 6px;
-  color: #133A5F !important;
-  display: block;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item {
+  width: 200px;
+  border: 1px solid #133A5F;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item:last-child {
+  margin-right: 0;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .resume-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #133A5F;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .pick-resume {
+  font-size: 14px;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .resume-wrap .resume-item .description {
+  height: 40px;
+}
+.vacancies-container .vacancies-card .button-wrap .response-menu .close {
+  cursor: pointer;
+}
+.vacancies-container .vacancies-card .blocked-title {
+  font-weight: 700;
+  color: #fb6060;
+}
+.vacancies-container .vacancies-card .hidden-title {
+  font-weight: 700;
+  color: #efd800;
+}
+.vacancies-container .vacancies-card .skills {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+.vacancies-container .vacancies-card .skills .skill__item {
+  padding: 2px 7px;
+  background-color: #256fb5;
+  color: white;
+  border-radius: 8px;
+  margin-right: 4px;
+  margin-bottom: 5px;
+}
+.vacancies-container .vacancies-card .response-status {
+  position: absolute;
+  left: 15px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.vacancies-container .vacancies-card .response-status .status-color {
+  width: 15px;
+  border: 1px solid #133A5F;
+  border-radius: 8px;
+  height: 80%;
+}
+.vacancies-container .vacancies-card .response-status .status-color.-accept {
+  background-color: #133A5F;
+}
+.vacancies-container .vacancies-card .response-status .status-color.-declined {
+  border-color: #fd3300;
+  background-color: #fd3300;
+}
+.vacancies-container .vacancies-card .response-status-title {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-weight: 500;
+  border-bottom: 3px solid initial;
+}
+.vacancies-container .vacancies-card .response-resume-title {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 12px;
+}
+.vacancies-container.responses-list .vacancies-card {
+  padding-left: 45px;
+}
+
+.filter-vacancy .filter-container.-open {
+  display: flex;
+}
+.filter-vacancy .filter-container .option-row .form-block {
+  margin-bottom: 15px;
+}
+.filter-vacancy .filter-container .option-row .form-block .select-input {
+  width: 100%;
+}
+.filter-vacancy .filter-container .option-row .form-block .select-input .select-custom {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+}
+.filter-vacancy .filter-container .option-row .form-block .radio-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter-vacancy .filter-container .option-row .form-block .radio-buttons .radio-buttons-item {
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.filter-vacancy .filter-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #133A5F;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+.filter-vacancy .filter-button:hover {
+  background-color: #4f957d;
+}
+
+header {
+  padding: 16px 0;
+  background-color: #133A5F;
+}
+header .content {
+  display: flex;
+  color: white;
+  align-items: center;
+}
+header .content .login_container .user_name {
+  padding: 0 6px;
+  border-bottom: 1px solid white;
+  margin-right: 10px;
+}
+header .content a {
+  color: white !important;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 500;
+}
+
+header .content .login_container {
+  margin-left: auto;
+  display: flex;
+  cursor: pointer;
+}
+
+.full-page-menu .menu-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #133A5F;
+  border-radius: 10px;
+  width: 100%;
+  height: 50vh;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.full-page-menu .menu-item .description {
+  font-weight: 600;
+  color: #133A5F;
+  font-size: 20px;
+}
+.full-page-menu .menu-item:hover {
+  box-shadow: inset 0 0 10px rgba(89, 185, 153, 0.5);
+}
+.full-page-menu .menu-item.-border-yellow {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+.full-page-menu .menu-item.-border-yellow .description {
+  color: #ffc107;
+}
+.full-page-menu .menu-item.-border-yellow:hover {
+  box-shadow: inset 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+.header_items {
+  margin-right: 40px;
+}
+.header_items .wrap {
+  display: flex;
+}
+.header_items .wrap .header-item {
+  margin-right: 10px;
+}
+
+.options-bar .heading {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #303233;
+}
+.options-bar .wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.options-bar .options-bar-item {
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 37px;
+  border-radius: 25px;
+  background-color: #133A5F;
+  color: white;
+  margin-right: 5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 

@@ -51,7 +51,7 @@ class PostsVacancyTest extends TestCase
         $user = User::factory()->create();
         $vacancy = Vacancies::factory()->create();
 
-        //проверяем создание вакансии
+        //проверяем создание вакансии c авторизацией
 
         $this->$this->actingAs($user)
             ->withSession(['banned' => false])
